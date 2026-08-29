@@ -1417,7 +1417,7 @@ async function loadPrinters() {
         // ========================================
         document.addEventListener('DOMContentLoaded', async function() {
             console.log('🚀 Initialisation...');
-
+const printers = await loadPrinters();
             await loadConfig();
             await loadWilayasData();
 

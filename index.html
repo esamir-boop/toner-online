@@ -1,75 +1,1542 @@
-{
-  "produit": {
-    "nom": "Toner",
-    "image": "assets/toner.jpg"
-  },
-  "logo": {
-    "icone": "🖨️",
-    "texte": "Toner Online",
-    "sous_texte": "Algérie"
-  },
-  "remise": {
-    "par_quantite": 500,
-    "quantite_max": 10
-  },
-  "catalogue": {
-    "marques": {
-      "HP": {
-        "toners": {
-          "HP 202X": {
-            "original": { "code": "CF500X", "rendement": "2500 pages", "prix": 18500 },
-            "compatible": { "code": "CF500X-C", "rendement": "2500 pages", "prix": 7500 },
-            "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405"]
-          },
-          "HP 410X": {
-            "original": { "code": "CF410X", "rendement": "2800 pages", "prix": 21500 },
-            "compatible": { "code": "CF410X-C", "rendement": "2800 pages", "prix": 8500 },
-            "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479"]
-          }
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toner Online - Toners pour imprimantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; color: #1a1a2e; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        .navbar {
+            background: #1A4C27;
+            padding: 12px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: linear-gradient(135deg, #1A4C27 0%, #2A6B3A 50%, #1A4C27 100%);
+            background-size: 200% 200%;
+            animation: shimmer 4s ease-in-out infinite;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
         }
-      },
-      "Canon": {
-        "toners": {
-          "Canon 057": {
-            "original": { "code": "057H", "rendement": "3100 pages", "prix": 19500 },
-            "compatible": { "code": "057H-C", "rendement": "3100 pages", "prix": 8200 },
-            "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749"]
-          }
+        @keyframes shimmer {
+            0% { background-position: 0% 50%; box-shadow: 0 2px 20px rgba(26,76,39,0.3); }
+            50% { background-position: 100% 50%; box-shadow: 0 2px 30px rgba(26,76,39,0.5); }
+            100% { background-position: 0% 50%; box-shadow: 0 2px 20px rgba(26,76,39,0.3); }
         }
-      },
-      "Brother": {
-        "toners": {
-          "Brother TN-760": {
-            "original": { "code": "TN760", "rendement": "3000 pages", "prix": 18900 },
-            "compatible": { "code": "TN760-C", "rendement": "3000 pages", "prix": 7900 },
-            "compatibles": ["HL-L2350DW", "HL-L2370DW", "MFC-L2750DW"]
-          }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; position: relative; }
+        .logo::before {
+            content: '';
+            position: absolute;
+            top: -12px; left: -12px; right: -12px; bottom: -12px;
+            background: radial-gradient(circle at center, rgba(255,215,0,0.12), transparent 70%);
+            border-radius: 50%;
+            animation: glow-pulse 2s ease-in-out infinite;
+            pointer-events: none;
         }
-      },
-      "Epson": {
-        "toners": {
-          "Epson T664": {
-            "original": { "code": "T664", "rendement": "4000 pages", "prix": 21000 },
-            "compatible": { "code": "T664-C", "rendement": "4000 pages", "prix": 8900 },
-            "compatibles": ["EcoTank ET-2750", "EcoTank ET-3750", "EcoTank ET-4750"]
-          }
+        @keyframes glow-pulse {
+            0%,100% { transform: scale(1); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 1; }
         }
-      }
-    }
-  },
-  "livraison": {
-    "domicile": { "zone1": 500, "zone2": 700, "zone3": 900 },
-    "point_relais": { "zone1": 300, "zone2": 400, "zone3": 500 },
-    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
-    "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"]
-  },
-  "contact": {
-    "whatsapp": "213560503228",
-    "email": "berchichesamir@gmail.com"
-  },
-  "emailjs": {
-    "public_key": "tc8CLfJDs3E9-EIQ3",
-    "service_id": "service_hguu30b",
-    "template_id": "template_cx2lh99"
-  }
-}
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: #F5D742;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1A4C27;
+            font-size: 1.5rem;
+            font-weight: 700;
+            box-shadow: 0 0 15px rgba(245,215,66,0.25);
+            position: relative;
+            z-index: 1;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .logo-icon:hover { transform: scale(1.05) rotate(-5deg); }
+        .logo-text .main { font-weight: 700; font-size: 1.1rem; color: #FFFFFF; letter-spacing: 0.5px; text-shadow: 0 1px 8px rgba(0,0,0,0.15); position: relative; z-index: 1; }
+        .logo-text .sub { font-weight: 300; font-size: 0.6rem; color: #F5D742; text-transform: uppercase; letter-spacing: 1.5px; position: relative; z-index: 1; }
+
+        .order-section { padding: 40px 0 60px; background: #f0f2f5; min-height: 100vh; }
+        .order-header { text-align: center; margin-bottom: 30px; }
+        .order-header h2 { font-size: 2rem; color: #1A4C27; }
+
+        .order-wrapper { display: grid; grid-template-columns: 1fr 2fr; gap: 40px; max-width: 1100px; margin: 0 auto; align-items: start; }
+
+        .order-product {
+            background: white;
+            border-radius: 16px;
+            padding: 25px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            text-align: center;
+            position: sticky;
+            top: 100px;
+        }
+        .order-product img {
+            max-width: 100%;
+            border-radius: 12px;
+            max-height: 200px;
+            object-fit: contain;
+        }
+        .order-product h3 {
+            color: #1A4C27;
+            font-size: 1.1rem;
+            margin-top: 10px;
+        }
+        .order-product .product-price {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: #F47920;
+        }
+        .order-product .product-desc {
+            color: #6c757d;
+            font-size: 0.85rem;
+            margin-top: 5px;
+        }
+
+        .order-form {
+            background: white;
+            border-radius: 16px;
+            padding: 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+        .order-form .form-group { margin-bottom: 18px; }
+        .order-form label { display: block; font-weight: 600; color: #1A4C27; margin-bottom: 5px; font-size: 0.9rem; }
+        .order-form input, .order-form select, .order-form textarea {
+            width: 100%; padding: 11px 14px; border: 2px solid #e0e0e0; border-radius: 8px;
+            font-size: 0.95rem; font-family: 'Poppins', sans-serif; transition: all 0.3s ease; background: white;
+        }
+        .order-form input:focus, .order-form select:focus, .order-form textarea:focus {
+            border-color: #1A4C27; outline: none; box-shadow: 0 0 0 3px rgba(26,76,39,0.12);
+        }
+        .order-form textarea { resize: vertical; min-height: 60px; }
+
+        .quantity-selector { display: flex; align-items: center; gap: 10px; max-width: 140px; }
+        .quantity-selector input { width: 50px; text-align: center; padding: 8px; border: 2px solid #e0e0e0; border-radius: 8px; font-size: 1rem; font-weight: 600; }
+        .quantity-selector .qty-btn { width: 36px; height: 36px; border: none; border-radius: 8px; background: #f0f0f0; font-size: 1.2rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; }
+        .quantity-selector .qty-btn:hover { background: #1A4C27; color: white; }
+
+        .price-detail { background: #f8f9fa; border-radius: 10px; padding: 15px 18px; border: 2px solid #e9ecef; }
+        .price-detail .price-line { display: flex; justify-content: space-between; padding: 4px 0; font-size: 0.9rem; color: #4a4a5a; }
+        .price-detail .price-line .label { font-weight: 500; }
+        .price-detail .price-line .value { font-weight: 600; }
+        .price-detail .price-line.subtotal { border-bottom: 1px dashed #dee2e6; padding-bottom: 8px; }
+        .price-detail .price-line.discount { color: #e74c3c; }
+        .price-detail .price-line.discount .value { color: #e74c3c; }
+        .price-detail .price-line.delivery { border-bottom: 2px solid #dee2e6; padding-bottom: 8px; }
+        .price-detail .price-line.total { font-size: 1.2rem; font-weight: 700; color: #1A4C27; padding-top: 6px; }
+        .price-detail .price-line.total .value { color: #F47920; font-size: 1.3rem; }
+
+        .btn-submit { width: 100%; padding: 14px; background: #1A4C27; color: white; border: none; border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.3s ease; font-family: 'Poppins', sans-serif; margin-top: 8px; }
+        .btn-submit:hover { background: #2A6B3A; transform: translateY(-2px); box-shadow: 0 6px 25px rgba(26,76,39,0.3); }
+        .btn-submit:disabled { opacity: 0.7; cursor: not-allowed; transform: none; }
+        .form-footer { text-align: center; margin-top: 12px; font-size: 0.8rem; color: #6c757d; }
+
+        .type-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        .type-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+            text-align: center;
+            min-width: 100px;
+        }
+        .type-btn:hover {
+            border-color: #1A4C27;
+            transform: translateY(-2px);
+        }
+        .type-btn.active {
+            border-color: #1A4C27;
+            background: #1A4C27;
+            color: white;
+        }
+        .type-btn .sub {
+            display: block;
+            font-weight: 400;
+            font-size: 0.8rem;
+            opacity: 0.8;
+        }
+
+        .suggestion-item {
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .suggestion-item:hover {
+            background: #f0f4f8;
+        }
+        .suggestion-item .highlight {
+            font-weight: 700;
+            color: #1A4C27;
+        }
+        .suggestion-item .sub-info {
+            display: block;
+            font-size: 0.8rem;
+            color: #6c757d;
+        }
+
+        .status-msg { padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; display: none; font-size: 0.9rem; }
+        .status-msg.error { display: block; background: #f8d7da; color: #721c24; border: 1px solid #f5c6cb; }
+        .status-msg.success { display: block; background: #d4edda; color: #155724; border: 1px solid #c3e6cb; }
+        .status-msg.warning { display: block; background: #fff3cd; color: #856404; border: 1px solid #ffeeba; }
+        .loading-text { color: #6c757d; font-size: 0.8rem; margin-top: 4px; }
+
+        @media (max-width: 968px) { .order-wrapper { grid-template-columns: 1fr; } .order-product { position: static; max-width: 350px; margin: 0 auto; } }
+        @media (max-width: 768px) { .order-form { padding: 20px; } }
+        @media (max-width: 600px) { .logo-icon { width: 34px; height: 34px; font-size: 1.2rem; } .logo-text .main { font-size: 0.95rem; } .logo-text .sub { font-size: 0.5rem; } .order-header h2 { font-size: 1.5rem; } .order-product img { max-height: 150px; } }
+
+        #celebration-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            animation: fadeInOverlay 0.5s ease;
+        }
+        @keyframes fadeInOverlay {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        #celebration-content {
+            text-align: center;
+            color: white;
+            padding: 30px;
+            max-width: 600px;
+        }
+        #celebration-content .emoji-big { font-size: 4rem; display: block; margin-bottom: 8px; animation: bounceEmoji 1s ease infinite; }
+        @keyframes bounceEmoji { 0%,100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+        #celebration-content h1 { font-size: 2.5rem; font-weight: 900; color: #F5D742; text-shadow: 0 0 30px rgba(245,215,66,0.4); margin-bottom: 8px; }
+        #celebration-content .subtitle { font-size: 1.1rem; color: #e0e0e0; margin-bottom: 5px; }
+        #celebration-content .order-summary {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 15px 20px;
+            margin: 15px auto;
+            max-width: 450px;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        #celebration-content .order-summary .line {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            color: #e0e0e0;
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        #celebration-content .order-summary .line:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: #F5D742;
+            font-size: 1rem;
+            padding-top: 6px;
+            margin-top: 4px;
+            border-top: 1px solid rgba(255,215,66,0.2);
+        }
+        #celebration-content .btn-close-celebration {
+            margin-top: 15px;
+            padding: 12px 40px;
+            background: #F5D742;
+            color: #1A4C27;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 4px 20px rgba(245,215,66,0.25);
+        }
+        #celebration-content .btn-close-celebration:hover { transform: scale(1.05); box-shadow: 0 6px 30px rgba(245,215,66,0.4); }
+
+        #fireworks-canvas {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9998;
+        }
+        .confetti-container {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall linear forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+        #loading-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(4px);
+            z-index: 9997;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #loading-overlay .spinner {
+            width: 50px; height: 50px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-top-color: #F5D742;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading-overlay p { color: white; margin-top: 15px; font-size: 1rem; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon" id="logo-icon">🖨️</div>
+                <div class="logo-text">
+                    <span class="main" id="logo-main">Toner Online</span>
+                    <span class="sub" id="logo-sub">Algérie</span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <section class="order-section" id="commande">
+        <div class="container">
+            <div class="order-header">
+                <h2>🖨️ Commander votre toner</h2>
+            </div>
+
+            <div class="order-wrapper">
+                <div class="order-product">
+                    <img src="assets/toner.jpg" alt="Toner pour imprimante" id="product-image">
+                    <h3 id="product-name">Toner Compatible</h3>
+                    <p class="product-price" id="product-price">7 500 DA</p>
+                    <p class="product-desc" id="product-desc">Sélectionnez votre imprimante pour trouver le toner compatible</p>
+                </div>
+
+                <form id="order-form" class="order-form" onsubmit="return false;">
+                    <div id="statusMessage" class="status-msg"></div>
+
+                    <!-- 1. RECHERCHE DE MARQUE -->
+                    <div class="form-group">
+                        <label>🔍 Rechercher votre marque d'imprimante</label>
+                        <input type="text" id="recherche-marque" placeholder="Ex: HP, Canon, Epson..." autocomplete="off">
+                        <div id="suggestions-marque" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto; position:relative; z-index:10;"></div>
+                    </div>
+
+                    <!-- 2. RECHERCHE DE MODÈLE -->
+                    <div class="form-group">
+                        <label>🔍 Rechercher votre modèle d'imprimante</label>
+                        <input type="text" id="recherche-modele" placeholder="Ex: LaserJet M402" autocomplete="off" disabled>
+                        <div id="suggestions-modele" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto; position:relative; z-index:10;"></div>
+                    </div>
+
+                    <!-- 3. MARQUE ET MODÈLE SÉLECTIONNÉS (cachés) -->
+                    <input type="hidden" id="marque-selectionnee" value="">
+                    <input type="hidden" id="modele-selectionne" value="">
+
+                    <!-- 4. CHOIX ORIGINAL / COMPATIBLE -->
+                    <div class="form-group" id="type-section" style="display:none;">
+                        <label>🔧 Type de toner</label>
+                        <div class="type-buttons">
+                            <button type="button" class="type-btn active" data-type="compatible" id="btn-compatible">
+                                ✅ Compatible
+                                <span class="sub">Économique - Jusqu'à -70%</span>
+                            </button>
+                            <button type="button" class="type-btn" data-type="original" id="btn-original">
+                                ⭐ Original
+                                <span class="sub">Qualité constructeur</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 5. LIVRAISON -->
+                    <div class="form-group" id="delivery-section" style="display:none;">
+                        <label>🚚 Mode de livraison</label>
+                        <div class="type-buttons">
+                            <button type="button" class="type-btn active" data-delivery="domicile" id="btn-domicile">
+                                🏠 Domicile
+                                <span class="sub">Livraison à votre adresse</span>
+                            </button>
+                            <button type="button" class="type-btn" data-delivery="point_relais" id="btn-point-relais">
+                                📦 Point relais
+                                <span class="sub">Retrait en point relais</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- 6. NOM COMPLET -->
+                    <div class="form-group">
+                        <label>👤 Nom complet</label>
+                        <input type="text" id="fullname" placeholder="Ex: Ahmed Benali" required>
+                    </div>
+
+                    <!-- 7. TÉLÉPHONE -->
+                    <div class="form-group">
+                        <label>📱 Téléphone</label>
+                        <input type="tel" id="phone" placeholder="Ex: 0550 12 34 56" required>
+                    </div>
+
+                    <!-- 8. WILAYA -->
+                    <div class="form-group">
+                        <label>📍 Wilaya</label>
+                        <select id="order-wilaya">
+                            <option value="">Sélectionnez votre wilaya</option>
+                        </select>
+                    </div>
+
+                    <!-- 9. COMMUNE -->
+                    <div class="form-group">
+                        <label>🏙️ Commune</label>
+                        <select id="order-commune">
+                            <option value="">Sélectionnez d'abord une wilaya</option>
+                        </select>
+                        <div id="communeLoading" class="loading-text" style="display:none;">⏳ Chargement des communes...</div>
+                    </div>
+
+                    <!-- 10. QUANTITÉ -->
+                    <div class="form-group">
+                        <label>📦 Quantité</label>
+                        <div class="quantity-selector">
+                            <button type="button" class="qty-btn minus">−</button>
+                            <input type="number" id="quantity" value="1" min="1" max="10">
+                            <button type="button" class="qty-btn plus">+</button>
+                        </div>
+                        <small style="color:#6c757d;font-size:0.75rem;" id="discount-info">Réduction de 500 DA par quantité supplémentaire (max 10)</small>
+                    </div>
+
+                    <!-- 11. DÉTAIL DU PRIX -->
+                    <div class="form-group">
+                        <label>💰 Détail du prix</label>
+                        <div class="price-detail">
+                            <div class="price-line subtotal">
+                                <span class="label">Sous-total</span>
+                                <span class="value" id="subtotal-display">7 500 DA</span>
+                            </div>
+                            <div class="price-line discount" id="discount-line" style="display:none;">
+                                <span class="label">Remise</span>
+                                <span class="value" id="discount-display">-0 DA</span>
+                            </div>
+                            <div class="price-line delivery">
+                                <span class="label">🚚 Livraison</span>
+                                <span class="value" id="delivery-display">À déterminer</span>
+                            </div>
+                            <div class="price-line total">
+                                <span class="label">Total</span>
+                                <span class="value" id="total-display">7 500 DA</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 12. BOUTON -->
+                    <button type="button" id="submitBtn" class="btn-submit">📩 Commander maintenant</button>
+                    <p class="form-footer">🔒 Vos informations sont sécurisées</p>
+
+                    <!-- Champ honeypot anti-bot -->
+                    <div style="display:none;">
+                        <label for="website">Website</label>
+                        <input type="text" id="website" name="website" value="">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p>⏳ Envoi de votre commande...</p>
+    </div>
+
+    <div id="celebration-overlay">
+        <div id="celebration-content">
+            <span class="emoji-big">🎉</span>
+            <h1>Félicitations ! 🎊</h1>
+            <p class="subtitle">Votre commande a été validée avec succès !</p>
+            <div class="order-summary" id="order-summary"></div>
+            <button class="btn-close-celebration" onclick="closeCelebration()">✅ J'ai compris</button>
+        </div>
+    </div>
+
+    <canvas id="fireworks-canvas"></canvas>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <script>
+        // ========================================
+        // CONFIGURATION
+        // ========================================
+        let CONFIG = {
+            produit: {
+                nom: "Toner",
+                image: "assets/toner.jpg"
+            },
+            logo: {
+                icone: "🖨️",
+                texte: "Toner Online",
+                sous_texte: "Algérie"
+            },
+            remise: {
+                par_quantite: 500,
+                quantite_max: 10
+            },
+            catalogue: {
+                marques: {
+                    "HP": {
+                        "toners": {
+                            "HP 202X": {
+                                "original": {
+                                    "code": "CF500X",
+                                    "rendement": "2500 pages",
+                                    "prix": 18500
+                                },
+                                "compatible": {
+                                    "code": "CF500X-C",
+                                    "rendement": "2500 pages",
+                                    "prix": 7500
+                                },
+                                "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405"]
+                            },
+                            "HP 410X": {
+                                "original": {
+                                    "code": "CF410X",
+                                    "rendement": "2800 pages",
+                                    "prix": 21500
+                                },
+                                "compatible": {
+                                    "code": "CF410X-C",
+                                    "rendement": "2800 pages",
+                                    "prix": 8500
+                                },
+                                "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479"]
+                            }
+                        }
+                    },
+                    "Canon": {
+                        "toners": {
+                            "Canon 057": {
+                                "original": {
+                                    "code": "057H",
+                                    "rendement": "3100 pages",
+                                    "prix": 19500
+                                },
+                                "compatible": {
+                                    "code": "057H-C",
+                                    "rendement": "3100 pages",
+                                    "prix": 8200
+                                },
+                                "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749"]
+                            }
+                        }
+                    },
+                    "Brother": {
+                        "toners": {
+                            "Brother TN-760": {
+                                "original": {
+                                    "code": "TN760",
+                                    "rendement": "3000 pages",
+                                    "prix": 18900
+                                },
+                                "compatible": {
+                                    "code": "TN760-C",
+                                    "rendement": "3000 pages",
+                                    "prix": 7900
+                                },
+                                "compatibles": ["HL-L2350DW", "HL-L2370DW", "MFC-L2750DW"]
+                            }
+                        }
+                    },
+                    "Epson": {
+                        "toners": {
+                            "Epson T664": {
+                                "original": {
+                                    "code": "T664",
+                                    "rendement": "4000 pages",
+                                    "prix": 21000
+                                },
+                                "compatible": {
+                                    "code": "T664-C",
+                                    "rendement": "4000 pages",
+                                    "prix": 8900
+                                },
+                                "compatibles": ["EcoTank ET-2750", "EcoTank ET-3750", "EcoTank ET-4750"]
+                            }
+                        }
+                    }
+                }
+            },
+            livraison: {
+                "domicile": {
+                    "zone1": 500,
+                    "zone2": 700,
+                    "zone3": 900
+                },
+                "point_relais": {
+                    "zone1": 300,
+                    "zone2": 400,
+                    "zone3": 500
+                },
+                "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
+                "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"]
+            },
+            contact: {
+                whatsapp: "213560503228",
+                email: "berchichesamir@gmail.com"
+            },
+            emailjs: {
+                public_key: "tc8CLfJDs3E9-EIQ3",
+                service_id: "service_hguu30b",
+                template_id: "template_cx2lh99"
+            }
+        };
+
+        let UNIT_PRICE = 7500;
+        let DISCOUNT_PER_EXTRA = 500;
+        let MAX_QUANTITY = 10;
+        let selectedTonerType = 'compatible';
+        let selectedDelivery = 'domicile';
+
+        // ===== CONFIGURATION EMAILJS =====
+        let EMAILJS_CONFIG = {
+            public_key: 'tc8CLfJDs3E9-EIQ3',
+            service_id: 'service_hguu30b',
+            template_id: 'template_cx2lh99'
+        };
+
+        emailjs.init(EMAILJS_CONFIG.public_key);
+
+        // ===== SÉCURITÉ =====
+        let isSubmitting = false;
+
+        function sanitizeInput(input) {
+            const element = document.createElement('div');
+            element.textContent = input;
+            return element.innerHTML;
+        }
+
+        // ========================================
+        // DONNÉES DES WILAYAS
+        // ========================================
+        let wilayaData = {};
+        let wilayaNames = [];
+
+        // ========================================
+        // CHARGER LA CONFIGURATION
+        // ========================================
+        async function loadConfig() {
+            try {
+                const response = await fetch('config.json');
+                if (!response.ok) {
+                    throw new Error('Fichier config.json non trouvé');
+                }
+                const data = await response.json();
+                CONFIG = data;
+                
+                DISCOUNT_PER_EXTRA = CONFIG.remise.par_quantite;
+                MAX_QUANTITY = CONFIG.remise.quantite_max;
+                
+                document.getElementById('product-image').src = CONFIG.produit.image;
+                
+                document.getElementById('logo-icon').textContent = CONFIG.logo.icone;
+                document.getElementById('logo-main').textContent = CONFIG.logo.texte;
+                document.getElementById('logo-sub').textContent = CONFIG.logo.sous_texte;
+                
+                document.getElementById('discount-info').textContent = 
+                    `Réduction de ${DISCOUNT_PER_EXTRA} DA par quantité supplémentaire (max ${MAX_QUANTITY})`;
+                
+                // Initialiser le catalogue
+                if (CONFIG.catalogue) {
+                    initTonerCatalogue();
+                    initSmartSearch();
+                }
+                
+                calculatePrice();
+                console.log('✅ Configuration chargée');
+            } catch (error) {
+                console.error('❌ Erreur chargement config:', error);
+            }
+        }
+
+        // ========================================
+        // CATALOGUE TONERS (AVEC ORIGINAL/COMPATIBLE)
+        // ========================================
+        function initTonerCatalogue() {
+            const typeSection = document.getElementById('type-section');
+            const deliverySection = document.getElementById('delivery-section');
+
+            // Gestion des boutons Original/Compatible
+            document.getElementById('btn-compatible').addEventListener('click', function() {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedTonerType = 'compatible';
+                updateTonerInfo();
+            });
+
+            document.getElementById('btn-original').addEventListener('click', function() {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedTonerType = 'original';
+                updateTonerInfo();
+            });
+
+            // Gestion des boutons Livraison
+            document.getElementById('btn-domicile').addEventListener('click', function() {
+                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedDelivery = 'domicile';
+                calculatePrice();
+            });
+
+            document.getElementById('btn-point-relais').addEventListener('click', function() {
+                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedDelivery = 'point_relais';
+                calculatePrice();
+            });
+        }
+
+        function updateTonerInfo() {
+            const marque = document.getElementById('marque-selectionnee').value;
+            const modele = document.getElementById('modele-selectionne').value;
+            
+            if (!marque || !modele || !CONFIG.catalogue.marques[marque]) return;
+            
+            const toners = CONFIG.catalogue.marques[marque].toners;
+            let foundToner = null;
+            let foundKey = null;
+            
+            for (const [key, toner] of Object.entries(toners)) {
+                if (toner.compatibles && toner.compatibles.includes(modele)) {
+                    foundToner = toner;
+                    foundKey = key;
+                    break;
+                }
+            }
+            
+            if (foundToner) {
+                const typeData = foundToner[selectedTonerType];
+                if (typeData) {
+                    const typeLabel = selectedTonerType === 'original' ? 'Original' : 'Compatible';
+                    document.getElementById('product-name').textContent = `${foundKey} - ${typeLabel}`;
+                    document.getElementById('product-price').textContent = `${typeData.prix} DA`;
+                    document.getElementById('product-desc').textContent = 
+                        `${typeLabel} - ${typeData.rendement} - Code: ${typeData.code}`;
+                    
+                    UNIT_PRICE = typeData.prix;
+                    calculatePrice();
+                }
+            }
+        }
+
+        // ========================================
+        // RECHERCHE INTELLIGENTE
+        // ========================================
+        function initSmartSearch() {
+            const marqueInput = document.getElementById('recherche-marque');
+            const modeleInput = document.getElementById('recherche-modele');
+            const marqueSuggestions = document.getElementById('suggestions-marque');
+            const modeleSuggestions = document.getElementById('suggestions-modele');
+            const marqueHidden = document.getElementById('marque-selectionnee');
+            const modeleHidden = document.getElementById('modele-selectionne');
+
+            // Liste des marques et corrections orthographiques
+            const marquesData = {
+                "hp": "HP",
+                "hewlett packard": "HP",
+                "canon": "Canon",
+                "epson": "Epson",
+                "brother": "Brother",
+                "samsung": "Samsung",
+                "xerox": "Xerox",
+                "lexmark": "Lexmark",
+                "dell": "Dell",
+                "oki": "OKI",
+                "kyocera": "Kyocera"
+            };
+
+            function getAvailableMarques() {
+                if (!CONFIG.catalogue || !CONFIG.catalogue.marques) return [];
+                return Object.keys(CONFIG.catalogue.marques);
+            }
+
+            function getModelesForMarque(marque) {
+                if (!CONFIG.catalogue || !CONFIG.catalogue.marques[marque]) return [];
+                const toners = CONFIG.catalogue.marques[marque].toners;
+                const modelesSet = new Set();
+                Object.values(toners).forEach(toner => {
+                    if (toner.compatibles) {
+                        toner.compatibles.forEach(modele => {
+                            modelesSet.add(modele);
+                        });
+                    }
+                });
+                return Array.from(modelesSet);
+            }
+
+            function normalizeString(str) {
+                return str
+                    .toLowerCase()
+                    .normalize('NFD')
+                    .replace(/[\u0300-\u036f]/g, '')
+                    .trim();
+            }
+
+            function getSimilarity(str1, str2) {
+                const s1 = normalizeString(str1);
+                const s2 = normalizeString(str2);
+                if (s1 === s2) return 1;
+                if (s1.length === 0 || s2.length === 0) return 0;
+                
+                let matches = 0;
+                const shorter = s1.length < s2.length ? s1 : s2;
+                const longer = s1.length < s2.length ? s2 : s1;
+                
+                for (let i = 0; i < shorter.length; i++) {
+                    if (shorter[i] === longer[i] || longer.includes(shorter[i])) {
+                        matches++;
+                    }
+                }
+                return matches / longer.length;
+            }
+
+            function searchMarques(query) {
+                const normalizedQuery = normalizeString(query);
+                const availableMarques = getAvailableMarques();
+                const results = [];
+                
+                availableMarques.forEach(marque => {
+                    const normalizedMarque = normalizeString(marque);
+                    const similarity = getSimilarity(normalizedQuery, normalizedMarque);
+                    
+                    let isAlias = false;
+                    for (const [alias, real] of Object.entries(marquesData)) {
+                        if (normalizeString(alias) === normalizedQuery && real === marque) {
+                            isAlias = true;
+                            break;
+                        }
+                    }
+                    
+                    if (similarity > 0.5 || isAlias || normalizedMarque.includes(normalizedQuery)) {
+                        results.push({
+                            name: marque,
+                            similarity: similarity,
+                            isAlias: isAlias
+                        });
+                    }
+                });
+                
+                results.sort((a, b) => b.similarity - a.similarity);
+                return results;
+            }
+
+            function searchModeles(query, marque) {
+                const normalizedQuery = normalizeString(query);
+                const modeles = getModelesForMarque(marque);
+                const results = [];
+                
+                modeles.forEach(modele => {
+                    const normalizedModele = normalizeString(modele);
+                    const similarity = getSimilarity(normalizedQuery, normalizedModele);
+                    
+                    if (similarity > 0.4 || normalizedModele.includes(normalizedQuery)) {
+                        results.push({
+                            name: modele,
+                            similarity: similarity
+                        });
+                    }
+                });
+                
+                results.sort((a, b) => b.similarity - a.similarity);
+                return results;
+            }
+
+            function showMarqueSuggestions(query) {
+                if (query.length < 1) {
+                    marqueSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                const results = searchMarques(query);
+                if (results.length === 0) {
+                    marqueSuggestions.innerHTML = `<div class="suggestion-item" style="color:#999;">Aucune marque trouvée</div>`;
+                    marqueSuggestions.style.display = 'block';
+                    return;
+                }
+                
+                marqueSuggestions.innerHTML = results.slice(0, 6).map(result => {
+                    const highlight = result.isAlias ? '⭐' : '';
+                    return `<div class="suggestion-item" data-marque="${result.name}">
+                        ${highlight} ${result.name}
+                        <span class="sub-info">${result.isAlias ? 'Correction orthographique' : ''}</span>
+                    </div>`;
+                }).join('');
+                
+                marqueSuggestions.style.display = 'block';
+                
+                marqueSuggestions.querySelectorAll('.suggestion-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const marque = this.dataset.marque;
+                        selectMarque(marque);
+                    });
+                });
+            }
+
+            function selectMarque(marque) {
+                marqueInput.value = marque;
+                marqueHidden.value = marque;
+                marqueSuggestions.style.display = 'none';
+                
+                modeleInput.disabled = false;
+                modeleInput.placeholder = `Rechercher un modèle ${marque}...`;
+                modeleInput.value = '';
+                modeleHidden.value = '';
+                
+                modeleSuggestions.innerHTML = '';
+                modeleSuggestions.style.display = 'none';
+                
+                document.getElementById('product-name').textContent = 'Sélectionnez un modèle';
+                document.getElementById('product-price').textContent = 'Choisissez un modèle';
+                document.getElementById('product-desc').textContent = `Marque sélectionnée : ${marque}`;
+                
+                const statusMsg = document.getElementById('statusMessage');
+                statusMsg.className = 'status-msg success';
+                statusMsg.textContent = `✅ Marque sélectionnée : ${marque}`;
+                setTimeout(() => { statusMsg.className = 'status-msg'; }, 3000);
+            }
+
+            function showModeleSuggestions(query, marque) {
+                if (query.length < 1 || !marque) {
+                    modeleSuggestions.style.display = 'none';
+                    return;
+                }
+                
+                const results = searchModeles(query, marque);
+                if (results.length === 0) {
+                    modeleSuggestions.innerHTML = `<div class="suggestion-item" style="color:#999;">Aucun modèle trouvé pour ${marque}</div>`;
+                    modeleSuggestions.style.display = 'block';
+                    return;
+                }
+                
+                modeleSuggestions.innerHTML = results.slice(0, 6).map(result => {
+                    return `<div class="suggestion-item" data-modele="${result.name}">
+                        ${result.name}
+                        <span class="sub-info">Correspondance : ${Math.round(result.similarity * 100)}%</span>
+                    </div>`;
+                }).join('');
+                
+                modeleSuggestions.style.display = 'block';
+                
+                modeleSuggestions.querySelectorAll('.suggestion-item').forEach(item => {
+                    item.addEventListener('click', function() {
+                        const modele = this.dataset.modele;
+                        const marque = marqueHidden.value;
+                        selectModele(modele, marque);
+                    });
+                });
+            }
+
+            function selectModele(modele, marque) {
+                modeleInput.value = modele;
+                modeleHidden.value = modele;
+                modeleSuggestions.style.display = 'none';
+                
+                const toners = CONFIG.catalogue.marques[marque].toners;
+                let foundToner = null;
+                let foundKey = null;
+                
+                for (const [key, toner] of Object.entries(toners)) {
+                    if (toner.compatibles && toner.compatibles.includes(modele)) {
+                        foundToner = toner;
+                        foundKey = key;
+                        break;
+                    }
+                }
+                
+                if (foundToner) {
+                    document.getElementById('product-name').textContent = foundKey;
+                    document.getElementById('product-price').textContent = `${foundToner.compatible.prix} DA`;
+                    document.getElementById('product-desc').textContent = 
+                        `Compatible ${modele} - ${foundToner.compatible.rendement}`;
+                    
+                    document.getElementById('type-section').style.display = 'block';
+                    document.getElementById('delivery-section').style.display = 'block';
+                    
+                    document.getElementById('btn-compatible').innerHTML = `
+                        ✅ Compatible
+                        <span class="sub">Économique - ${foundToner.compatible.prix} DA</span>
+                    `;
+                    document.getElementById('btn-original').innerHTML = `
+                        ⭐ Original
+                        <span class="sub">Qualité - ${foundToner.original.prix} DA</span>
+                    `;
+                    
+                    document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                    document.getElementById('btn-compatible').classList.add('active');
+                    selectedTonerType = 'compatible';
+                    
+                    UNIT_PRICE = foundToner.compatible.prix;
+                    calculatePrice();
+                    
+                    const statusMsg = document.getElementById('statusMessage');
+                    statusMsg.className = 'status-msg success';
+                    statusMsg.textContent = `✅ Modèle trouvé : ${modele} → ${foundKey}`;
+                    setTimeout(() => { statusMsg.className = 'status-msg'; }, 4000);
+                    
+                } else {
+                    alert(`⚠️ Aucun toner trouvé pour ${modele}. Veuillez nous contacter.`);
+                }
+            }
+
+            // Événements de recherche
+            marqueInput.addEventListener('input', function() {
+                const query = this.value;
+                showMarqueSuggestions(query);
+            });
+
+            marqueInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const suggestions = marqueSuggestions.querySelectorAll('.suggestion-item');
+                    if (suggestions.length > 0) {
+                        selectMarque(suggestions[0].dataset.marque);
+                    }
+                }
+            });
+
+            modeleInput.addEventListener('input', function() {
+                const query = this.value;
+                const marque = marqueHidden.value;
+                if (marque) {
+                    showModeleSuggestions(query, marque);
+                }
+            });
+
+            modeleInput.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const suggestions = modeleSuggestions.querySelectorAll('.suggestion-item');
+                    if (suggestions.length > 0) {
+                        const marque = marqueHidden.value;
+                        selectModele(suggestions[0].dataset.modele, marque);
+                    }
+                }
+            });
+
+            // Fermer les suggestions en cliquant ailleurs
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('#recherche-marque') && !e.target.closest('#suggestions-marque')) {
+                    marqueSuggestions.style.display = 'none';
+                }
+                if (!e.target.closest('#recherche-modele') && !e.target.closest('#suggestions-modele')) {
+                    modeleSuggestions.style.display = 'none';
+                }
+            });
+        }
+
+        // ========================================
+        // CHARGER LES WILAYAS
+        // ========================================
+        async function loadWilayasData() {
+            try {
+                const response = await fetch('cities.json');
+                if (!response.ok) {
+                    throw new Error('Fichier cities.json non trouvé');
+                }
+                const data = await response.json();
+                
+                wilayaData = {};
+                data.wilayas.forEach(wilaya => {
+                    const communes = data.communes
+                        .filter(c => c.wilaya_id === wilaya.wilaya_id)
+                        .map(c => c.commune_name_latin);
+                    if (communes.length > 0) {
+                        wilayaData[wilaya.wilaya_name_latin] = communes;
+                    }
+                });
+                
+                wilayaNames = Object.keys(wilayaData);
+                populateWilayas();
+            } catch (error) {
+                console.error('❌ Erreur chargement wilayas:', error);
+            }
+        }
+
+        // ========================================
+        // FONCTIONS
+        // ========================================
+        function populateWilayas() {
+            const select = document.getElementById('order-wilaya');
+            select.innerHTML = '<option value="">Sélectionnez votre wilaya</option>';
+            const sorted = [...wilayaNames].sort((a, b) => a.localeCompare(b));
+            sorted.forEach(wilaya => {
+                const option = document.createElement('option');
+                option.value = wilaya;
+                option.textContent = wilaya;
+                select.appendChild(option);
+            });
+        }
+
+        function populateCommunes(wilayaName) {
+            const select = document.getElementById('order-commune');
+            const loading = document.getElementById('communeLoading');
+            const statusMsg = document.getElementById('statusMessage');
+
+            select.innerHTML = '<option value="">Chargement...</option>';
+            select.disabled = true;
+            loading.style.display = 'block';
+            statusMsg.className = 'status-msg';
+
+            if (!wilayaName) {
+                select.innerHTML = '<option value="">Sélectionnez d\'abord une wilaya</option>';
+                select.disabled = false;
+                loading.style.display = 'none';
+                return;
+            }
+
+            setTimeout(() => {
+                const communes = wilayaData[wilayaName] || ['Centre'];
+                select.innerHTML = '<option value="">Sélectionnez une commune</option>';
+                communes.sort().forEach(commune => {
+                    const option = document.createElement('option');
+                    option.value = commune;
+                    option.textContent = commune;
+                    select.appendChild(option);
+                });
+                select.disabled = false;
+                loading.style.display = 'none';
+                if (communes.length > 0) {
+                    statusMsg.className = 'status-msg success';
+                    statusMsg.textContent = `✅ ${communes.length} commune(s) disponible(s) pour ${wilayaName}`;
+                    setTimeout(() => { statusMsg.className = 'status-msg'; }, 3000);
+                }
+            }, 300);
+        }
+
+        function getDeliveryFee(wilayaName, deliveryType) {
+            if (!wilayaName) return 0;
+            const zone1 = CONFIG.livraison.zone1;
+            const zone2 = CONFIG.livraison.zone2;
+            
+            let zone = 'zone3';
+            if (zone1.includes(wilayaName)) zone = 'zone1';
+            else if (zone2.includes(wilayaName)) zone = 'zone2';
+            
+            return CONFIG.livraison[deliveryType][zone] || CONFIG.livraison.domicile.zone3;
+        }
+
+        function calculatePrice() {
+            const quantity = parseInt(document.getElementById('quantity').value) || 1;
+            const wilaya = document.getElementById('order-wilaya').value;
+            const fee = getDeliveryFee(wilaya, selectedDelivery);
+
+            const subtotal = UNIT_PRICE * quantity;
+            const discount = (quantity - 1) * DISCOUNT_PER_EXTRA;
+            const discountedPrice = subtotal - discount;
+            const total = discountedPrice + fee;
+
+            document.getElementById('subtotal-display').textContent = `${subtotal.toLocaleString()} DA`;
+
+            const discountLine = document.getElementById('discount-line');
+            const discountDisplay = document.getElementById('discount-display');
+            if (discount > 0) {
+                discountLine.style.display = 'flex';
+                discountDisplay.textContent = `- ${discount.toLocaleString()} DA`;
+            } else {
+                discountLine.style.display = 'none';
+            }
+
+            const deliveryLabel = selectedDelivery === 'domicile' ? '🚚 Livraison domicile' : '📦 Point relais';
+            document.getElementById('delivery-display').textContent = fee ? `${deliveryLabel}: ${fee.toLocaleString()} DA` : 'À déterminer';
+            document.getElementById('total-display').textContent = `${total.toLocaleString()} DA`;
+
+            return { subtotal, discount, discountedPrice, fee, total };
+        }
+
+        // ========================================
+        // ENVOI EMAIL
+        // ========================================
+        async function sendOrderEmail(data, priceDetail) {
+            const messageText = `
+        🖨️ NOUVELLE COMMANDE - TONER
+
+        👤 Client
+        Nom: ${data.fullname}
+        Téléphone: ${data.phone}
+        Marque: ${data.marque}
+        Modèle: ${data.modele}
+        Type: ${data.type === 'original' ? '⭐ Original' : '✅ Compatible'}
+        Livraison: ${data.delivery === 'domicile' ? '🏠 Domicile' : '📦 Point relais'}
+
+        📍 Livraison
+        Wilaya: ${data.wilaya}
+        Commune: ${data.commune}
+
+        📦 Détail
+        Quantité: ${data.quantity}
+        Sous-total: ${priceDetail.subtotal.toLocaleString()} DA
+        Remise: ${priceDetail.discount > 0 ? `${priceDetail.discount.toLocaleString()} DA` : '0 DA'}
+        Livraison: ${priceDetail.fee.toLocaleString()} DA
+        Total: ${priceDetail.total.toLocaleString()} DA
+
+        📅 ${new Date().toLocaleString('fr-DZ')}
+        `;
+
+            const templateParams = {
+                message: messageText
+            };
+
+            try {
+                const response = await emailjs.send(
+                    EMAILJS_CONFIG.service_id,
+                    EMAILJS_CONFIG.template_id,
+                    templateParams
+                );
+                console.log('✅ Email envoyé !', response);
+                return { success: true };
+            } catch (error) {
+                console.error('❌ Erreur:', error);
+                return { success: false, error: error.text || 'Erreur' };
+            }
+        }
+
+        // ========================================
+        // FEUX D'ARTIFICE
+        // ========================================
+        const canvas = document.getElementById('fireworks-canvas');
+        const ctx = canvas.getContext('2d');
+        let fireworks = [];
+        let particles = [];
+        let animationId = null;
+        let isFireworksRunning = false;
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Firework {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = canvas.height;
+                this.targetY = Math.random() * canvas.height * 0.4 + 50;
+                this.speed = 4 + Math.random() * 4;
+                this.exploded = false;
+                this.trail = [];
+                this.life = 1;
+            }
+            update() {
+                if (this.exploded) { this.life -= 0.01; return; }
+                this.trail.push({ x: this.x, y: this.y });
+                if (this.trail.length > 10) this.trail.shift();
+                this.y -= this.speed;
+                this.x += (Math.random() - 0.5) * 0.5;
+                if (this.y <= this.targetY) this.explode();
+            }
+            explode() {
+                this.exploded = true;
+                const count = 60 + Math.random() * 60;
+                for (let i = 0; i < count; i++) {
+                    const angle = (Math.PI * 2 * i) / count;
+                    const speed = 2 + Math.random() * 6;
+                    particles.push({
+                        x: this.x, y: this.y,
+                        vx: Math.cos(angle) * speed,
+                        vy: Math.sin(angle) * speed,
+                        life: 1,
+                        decay: 0.008 + Math.random() * 0.015,
+                        color: `hsl(${Math.random() * 360}, 100%, ${50 + Math.random() * 40}%)`,
+                        size: 2 + Math.random() * 4
+                    });
+                }
+            }
+            draw() {
+                if (this.exploded) return;
+                for (let i = 0; i < this.trail.length; i++) {
+                    const alpha = i / this.trail.length;
+                    ctx.beginPath();
+                    ctx.arc(this.trail[i].x, this.trail[i].y, 2 * alpha, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(255,255,255,${alpha * 0.5})`;
+                    ctx.fill();
+                }
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, 4, 0, Math.PI * 2);
+                ctx.fillStyle = '#ffffff';
+                ctx.fill();
+            }
+        }
+
+        function animateFireworks() {
+            ctx.fillStyle = 'rgba(0,0,0,0.1)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            for (let i = fireworks.length - 1; i >= 0; i--) {
+                const f = fireworks[i];
+                f.update();
+                f.draw();
+                if (f.exploded && f.life <= 0) fireworks.splice(i, 1);
+            }
+            for (let i = particles.length - 1; i >= 0; i--) {
+                const p = particles[i];
+                p.x += p.vx;
+                p.y += p.vy;
+                p.vy += 0.05;
+                p.life -= p.decay;
+                if (p.life <= 0) { particles.splice(i, 1); continue; }
+                ctx.globalAlpha = p.life;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, p.size * p.life, 0, Math.PI * 2);
+                ctx.fillStyle = p.color;
+                ctx.fill();
+                ctx.globalAlpha = 1;
+            }
+            if (fireworks.length === 0 && particles.length === 0 && !isFireworksRunning) {
+                if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+                return;
+            }
+            animationId = requestAnimationFrame(animateFireworks);
+        }
+
+        function launchFireworks() {
+            isFireworksRunning = true;
+            const count = 8 + Math.random() * 8;
+            for (let i = 0; i < count; i++) {
+                setTimeout(() => { fireworks.push(new Firework()); }, i * 200 + Math.random() * 300);
+            }
+            let launches = 0;
+            const interval = setInterval(() => {
+                if (launches > 4 || !isFireworksRunning) { clearInterval(interval); return; }
+                const c = 3 + Math.random() * 5;
+                for (let i = 0; i < c; i++) {
+                    setTimeout(() => { if (isFireworksRunning) fireworks.push(new Firework()); }, i * 150);
+                }
+                launches++;
+            }, 2000);
+            if (!animationId) animateFireworks();
+            setTimeout(() => { isFireworksRunning = false; }, 10000);
+        }
+
+        function launchConfetti() {
+            const container = document.getElementById('confetti-container');
+            const colors = ['#F5D742', '#F47920', '#1A4C27', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7'];
+            const shapes = ['■', '●', '▲', '★', '♦'];
+            for (let i = 0; i < 120; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.textContent = shapes[Math.floor(Math.random() * shapes.length)];
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.color = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.fontSize = (10 + Math.random() * 20) + 'px';
+                confetti.style.animationDuration = (2 + Math.random() * 3) + 's';
+                confetti.style.animationDelay = Math.random() * 2 + 's';
+                confetti.style.opacity = 0.7 + Math.random() * 0.3;
+                container.appendChild(confetti);
+            }
+            setTimeout(() => { container.innerHTML = ''; }, 6000);
+        }
+
+        function showCelebration(data, priceDetail) {
+            const summary = document.getElementById('order-summary');
+            summary.innerHTML = `
+                <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
+                <div class="line"><span>📱 Téléphone</span><span>${data.phone}</span></div>
+                <div class="line"><span>🖨️ Marque</span><span>${data.marque}</span></div>
+                <div class="line"><span>📟 Modèle</span><span>${data.modele}</span></div>
+                <div class="line"><span>🔧 Type</span><span>${data.type === 'original' ? '⭐ Original' : '✅ Compatible'}</span></div>
+                <div class="line"><span>🚚 Livraison</span><span>${data.delivery === 'domicile' ? '🏠 Domicile' : '📦 Point relais'}</span></div>
+                <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
+                <div class="line"><span>🏙️ Commune</span><span>${data.commune}</span></div>
+                <div class="line"><span>📦 Quantité</span><span>${data.quantity}</span></div>
+                <div class="line"><span>🚚 Livraison</span><span>${priceDetail.fee.toLocaleString()} DA</span></div>
+                <div class="line"><span>💰 Total</span><span>${priceDetail.total.toLocaleString()} DA</span></div>
+            `;
+            document.getElementById('celebration-overlay').style.display = 'flex';
+            launchFireworks();
+            setTimeout(launchConfetti, 300);
+            setTimeout(launchConfetti, 1500);
+            setTimeout(launchConfetti, 3000);
+        }
+
+        function closeCelebration() {
+            document.getElementById('celebration-overlay').style.display = 'none';
+            isFireworksRunning = false;
+            if (animationId) { cancelAnimationFrame(animationId); animationId = null; }
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            document.getElementById('confetti-container').innerHTML = '';
+        }
+
+        // ========================================
+        // INITIALISATION
+        // ========================================
+        document.addEventListener('DOMContentLoaded', async function() {
+            console.log('🚀 Initialisation...');
+
+            await loadConfig();
+            await loadWilayasData();
+
+            document.getElementById('order-wilaya').addEventListener('change', function() {
+                populateCommunes(this.value);
+                calculatePrice();
+            });
+
+            document.getElementById('order-commune').addEventListener('change', calculatePrice);
+
+            document.getElementById('quantity').addEventListener('input', function() {
+                let val = parseInt(this.value) || 1;
+                if (val < 1) val = 1;
+                if (val > MAX_QUANTITY) val = MAX_QUANTITY;
+                this.value = val;
+                calculatePrice();
+            });
+
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const input = document.getElementById('quantity');
+                    let val = parseInt(input.value) || 1;
+                    if (this.classList.contains('plus')) {
+                        val = Math.min(val + 1, MAX_QUANTITY);
+                    } else {
+                        val = Math.max(val - 1, 1);
+                    }
+                    input.value = val;
+                    calculatePrice();
+                });
+            });
+
+            // ===== BOUTON COMMANDER =====
+            document.getElementById('submitBtn').addEventListener('click', function() {
+                if (isSubmitting) return;
+                isSubmitting = true;
+
+                const fullname = document.getElementById('fullname').value.trim();
+                const phone = document.getElementById('phone').value.trim();
+                const marque = document.getElementById('marque-selectionnee').value;
+                const modele = document.getElementById('modele-selectionne').value;
+                const type = selectedTonerType;
+                const delivery = selectedDelivery;
+                const wilaya = document.getElementById('order-wilaya').value;
+                const commune = document.getElementById('order-commune').value;
+                const quantity = parseInt(document.getElementById('quantity').value) || 1;
+
+                const cleanName = sanitizeInput(fullname);
+                const cleanPhone = sanitizeInput(phone);
+
+                if (!marque) {
+                    alert('⚠️ Veuillez sélectionner la marque de votre imprimante');
+                    isSubmitting = false;
+                    return;
+                }
+
+                if (!modele) {
+                    alert('⚠️ Veuillez sélectionner le modèle de votre imprimante');
+                    isSubmitting = false;
+                    return;
+                }
+
+                if (cleanName.length < 2) {
+                    alert('⚠️ Veuillez écrire votre nom correctement');
+                    isSubmitting = false;
+                    return;
+                }
+
+                const cleanPhoneNumber = cleanPhone.replace(/\s/g, '');
+                if (!/^[0-9]{10,11}$/.test(cleanPhoneNumber)) {
+                    alert('⚠️ Numéro de téléphone invalide');
+                    isSubmitting = false;
+                    return;
+                }
+
+                if (!wilaya) {
+                    alert('⚠️ Veuillez sélectionner votre wilaya');
+                    isSubmitting = false;
+                    return;
+                }
+
+                if (!commune) {
+                    alert('⚠️ Veuillez sélectionner votre commune');
+                    isSubmitting = false;
+                    return;
+                }
+
+                const website = document.getElementById('website').value;
+                if (website) {
+                    alert('❌ Soumission suspecte');
+                    isSubmitting = false;
+                    return;
+                }
+
+                const priceDetail = calculatePrice();
+                const data = { 
+                    fullname: cleanName, 
+                    phone: cleanPhone, 
+                    marque: marque,
+                    modele: modele,
+                    type: type,
+                    delivery: delivery,
+                    wilaya, 
+                    commune, 
+                    quantity 
+                };
+
+                const btn = this;
+                btn.disabled = true;
+                btn.textContent = '⏳ Envoi en cours...';
+                document.getElementById('loading-overlay').style.display = 'flex';
+
+                sendOrderEmail(data, priceDetail).then(result => {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                    if (result.success) {
+                        showCelebration(data, priceDetail);
+                        btn.textContent = '✅ Commande envoyée !';
+                        setTimeout(() => { btn.textContent = '📩 Commander maintenant'; }, 3000);
+                    } else {
+                        alert('❌ Erreur : ' + result.error);
+                        btn.textContent = '📩 Commander maintenant';
+                    }
+                    btn.disabled = false;
+                    isSubmitting = false;
+                }).catch(error => {
+                    document.getElementById('loading-overlay').style.display = 'none';
+                    alert('❌ Erreur, veuillez réessayer.');
+                    btn.textContent = '📩 Commander maintenant';
+                    btn.disabled = false;
+                    isSubmitting = false;
+                });
+            });
+
+            calculatePrice();
+            console.log('✅ Page prête !');
+        });
+    </script>
+</body>
+</html>

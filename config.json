@@ -17,8 +17,16 @@
       "Canon": {
         "toners": {
           "Canon 057": {
-            "original": { "code": "057H", "rendement": "3100 pages", "prix": 19500 },
-            "compatible": { "code": "057H-C", "rendement": "3100 pages", "prix": 8200 },
+            "original": {
+              "code": "057H",
+              "rendement": "3100 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "057H-C",
+              "rendement": "3100 pages",
+              "prix": 8200
+            },
             "compatibles": [
               "imageCLASS MF743",
               "imageCLASS MF746",
@@ -31,8 +39,16 @@
             ]
           },
           "Canon 052": {
-            "original": { "code": "052H", "rendement": "3100 pages", "prix": 19500 },
-            "compatible": { "code": "052H-C", "rendement": "3100 pages", "prix": 8200 },
+            "original": {
+              "code": "052H",
+              "rendement": "3100 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "052H-C",
+              "rendement": "3100 pages",
+              "prix": 8200
+            },
             "compatibles": [
               "imageCLASS LBP212dw",
               "imageCLASS LBP214dw",
@@ -43,8 +59,16 @@
             ]
           },
           "Canon 054": {
-            "original": { "code": "054H", "rendement": "3100 pages", "prix": 19500 },
-            "compatible": { "code": "054H-C", "rendement": "3100 pages", "prix": 8200 },
+            "original": {
+              "code": "054H",
+              "rendement": "3100 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "054H-C",
+              "rendement": "3100 pages",
+              "prix": 8200
+            },
             "compatibles": [
               "imageCLASS LBP622Cdw",
               "imageCLASS LBP623Cdw",
@@ -54,8 +78,16 @@
             ]
           },
           "Canon 055": {
-            "original": { "code": "055H", "rendement": "3100 pages", "prix": 19500 },
-            "compatible": { "code": "055H-C", "rendement": "3100 pages", "prix": 8200 },
+            "original": {
+              "code": "055H",
+              "rendement": "3100 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "055H-C",
+              "rendement": "3100 pages",
+              "prix": 8200
+            },
             "compatibles": [
               "imageCLASS LBP663Cdw",
               "imageCLASS MF653Cdw",
@@ -65,8 +97,16 @@
             ]
           },
           "Canon 069": {
-            "original": { "code": "069H", "rendement": "7600 pages", "prix": 24500 },
-            "compatible": { "code": "069H-C", "rendement": "7600 pages", "prix": 12500 },
+            "original": {
+              "code": "069H",
+              "rendement": "7600 pages",
+              "prix": 24500
+            },
+            "compatible": {
+              "code": "069H-C",
+              "rendement": "7600 pages",
+              "prix": 12500
+            },
             "compatibles": [
               "imageCLASS LBP673Cdw",
               "imageCLASS LBP674Cdw",
@@ -82,8 +122,16 @@
       "HP": {
         "toners": {
           "HP 107A": {
-            "original": { "code": "W1107A", "rendement": "1000 pages", "prix": 12500 },
-            "compatible": { "code": "W1107A-C", "rendement": "1000 pages", "prix": 5500 },
+            "original": {
+              "code": "W1107A",
+              "rendement": "1000 pages",
+              "prix": 12500
+            },
+            "compatible": {
+              "code": "W1107A-C",
+              "rendement": "1000 pages",
+              "prix": 5500
+            },
             "compatibles": [
               "HP Laser 107a",
               "HP Laser 107w",
@@ -93,8 +141,16 @@
             ]
           },
           "HP 85A": {
-            "original": { "code": "CE285A", "rendement": "1600 pages", "prix": 15500 },
-            "compatible": { "code": "CE285A-C", "rendement": "1600 pages", "prix": 6500 },
+            "original": {
+              "code": "CE285A",
+              "rendement": "1600 pages",
+              "prix": 15500
+            },
+            "compatible": {
+              "code": "CE285A-C",
+              "rendement": "1600 pages",
+              "prix": 6500
+            },
             "compatibles": [
               "HP LaserJet P1102",
               "HP LaserJet P1102w",
@@ -105,8 +161,16 @@
             ]
           },
           "HP 202X": {
-            "original": { "code": "CF500X", "rendement": "2500 pages", "prix": 18500 },
-            "compatible": { "code": "CF500X-C", "rendement": "2500 pages", "prix": 7500 },
+            "original": {
+              "code": "CF500X",
+              "rendement": "2500 pages",
+              "prix": 18500
+            },
+            "compatible": {
+              "code": "CF500X-C",
+              "rendement": "2500 pages",
+              "prix": 7500
+            },
             "compatibles": [
               "LaserJet M402",
               "LaserJet M426",
@@ -117,8 +181,16 @@
             ]
           },
           "HP 410X": {
-            "original": { "code": "CF410X", "rendement": "2800 pages", "prix": 21500 },
-            "compatible": { "code": "CF410X-C", "rendement": "2800 pages", "prix": 8500 },
+            "original": {
+              "code": "CF410X",
+              "rendement": "2800 pages",
+              "prix": 21500
+            },
+            "compatible": {
+              "code": "CF410X-C",
+              "rendement": "2800 pages",
+              "prix": 8500
+            },
             "compatibles": [
               "LaserJet M452",
               "LaserJet M477",
@@ -133,8 +205,16 @@
       "Brother": {
         "toners": {
           "Brother TN-2420": {
-            "original": { "code": "TN-2420", "rendement": "3000 pages", "prix": 18900 },
-            "compatible": { "code": "TN-2420-C", "rendement": "3000 pages", "prix": 7900 },
+            "original": {
+              "code": "TN-2420",
+              "rendement": "3000 pages",
+              "prix": 18900
+            },
+            "compatible": {
+              "code": "TN-2420-C",
+              "rendement": "3000 pages",
+              "prix": 7900
+            },
             "compatibles": [
               "HL-L2310D",
               "HL-L2350DW",
@@ -147,8 +227,16 @@
             ]
           },
           "Brother TN-3480": {
-            "original": { "code": "TN-3480", "rendement": "8000 pages", "prix": 28900 },
-            "compatible": { "code": "TN-3480-C", "rendement": "8000 pages", "prix": 12900 },
+            "original": {
+              "code": "TN-3480",
+              "rendement": "8000 pages",
+              "prix": 28900
+            },
+            "compatible": {
+              "code": "TN-3480-C",
+              "rendement": "8000 pages",
+              "prix": 12900
+            },
             "compatibles": [
               "HL-L5000D",
               "HL-L5100DN",
@@ -165,8 +253,16 @@
       "Samsung": {
         "toners": {
           "Samsung MLT-D111S": {
-            "original": { "code": "MLT-D111S", "rendement": "1000 pages", "prix": 12500 },
-            "compatible": { "code": "MLT-D111S-C", "rendement": "1000 pages", "prix": 5900 },
+            "original": {
+              "code": "MLT-D111S",
+              "rendement": "1000 pages",
+              "prix": 12500
+            },
+            "compatible": {
+              "code": "MLT-D111S-C",
+              "rendement": "1000 pages",
+              "prix": 5900
+            },
             "compatibles": [
               "Xpress M2020",
               "Xpress M2020W",
@@ -177,8 +273,16 @@
             ]
           },
           "Samsung MLT-D116L": {
-            "original": { "code": "MLT-D116L", "rendement": "1200 pages", "prix": 13500 },
-            "compatible": { "code": "MLT-D116L-C", "rendement": "1200 pages", "prix": 6500 },
+            "original": {
+              "code": "MLT-D116L",
+              "rendement": "1200 pages",
+              "prix": 13500
+            },
+            "compatible": {
+              "code": "MLT-D116L-C",
+              "rendement": "1200 pages",
+              "prix": 6500
+            },
             "compatibles": [
               "Xpress M2625",
               "Xpress M2626",
@@ -193,8 +297,16 @@
       "Lexmark": {
         "toners": {
           "Lexmark 50F2H0E": {
-            "original": { "code": "50F2H0E", "rendement": "2500 pages", "prix": 19500 },
-            "compatible": { "code": "50F2H0E-C", "rendement": "2500 pages", "prix": 8500 },
+            "original": {
+              "code": "50F2H0E",
+              "rendement": "2500 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "50F2H0E-C",
+              "rendement": "2500 pages",
+              "prix": 8500
+            },
             "compatibles": [
               "MS310dn",
               "MS410dn",
@@ -210,8 +322,16 @@
       "Xerox": {
         "toners": {
           "Xerox 106R02773": {
-            "original": { "code": "106R02773", "rendement": "3000 pages", "prix": 19500 },
-            "compatible": { "code": "106R02773-C", "rendement": "3000 pages", "prix": 8500 },
+            "original": {
+              "code": "106R02773",
+              "rendement": "3000 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "106R02773-C",
+              "rendement": "3000 pages",
+              "prix": 8500
+            },
             "compatibles": [
               "WorkCentre 3025",
               "WorkCentre 3025BI",
@@ -224,8 +344,16 @@
       "Kyocera": {
         "toners": {
           "Kyocera TK-1170": {
-            "original": { "code": "TK-1170", "rendement": "7200 pages", "prix": 26500 },
-            "compatible": { "code": "TK-1170-C", "rendement": "7200 pages", "prix": 12500 },
+            "original": {
+              "code": "TK-1170",
+              "rendement": "7200 pages",
+              "prix": 26500
+            },
+            "compatible": {
+              "code": "TK-1170-C",
+              "rendement": "7200 pages",
+              "prix": 12500
+            },
             "compatibles": [
               "ECOSYS M2040dn",
               "ECOSYS M2540dn",
@@ -238,8 +366,16 @@
       "Pantum": {
         "toners": {
           "Pantum PC-211EV": {
-            "original": { "code": "PC-211EV", "rendement": "1600 pages", "prix": 14500 },
-            "compatible": { "code": "PC-211EV-C", "rendement": "1600 pages", "prix": 6500 },
+            "original": {
+              "code": "PC-211EV",
+              "rendement": "1600 pages",
+              "prix": 14500
+            },
+            "compatible": {
+              "code": "PC-211EV-C",
+              "rendement": "1600 pages",
+              "prix": 6500
+            },
             "compatibles": [
               "P2200",
               "P2200W",
@@ -251,14 +387,217 @@
             ]
           }
         }
+      },
+      "Epson": {
+        "toners": {
+          "Epson 664 Noir": {
+            "original": {
+              "code": "T6641",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "T6641-C",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatibles": [
+              "EcoTank L100",
+              "EcoTank L110",
+              "EcoTank L120",
+              "EcoTank L200",
+              "EcoTank L210",
+              "EcoTank L220",
+              "EcoTank L300",
+              "EcoTank L310",
+              "EcoTank L355",
+              "EcoTank L365",
+              "EcoTank L382",
+              "EcoTank L386",
+              "EcoTank L455",
+              "EcoTank L486",
+              "EcoTank L550",
+              "EcoTank L565"
+            ]
+          },
+          "Epson 664 Cyan": {
+            "original": {
+              "code": "T6642",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "T6642-C",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatibles": [
+              "EcoTank L100",
+              "EcoTank L110",
+              "EcoTank L120",
+              "EcoTank L200",
+              "EcoTank L210",
+              "EcoTank L220",
+              "EcoTank L300",
+              "EcoTank L310",
+              "EcoTank L355",
+              "EcoTank L365",
+              "EcoTank L382",
+              "EcoTank L386",
+              "EcoTank L455",
+              "EcoTank L486",
+              "EcoTank L550",
+              "EcoTank L565"
+            ]
+          },
+          "Epson 664 Magenta": {
+            "original": {
+              "code": "T6643",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "T6643-C",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatibles": [
+              "EcoTank L100",
+              "EcoTank L110",
+              "EcoTank L120",
+              "EcoTank L200",
+              "EcoTank L210",
+              "EcoTank L220",
+              "EcoTank L300",
+              "EcoTank L310",
+              "EcoTank L355",
+              "EcoTank L365",
+              "EcoTank L382",
+              "EcoTank L386",
+              "EcoTank L455",
+              "EcoTank L486",
+              "EcoTank L550",
+              "EcoTank L565"
+            ]
+          },
+          "Epson 664 Jaune": {
+            "original": {
+              "code": "T6644",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "T6644-C",
+              "rendement": "70 ml",
+              "prix": 0
+            },
+            "compatibles": [
+              "EcoTank L100",
+              "EcoTank L110",
+              "EcoTank L120",
+              "EcoTank L200",
+              "EcoTank L210",
+              "EcoTank L220",
+              "EcoTank L300",
+              "EcoTank L310",
+              "EcoTank L355",
+              "EcoTank L365",
+              "EcoTank L382",
+              "EcoTank L386",
+              "EcoTank L455",
+              "EcoTank L486",
+              "EcoTank L550",
+              "EcoTank L565"
+            ]
+          }
+        }
+      },
+      "OKI": {
+        "toners": {
+          "OKI B432 3000": {
+            "original": {
+              "code": "45807102",
+              "rendement": "3000 pages",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "45807102-C",
+              "rendement": "3000 pages",
+              "prix": 0
+            },
+            "compatibles": [
+              "B432dn"
+            ]
+          },
+          "OKI B432 7000": {
+            "original": {
+              "code": "45807106",
+              "rendement": "7000 pages",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "45807106-C",
+              "rendement": "7000 pages",
+              "prix": 0
+            },
+            "compatibles": [
+              "B432dn"
+            ]
+          },
+          "OKI B432 12000": {
+            "original": {
+              "code": "45807111",
+              "rendement": "12000 pages",
+              "prix": 0
+            },
+            "compatible": {
+              "code": "45807111-C",
+              "rendement": "12000 pages",
+              "prix": 0
+            },
+            "compatibles": [
+              "B432dn"
+            ]
+          }
+        }
       }
     }
   },
   "livraison": {
-    "domicile": { "zone1": 500, "zone2": 700, "zone3": 900 },
-    "point_relais": { "zone1": 300, "zone2": 400, "zone3": 500 },
-    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
-    "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"]
+    "domicile": {
+      "zone1": 500,
+      "zone2": 700,
+      "zone3": 900
+    },
+    "point_relais": {
+      "zone1": 300,
+      "zone2": 400,
+      "zone3": 500
+    },
+    "zone1": [
+      "Alger",
+      "Oran",
+      "Constantine",
+      "Annaba",
+      "Sétif",
+      "Blida",
+      "Béjaïa",
+      "Tizi Ouzou",
+      "Boumerdès",
+      "Tipaza"
+    ],
+    "zone2": [
+      "Tlemcen",
+      "Mostaganem",
+      "Saïda",
+      "Sidi Bel Abbès",
+      "Tiaret",
+      "Médéa",
+      "Djelfa",
+      "Laghouat",
+      "Ghardaïa",
+      "Béchar"
+    ]
   },
   "contact": {
     "whatsapp": "213560503228",

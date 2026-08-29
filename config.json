@@ -14,44 +14,241 @@
   },
   "catalogue": {
     "marques": {
-      "HP": {
-        "toners": {
-          "HP 202X": {
-            "original": { "code": "CF500X", "rendement": "2500 pages", "prix": 18500 },
-            "compatible": { "code": "CF500X-C", "rendement": "2500 pages", "prix": 7500 },
-            "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405"]
-          },
-          "HP 410X": {
-            "original": { "code": "CF410X", "rendement": "2800 pages", "prix": 21500 },
-            "compatible": { "code": "CF410X-C", "rendement": "2800 pages", "prix": 8500 },
-            "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479"]
-          }
-        }
-      },
       "Canon": {
         "toners": {
           "Canon 057": {
             "original": { "code": "057H", "rendement": "3100 pages", "prix": 19500 },
             "compatible": { "code": "057H-C", "rendement": "3100 pages", "prix": 8200 },
-            "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749"]
+            "compatibles": [
+              "imageCLASS MF743",
+              "imageCLASS MF746",
+              "imageCLASS MF749",
+              "imageCLASS LBP223dw",
+              "imageCLASS LBP226dw",
+              "imageCLASS MF445dw",
+              "imageCLASS MF448dw",
+              "imageCLASS MF449dw"
+            ]
+          },
+          "Canon 052": {
+            "original": { "code": "052H", "rendement": "3100 pages", "prix": 19500 },
+            "compatible": { "code": "052H-C", "rendement": "3100 pages", "prix": 8200 },
+            "compatibles": [
+              "imageCLASS LBP212dw",
+              "imageCLASS LBP214dw",
+              "imageCLASS LBP215dw",
+              "imageCLASS MF421dw",
+              "imageCLASS MF426dw",
+              "imageCLASS MF429dw"
+            ]
+          },
+          "Canon 054": {
+            "original": { "code": "054H", "rendement": "3100 pages", "prix": 19500 },
+            "compatible": { "code": "054H-C", "rendement": "3100 pages", "prix": 8200 },
+            "compatibles": [
+              "imageCLASS LBP622Cdw",
+              "imageCLASS LBP623Cdw",
+              "imageCLASS MF641Cw",
+              "imageCLASS MF642Cdw",
+              "imageCLASS MF644Cdw"
+            ]
+          },
+          "Canon 055": {
+            "original": { "code": "055H", "rendement": "3100 pages", "prix": 19500 },
+            "compatible": { "code": "055H-C", "rendement": "3100 pages", "prix": 8200 },
+            "compatibles": [
+              "imageCLASS LBP663Cdw",
+              "imageCLASS MF653Cdw",
+              "imageCLASS MF654Cdw",
+              "imageCLASS MF656Cdw",
+              "imageCLASS MF657Cdw"
+            ]
+          },
+          "Canon 069": {
+            "original": { "code": "069H", "rendement": "7600 pages", "prix": 24500 },
+            "compatible": { "code": "069H-C", "rendement": "7600 pages", "prix": 12500 },
+            "compatibles": [
+              "imageCLASS LBP673Cdw",
+              "imageCLASS LBP674Cdw",
+              "imageCLASS MF750C",
+              "imageCLASS MF751Cdw",
+              "imageCLASS MF753Cdw",
+              "imageCLASS MF754Cdw",
+              "imageCLASS MF756Cdw"
+            ]
+          }
+        }
+      },
+      "HP": {
+        "toners": {
+          "HP 107A": {
+            "original": { "code": "W1107A", "rendement": "1000 pages", "prix": 12500 },
+            "compatible": { "code": "W1107A-C", "rendement": "1000 pages", "prix": 5500 },
+            "compatibles": [
+              "HP Laser 107a",
+              "HP Laser 107w",
+              "HP Laser MFP 135a",
+              "HP Laser MFP 135w",
+              "HP Laser MFP 137fnw"
+            ]
+          },
+          "HP 85A": {
+            "original": { "code": "CE285A", "rendement": "1600 pages", "prix": 15500 },
+            "compatible": { "code": "CE285A-C", "rendement": "1600 pages", "prix": 6500 },
+            "compatibles": [
+              "HP LaserJet P1102",
+              "HP LaserJet P1102w",
+              "HP LaserJet M1212nf",
+              "HP LaserJet M1217nfw",
+              "HP LaserJet Pro M1132",
+              "HP LaserJet Pro M1214"
+            ]
+          },
+          "HP 202X": {
+            "original": { "code": "CF500X", "rendement": "2500 pages", "prix": 18500 },
+            "compatible": { "code": "CF500X-C", "rendement": "2500 pages", "prix": 7500 },
+            "compatibles": [
+              "LaserJet M402",
+              "LaserJet M426",
+              "LaserJet M404",
+              "LaserJet M405",
+              "LaserJet M428",
+              "LaserJet M430"
+            ]
+          },
+          "HP 410X": {
+            "original": { "code": "CF410X", "rendement": "2800 pages", "prix": 21500 },
+            "compatible": { "code": "CF410X-C", "rendement": "2800 pages", "prix": 8500 },
+            "compatibles": [
+              "LaserJet M452",
+              "LaserJet M477",
+              "LaserJet M479",
+              "LaserJet M480",
+              "LaserJet M452dn",
+              "LaserJet M477fdw"
+            ]
           }
         }
       },
       "Brother": {
         "toners": {
-          "Brother TN-760": {
-            "original": { "code": "TN760", "rendement": "3000 pages", "prix": 18900 },
-            "compatible": { "code": "TN760-C", "rendement": "3000 pages", "prix": 7900 },
-            "compatibles": ["HL-L2350DW", "HL-L2370DW", "MFC-L2750DW"]
+          "Brother TN-2420": {
+            "original": { "code": "TN-2420", "rendement": "3000 pages", "prix": 18900 },
+            "compatible": { "code": "TN-2420-C", "rendement": "3000 pages", "prix": 7900 },
+            "compatibles": [
+              "HL-L2310D",
+              "HL-L2350DW",
+              "HL-L2370DN",
+              "HL-L2375DW",
+              "DCP-L2510D",
+              "DCP-L2530DW",
+              "MFC-L2710DN",
+              "MFC-L2710DW"
+            ]
+          },
+          "Brother TN-3480": {
+            "original": { "code": "TN-3480", "rendement": "8000 pages", "prix": 28900 },
+            "compatible": { "code": "TN-3480-C", "rendement": "8000 pages", "prix": 12900 },
+            "compatibles": [
+              "HL-L5000D",
+              "HL-L5100DN",
+              "HL-L5200DW",
+              "HL-L6250DW",
+              "DCP-L5500DN",
+              "DCP-L6600DW",
+              "MFC-L5700DN",
+              "MFC-L5750DW"
+            ]
           }
         }
       },
-      "Epson": {
+      "Samsung": {
         "toners": {
-          "Epson T664": {
-            "original": { "code": "T664", "rendement": "4000 pages", "prix": 21000 },
-            "compatible": { "code": "T664-C", "rendement": "4000 pages", "prix": 8900 },
-            "compatibles": ["EcoTank ET-2750", "EcoTank ET-3750", "EcoTank ET-4750"]
+          "Samsung MLT-D111S": {
+            "original": { "code": "MLT-D111S", "rendement": "1000 pages", "prix": 12500 },
+            "compatible": { "code": "MLT-D111S-C", "rendement": "1000 pages", "prix": 5900 },
+            "compatibles": [
+              "Xpress M2020",
+              "Xpress M2020W",
+              "Xpress M2022",
+              "Xpress M2070",
+              "Xpress M2070W",
+              "Xpress M2070FW"
+            ]
+          },
+          "Samsung MLT-D116L": {
+            "original": { "code": "MLT-D116L", "rendement": "1200 pages", "prix": 13500 },
+            "compatible": { "code": "MLT-D116L-C", "rendement": "1200 pages", "prix": 6500 },
+            "compatibles": [
+              "Xpress M2625",
+              "Xpress M2626",
+              "Xpress M2675",
+              "Xpress M2825ND",
+              "Xpress M2875FD",
+              "Xpress M2875FW"
+            ]
+          }
+        }
+      },
+      "Lexmark": {
+        "toners": {
+          "Lexmark 50F2H0E": {
+            "original": { "code": "50F2H0E", "rendement": "2500 pages", "prix": 19500 },
+            "compatible": { "code": "50F2H0E-C", "rendement": "2500 pages", "prix": 8500 },
+            "compatibles": [
+              "MS310dn",
+              "MS410dn",
+              "MS510dn",
+              "MX310dn",
+              "MX410de",
+              "MX510de",
+              "MX511de"
+            ]
+          }
+        }
+      },
+      "Xerox": {
+        "toners": {
+          "Xerox 106R02773": {
+            "original": { "code": "106R02773", "rendement": "3000 pages", "prix": 19500 },
+            "compatible": { "code": "106R02773-C", "rendement": "3000 pages", "prix": 8500 },
+            "compatibles": [
+              "WorkCentre 3025",
+              "WorkCentre 3025BI",
+              "WorkCentre 3025NI",
+              "Phaser 3020"
+            ]
+          }
+        }
+      },
+      "Kyocera": {
+        "toners": {
+          "Kyocera TK-1170": {
+            "original": { "code": "TK-1170", "rendement": "7200 pages", "prix": 26500 },
+            "compatible": { "code": "TK-1170-C", "rendement": "7200 pages", "prix": 12500 },
+            "compatibles": [
+              "ECOSYS M2040dn",
+              "ECOSYS M2540dn",
+              "ECOSYS M2640idw",
+              "ECOSYS P2040dn"
+            ]
+          }
+        }
+      },
+      "Pantum": {
+        "toners": {
+          "Pantum PC-211EV": {
+            "original": { "code": "PC-211EV", "rendement": "1600 pages", "prix": 14500 },
+            "compatible": { "code": "PC-211EV-C", "rendement": "1600 pages", "prix": 6500 },
+            "compatibles": [
+              "P2200",
+              "P2200W",
+              "P2500",
+              "P2500W",
+              "M6500",
+              "M6500NW",
+              "M6550NW"
+            ]
           }
         }
       }

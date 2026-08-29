@@ -494,6 +494,26 @@
 
     <script>
         // ========================================
+        // ALIAS DES MARQUES D'IMPRIMANTES
+        // ========================================
+        const MARQUE_ALIAS = {
+            'Hewlett-Packard': 'HP',
+            'HEWLETT-PACKARD': 'HP',
+            'Lexmark International': 'Lexmark',
+            'EPSON': 'Epson',
+            'SAMSUNG': 'Samsung',
+            'XEROX': 'Xerox',
+            'BROTHER': 'Brother',
+            'KYOCERA': 'Kyocera',
+            'RICOH': 'Ricoh',
+            'CANON': 'Canon'
+        };
+
+        function getMarqueDisplay(marque) {
+            return MARQUE_ALIAS[marque] || marque;
+        }
+
+        // ========================================
         // CONFIGURATION
         // ========================================
         let CONFIG = {
@@ -515,97 +535,17 @@
                     "HP": {
                         "toners": {
                             "HP 202X": {
-                                "original": {
-                                    "code": "CF500X",
-                                    "rendement": "2500 pages",
-                                    "prix": 18500
-                                },
-                                "compatible": {
-                                    "code": "CF500X-C",
-                                    "rendement": "2500 pages",
-                                    "prix": 7500
-                                },
+                                "original": { "code": "CF500X", "rendement": "2500 pages", "prix": 18500 },
+                                "compatible": { "code": "CF500X-C", "rendement": "2500 pages", "prix": 7500 },
                                 "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405"]
-                            },
-                            "HP 410X": {
-                                "original": {
-                                    "code": "CF410X",
-                                    "rendement": "2800 pages",
-                                    "prix": 21500
-                                },
-                                "compatible": {
-                                    "code": "CF410X-C",
-                                    "rendement": "2800 pages",
-                                    "prix": 8500
-                                },
-                                "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479"]
-                            }
-                        }
-                    },
-                    "Canon": {
-                        "toners": {
-                            "Canon 057": {
-                                "original": {
-                                    "code": "057H",
-                                    "rendement": "3100 pages",
-                                    "prix": 19500
-                                },
-                                "compatible": {
-                                    "code": "057H-C",
-                                    "rendement": "3100 pages",
-                                    "prix": 8200
-                                },
-                                "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749"]
-                            }
-                        }
-                    },
-                    "Brother": {
-                        "toners": {
-                            "Brother TN-760": {
-                                "original": {
-                                    "code": "TN760",
-                                    "rendement": "3000 pages",
-                                    "prix": 18900
-                                },
-                                "compatible": {
-                                    "code": "TN760-C",
-                                    "rendement": "3000 pages",
-                                    "prix": 7900
-                                },
-                                "compatibles": ["HL-L2350DW", "HL-L2370DW", "MFC-L2750DW"]
-                            }
-                        }
-                    },
-                    "Epson": {
-                        "toners": {
-                            "Epson T664": {
-                                "original": {
-                                    "code": "T664",
-                                    "rendement": "4000 pages",
-                                    "prix": 21000
-                                },
-                                "compatible": {
-                                    "code": "T664-C",
-                                    "rendement": "4000 pages",
-                                    "prix": 8900
-                                },
-                                "compatibles": ["EcoTank ET-2750", "EcoTank ET-3750", "EcoTank ET-4750"]
                             }
                         }
                     }
                 }
             },
             livraison: {
-                "domicile": {
-                    "zone1": 500,
-                    "zone2": 700,
-                    "zone3": 900
-                },
-                "point_relais": {
-                    "zone1": 300,
-                    "zone2": 400,
-                    "zone3": 500
-                },
+                "domicile": { "zone1": 500, "zone2": 700, "zone3": 900 },
+                "point_relais": { "zone1": 300, "zone2": 400, "zone3": 500 },
                 "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
                 "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"]
             },
@@ -625,6 +565,7 @@
         let MAX_QUANTITY = 10;
         let selectedTonerType = 'compatible';
         let selectedDelivery = 'domicile';
+        let printersData = null;
 
         // ===== CONFIGURATION EMAILJS =====
         let EMAILJS_CONFIG = {
@@ -674,12 +615,6 @@
                 document.getElementById('discount-info').textContent = 
                     `Réduction de ${DISCOUNT_PER_EXTRA} DA par quantité supplémentaire (max ${MAX_QUANTITY})`;
                 
-                // Initialiser le catalogue
-                if (CONFIG.catalogue) {
-                    initTonerCatalogue();
-                    initSmartSearch();
-                }
-                
                 calculatePrice();
                 console.log('✅ Configuration chargée');
             } catch (error) {
@@ -688,73 +623,25 @@
         }
 
         // ========================================
-        // CATALOGUE TONERS (AVEC ORIGINAL/COMPATIBLE)
+        // CHARGER LES IMPRIMANTES DEPUIS printers-for-site.json
         // ========================================
-        function initTonerCatalogue() {
-            const typeSection = document.getElementById('type-section');
-            const deliverySection = document.getElementById('delivery-section');
-
-            // Gestion des boutons Original/Compatible
-            document.getElementById('btn-compatible').addEventListener('click', function() {
-                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedTonerType = 'compatible';
-                updateTonerInfo();
-            });
-
-            document.getElementById('btn-original').addEventListener('click', function() {
-                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedTonerType = 'original';
-                updateTonerInfo();
-            });
-
-            // Gestion des boutons Livraison
-            document.getElementById('btn-domicile').addEventListener('click', function() {
-                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedDelivery = 'domicile';
-                calculatePrice();
-            });
-
-            document.getElementById('btn-point-relais').addEventListener('click', function() {
-                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
-                this.classList.add('active');
-                selectedDelivery = 'point_relais';
-                calculatePrice();
-            });
-        }
-
-        function updateTonerInfo() {
-            const marque = document.getElementById('marque-selectionnee').value;
-            const modele = document.getElementById('modele-selectionne').value;
-            
-            if (!marque || !modele || !CONFIG.catalogue.marques[marque]) return;
-            
-            const toners = CONFIG.catalogue.marques[marque].toners;
-            let foundToner = null;
-            let foundKey = null;
-            
-            for (const [key, toner] of Object.entries(toners)) {
-                if (toner.compatibles && toner.compatibles.includes(modele)) {
-                    foundToner = toner;
-                    foundKey = key;
-                    break;
+        async function loadPrinters() {
+            try {
+                const response = await fetch('printers-for-site.json');
+                if (!response.ok) {
+                    throw new Error('Fichier printers-for-site.json non trouvé');
                 }
-            }
-            
-            if (foundToner) {
-                const typeData = foundToner[selectedTonerType];
-                if (typeData) {
-                    const typeLabel = selectedTonerType === 'original' ? 'Original' : 'Compatible';
-                    document.getElementById('product-name').textContent = `${foundKey} - ${typeLabel}`;
-                    document.getElementById('product-price').textContent = `${typeData.prix} DA`;
-                    document.getElementById('product-desc').textContent = 
-                        `${typeLabel} - ${typeData.rendement} - Code: ${typeData.code}`;
-                    
-                    UNIT_PRICE = typeData.prix;
-                    calculatePrice();
-                }
+                const data = await response.json();
+                printersData = data;
+                console.log(`✅ ${data.total} imprimantes chargées`);
+                console.log(`📋 ${Object.keys(data.marques).length} marques disponibles`);
+                
+                // Initialiser la recherche intelligente avec les données
+                initSmartSearch();
+                return data;
+            } catch (error) {
+                console.error('❌ Erreur chargement imprimantes:', error);
+                return null;
             }
         }
 
@@ -769,39 +656,13 @@
             const marqueHidden = document.getElementById('marque-selectionnee');
             const modeleHidden = document.getElementById('modele-selectionne');
 
-            // Liste des marques et corrections orthographiques
-            const marquesData = {
-                "hp": "HP",
-                "hewlett packard": "HP",
-                "canon": "Canon",
-                "epson": "Epson",
-                "brother": "Brother",
-                "samsung": "Samsung",
-                "xerox": "Xerox",
-                "lexmark": "Lexmark",
-                "dell": "Dell",
-                "oki": "OKI",
-                "kyocera": "Kyocera"
-            };
-
-            function getAvailableMarques() {
-                if (!CONFIG.catalogue || !CONFIG.catalogue.marques) return [];
-                return Object.keys(CONFIG.catalogue.marques);
+            if (!printersData) {
+                console.warn('⚠️ Données des imprimantes non chargées');
+                return;
             }
 
-            function getModelesForMarque(marque) {
-                if (!CONFIG.catalogue || !CONFIG.catalogue.marques[marque]) return [];
-                const toners = CONFIG.catalogue.marques[marque].toners;
-                const modelesSet = new Set();
-                Object.values(toners).forEach(toner => {
-                    if (toner.compatibles) {
-                        toner.compatibles.forEach(modele => {
-                            modelesSet.add(modele);
-                        });
-                    }
-                });
-                return Array.from(modelesSet);
-            }
+            // Récupérer les marques avec alias
+            const marques = Object.keys(printersData.marques).sort();
 
             function normalizeString(str) {
                 return str
@@ -831,26 +692,18 @@
 
             function searchMarques(query) {
                 const normalizedQuery = normalizeString(query);
-                const availableMarques = getAvailableMarques();
                 const results = [];
                 
-                availableMarques.forEach(marque => {
-                    const normalizedMarque = normalizeString(marque);
+                marques.forEach(marque => {
+                    const displayName = getMarqueDisplay(marque);
+                    const normalizedMarque = normalizeString(displayName);
                     const similarity = getSimilarity(normalizedQuery, normalizedMarque);
                     
-                    let isAlias = false;
-                    for (const [alias, real] of Object.entries(marquesData)) {
-                        if (normalizeString(alias) === normalizedQuery && real === marque) {
-                            isAlias = true;
-                            break;
-                        }
-                    }
-                    
-                    if (similarity > 0.5 || isAlias || normalizedMarque.includes(normalizedQuery)) {
+                    if (similarity > 0.5 || normalizedMarque.includes(normalizedQuery) || normalizedQuery.includes(normalizedMarque)) {
                         results.push({
                             name: marque,
-                            similarity: similarity,
-                            isAlias: isAlias
+                            display: displayName,
+                            similarity: similarity
                         });
                     }
                 });
@@ -861,7 +714,7 @@
 
             function searchModeles(query, marque) {
                 const normalizedQuery = normalizeString(query);
-                const modeles = getModelesForMarque(marque);
+                const modeles = printersData.marques[marque]?.modeles || [];
                 const results = [];
                 
                 modeles.forEach(modele => {
@@ -894,10 +747,9 @@
                 }
                 
                 marqueSuggestions.innerHTML = results.slice(0, 6).map(result => {
-                    const highlight = result.isAlias ? '⭐' : '';
                     return `<div class="suggestion-item" data-marque="${result.name}">
-                        ${highlight} ${result.name}
-                        <span class="sub-info">${result.isAlias ? 'Correction orthographique' : ''}</span>
+                        ${result.display}
+                        <span class="sub-info">Correspondance : ${Math.round(result.similarity * 100)}%</span>
                     </div>`;
                 }).join('');
                 
@@ -912,12 +764,12 @@
             }
 
             function selectMarque(marque) {
-                marqueInput.value = marque;
+                marqueInput.value = getMarqueDisplay(marque);
                 marqueHidden.value = marque;
                 marqueSuggestions.style.display = 'none';
                 
                 modeleInput.disabled = false;
-                modeleInput.placeholder = `Rechercher un modèle ${marque}...`;
+                modeleInput.placeholder = `Rechercher un modèle ${getMarqueDisplay(marque)}...`;
                 modeleInput.value = '';
                 modeleHidden.value = '';
                 
@@ -926,11 +778,11 @@
                 
                 document.getElementById('product-name').textContent = 'Sélectionnez un modèle';
                 document.getElementById('product-price').textContent = 'Choisissez un modèle';
-                document.getElementById('product-desc').textContent = `Marque sélectionnée : ${marque}`;
+                document.getElementById('product-desc').textContent = `Marque sélectionnée : ${getMarqueDisplay(marque)}`;
                 
                 const statusMsg = document.getElementById('statusMessage');
                 statusMsg.className = 'status-msg success';
-                statusMsg.textContent = `✅ Marque sélectionnée : ${marque}`;
+                statusMsg.textContent = `✅ Marque sélectionnée : ${getMarqueDisplay(marque)}`;
                 setTimeout(() => { statusMsg.className = 'status-msg'; }, 3000);
             }
 
@@ -942,7 +794,7 @@
                 
                 const results = searchModeles(query, marque);
                 if (results.length === 0) {
-                    modeleSuggestions.innerHTML = `<div class="suggestion-item" style="color:#999;">Aucun modèle trouvé pour ${marque}</div>`;
+                    modeleSuggestions.innerHTML = `<div class="suggestion-item" style="color:#999;">Aucun modèle trouvé pour ${getMarqueDisplay(marque)}</div>`;
                     modeleSuggestions.style.display = 'block';
                     return;
                 }
@@ -970,15 +822,18 @@
                 modeleHidden.value = modele;
                 modeleSuggestions.style.display = 'none';
                 
-                const toners = CONFIG.catalogue.marques[marque].toners;
+                // Vérifier si le modèle est compatible avec un toner dans notre catalogue
+                const toners = CONFIG.catalogue?.marques?.[marque]?.toners;
                 let foundToner = null;
                 let foundKey = null;
                 
-                for (const [key, toner] of Object.entries(toners)) {
-                    if (toner.compatibles && toner.compatibles.includes(modele)) {
-                        foundToner = toner;
-                        foundKey = key;
-                        break;
+                if (toners) {
+                    for (const [key, toner] of Object.entries(toners)) {
+                        if (toner.compatibles && toner.compatibles.includes(modele)) {
+                            foundToner = toner;
+                            foundKey = key;
+                            break;
+                        }
                     }
                 }
                 
@@ -1011,9 +866,16 @@
                     statusMsg.className = 'status-msg success';
                     statusMsg.textContent = `✅ Modèle trouvé : ${modele} → ${foundKey}`;
                     setTimeout(() => { statusMsg.className = 'status-msg'; }, 4000);
-                    
                 } else {
-                    alert(`⚠️ Aucun toner trouvé pour ${modele}. Veuillez nous contacter.`);
+                    // Modèle trouvé mais pas de toner compatible dans le catalogue
+                    document.getElementById('product-name').textContent = `${modele}`;
+                    document.getElementById('product-price').textContent = 'Toner non référencé';
+                    document.getElementById('product-desc').textContent = `Nous vous contacterons pour ce modèle (${getMarqueDisplay(marque)})`;
+                    
+                    const statusMsg = document.getElementById('statusMessage');
+                    statusMsg.className = 'status-msg warning';
+                    statusMsg.textContent = `⚠️ Modèle trouvé, mais aucun toner compatible dans notre catalogue. Nous vous contacterons.`;
+                    setTimeout(() => { statusMsg.className = 'status-msg'; }, 5000);
                 }
             }
 
@@ -1402,6 +1264,10 @@
             console.log('🚀 Initialisation...');
 
             await loadConfig();
+            
+            // Charger les imprimantes depuis printers-for-site.json
+            await loadPrinters();
+            
             await loadWilayasData();
 
             document.getElementById('order-wilaya').addEventListener('change', function() {
@@ -1431,6 +1297,37 @@
                     input.value = val;
                     calculatePrice();
                 });
+            });
+
+            // Gestion des boutons Original/Compatible
+            document.getElementById('btn-compatible').addEventListener('click', function() {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedTonerType = 'compatible';
+                // Recalculer le prix avec le nouveau type
+                updateTonerInfo();
+            });
+
+            document.getElementById('btn-original').addEventListener('click', function() {
+                document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedTonerType = 'original';
+                updateTonerInfo();
+            });
+
+            // Gestion des boutons Livraison
+            document.getElementById('btn-domicile').addEventListener('click', function() {
+                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedDelivery = 'domicile';
+                calculatePrice();
+            });
+
+            document.getElementById('btn-point-relais').addEventListener('click', function() {
+                document.querySelectorAll('#delivery-section .type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                selectedDelivery = 'point_relais';
+                calculatePrice();
             });
 
             // ===== BOUTON COMMANDER =====
@@ -1537,6 +1434,44 @@
             calculatePrice();
             console.log('✅ Page prête !');
         });
+
+        // ========================================
+        // Mise à jour des infos du toner (original/compatible)
+        // ========================================
+        function updateTonerInfo() {
+            const marque = document.getElementById('marque-selectionnee').value;
+            const modele = document.getElementById('modele-selectionne').value;
+            
+            if (!marque || !modele) return;
+            
+            const toners = CONFIG.catalogue?.marques?.[marque]?.toners;
+            if (!toners) return;
+            
+            let foundToner = null;
+            let foundKey = null;
+            
+            for (const [key, toner] of Object.entries(toners)) {
+                if (toner.compatibles && toner.compatibles.includes(modele)) {
+                    foundToner = toner;
+                    foundKey = key;
+                    break;
+                }
+            }
+            
+            if (foundToner) {
+                const typeData = foundToner[selectedTonerType];
+                if (typeData) {
+                    const typeLabel = selectedTonerType === 'original' ? 'Original' : 'Compatible';
+                    document.getElementById('product-name').textContent = `${foundKey} - ${typeLabel}`;
+                    document.getElementById('product-price').textContent = `${typeData.prix} DA`;
+                    document.getElementById('product-desc').textContent = 
+                        `${typeLabel} - ${typeData.rendement} - Code: ${typeData.code}`;
+                    
+                    UNIT_PRICE = typeData.prix;
+                    calculatePrice();
+                }
+            }
+        }
     </script>
 </body>
 </html>

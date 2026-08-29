@@ -1,8 +1,8 @@
 {
   "produit": {
-    "nom": "Toner Compatible",
+    "nom": "Toner HP 202X",
     "prix_unitaire": 7500,
-    "description": "Toner haute capacité - Compatible avec votre imprimante",
+    "description": "Toner haute capacité - 2500 pages - Compatible HP LaserJet M402/M426",
     "image": "assets/toner.jpg"
   },
   "logo": {
@@ -27,122 +27,43 @@
         "modeles": {
           "LaserJet Pro M402": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
           "LaserJet Pro M426": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
-          "LaserJet Pro M452": {"toner": "HP 410X", "code": "CF410X", "rendement": "2800 pages", "prix": 8500},
-          "LaserJet Pro M477": {"toner": "HP 410X", "code": "CF410X", "rendement": "2800 pages", "prix": 8500},
-          "LaserJet Pro M479": {"toner": "HP 414X", "code": "CF414X", "rendement": "3100 pages", "prix": 8900},
-          "LaserJet Pro M404": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
-          "LaserJet Pro M405": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
-          "LaserJet Pro M428": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
-          "LaserJet Pro M430": {"toner": "HP 202X", "code": "CF500X", "rendement": "2500 pages", "prix": 7500},
-          "LaserJet Enterprise M607": {"toner": "HP 37X", "code": "CF237X", "rendement": "25000 pages", "prix": 24500},
-          "LaserJet Enterprise M608": {"toner": "HP 37X", "code": "CF237X", "rendement": "25000 pages", "prix": 24500},
-          "LaserJet Enterprise M630": {"toner": "HP 39X", "code": "CF239X", "rendement": "25000 pages", "prix": 26500},
-          "DeskJet 2130": {"toner": "HP 300", "code": "3YM18AE", "rendement": "150 pages", "prix": 2500},
-          "DeskJet 2630": {"toner": "HP 300", "code": "3YM18AE", "rendement": "150 pages", "prix": 2500},
-          "DeskJet 3630": {"toner": "HP 650", "code": "F6V21AE", "rendement": "250 pages", "prix": 3500},
-          "OfficeJet 3830": {"toner": "HP 950", "code": "L0S66AE", "rendement": "700 pages", "prix": 4500},
-          "OfficeJet 4650": {"toner": "HP 950", "code": "L0S66AE", "rendement": "700 pages", "prix": 4500},
-          "OfficeJet 6950": {"toner": "HP 952", "code": "L0S51AE", "rendement": "1000 pages", "prix": 5500},
-          "LaserJet Ultra MFP M130": {"toner": "HP 132A", "code": "CF232A", "rendement": "1600 pages", "prix": 6500},
-          "LaserJet Ultra MFP M230": {"toner": "HP 134A", "code": "CF234A", "rendement": "2100 pages", "prix": 6900},
-          "Neverstop 1000": {"toner": "HP 104A", "code": "W1040A", "rendement": "2500 pages", "prix": 7800},
-          "Neverstop 1200": {"toner": "HP 106A", "code": "W1060A", "rendement": "5000 pages", "prix": 9500},
-          "Tank 115": {"toner": "HP GT51", "code": "3YM18AE", "rendement": "4000 pages", "prix": 8500},
-          "Tank 315": {"toner": "HP GT51", "code": "3YM18AE", "rendement": "4000 pages", "prix": 8500},
-          "Tank 415": {"toner": "HP GT51", "code": "3YM18AE", "rendement": "4000 pages", "prix": 8500}
+          "LaserJet Pro M452": {"toner": "HP 410X", "code": "CF410X", "rendement": "2800 pages", "prix": 8500}
         }
       },
       "Canon": {
         "modeles": {
           "imageCLASS MF743": {"toner": "Canon 057", "code": "057H", "rendement": "3100 pages", "prix": 8200},
-          "imageCLASS MF733": {"toner": "Canon 057", "code": "057H", "rendement": "3100 pages", "prix": 8200},
-          "imageCLASS MF731": {"toner": "Canon 056", "code": "056H", "rendement": "2500 pages", "prix": 7200},
-          "imageCLASS MF729": {"toner": "Canon 056", "code": "056H", "rendement": "2500 pages", "prix": 7200},
-          "LBP 673": {"toner": "Canon 057", "code": "057H", "rendement": "3100 pages", "prix": 8200},
-          "LBP 623": {"toner": "Canon 056", "code": "056H", "rendement": "2500 pages", "prix": 7200},
-          "LBP 711": {"toner": "Canon 055", "code": "055H", "rendement": "1500 pages", "prix": 6200},
-          "PIXMA MG3650": {"toner": "Canon PG-540", "code": "PG-540", "rendement": "180 pages", "prix": 2800},
-          "PIXMA MG5750": {"toner": "Canon PG-540", "code": "PG-540", "rendement": "180 pages", "prix": 2800},
-          "PIXMA TS3150": {"toner": "Canon PG-540", "code": "PG-540", "rendement": "180 pages", "prix": 2800},
-          "PIXMA TS5350": {"toner": "Canon PG-540", "code": "PG-540", "rendement": "180 pages", "prix": 2800},
-          "MAXIFY MB2150": {"toner": "Canon PG-560", "code": "PG-560", "rendement": "250 pages", "prix": 3500},
-          "MAXIFY MB2750": {"toner": "Canon PG-560", "code": "PG-560", "rendement": "250 pages", "prix": 3500},
-          "ImagePROGRAF PRO-1000": {"toner": "Canon PFI-300", "code": "PFI-300", "rendement": "200 pages", "prix": 12000}
+          "imageCLASS MF733": {"toner": "Canon 057", "code": "057H", "rendement": "3100 pages", "prix": 8200}
         }
       },
       "Epson": {
         "modeles": {
           "WorkForce WF-3720": {"toner": "Epson 240", "code": "T240", "rendement": "250 pages", "prix": 3200},
-          "WorkForce WF-4730": {"toner": "Epson 240", "code": "T240", "rendement": "250 pages", "prix": 3200},
-          "WorkForce WF-7710": {"toner": "Epson 240", "code": "T240", "rendement": "250 pages", "prix": 3200},
-          "WorkForce WF-7720": {"toner": "Epson 240", "code": "T240", "rendement": "250 pages", "prix": 3200},
-          "WorkForce WF-7830": {"toner": "Epson 240", "code": "T240", "rendement": "250 pages", "prix": 3200},
-          "EcoTank ET-2750": {"toner": "Epson T664", "code": "T664", "rendement": "4000 pages", "prix": 8900},
-          "EcoTank ET-3750": {"toner": "Epson T664", "code": "T664", "rendement": "4000 pages", "prix": 8900},
-          "EcoTank ET-4750": {"toner": "Epson T664", "code": "T664", "rendement": "4000 pages", "prix": 8900},
-          "EcoTank ET-5800": {"toner": "Epson T674", "code": "T674", "rendement": "7500 pages", "prix": 12900},
-          "Expression XP-4100": {"toner": "Epson 202", "code": "202", "rendement": "150 pages", "prix": 2500},
-          "Expression XP-5100": {"toner": "Epson 202", "code": "202", "rendement": "150 pages", "prix": 2500},
-          "Expression XP-6100": {"toner": "Epson 202", "code": "202", "rendement": "150 pages", "prix": 2500},
-          "SureColor SC-P700": {"toner": "Epson T47H", "code": "T47H", "rendement": "200 pages", "prix": 11200},
-          "SureColor SC-P900": {"toner": "Epson T47H", "code": "T47H", "rendement": "200 pages", "prix": 11200},
-          "WorkForce Pro WF-C8690": {"toner": "Epson 502", "code": "502", "rendement": "1500 pages", "prix": 6900}
+          "EcoTank ET-2750": {"toner": "Epson T664", "code": "T664", "rendement": "4000 pages", "prix": 8900}
         }
       },
       "Brother": {
         "modeles": {
           "HL-L2350DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "HL-L2370DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "HL-L2380DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "HL-L2395DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "MFC-L2750DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "MFC-L3750CDW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "MFC-L3770CDW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "DCP-L2550DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "DCP-L3520CDW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900},
-          "Inkvestment MFC-J995DW": {"toner": "Brother LC-3019", "code": "LC3019", "rendement": "1000 pages", "prix": 6900}
+          "MFC-L2750DW": {"toner": "Brother TN-760", "code": "TN760", "rendement": "3000 pages", "prix": 7900}
         }
       },
       "Samsung": {
         "modeles": {
           "Xpress M2020": {"toner": "Samsung MLT-D111S", "code": "MLT-D111S", "rendement": "1000 pages", "prix": 5900},
-          "Xpress M2021": {"toner": "Samsung MLT-D111S", "code": "MLT-D111S", "rendement": "1000 pages", "prix": 5900},
-          "Xpress M2070": {"toner": "Samsung MLT-D111S", "code": "MLT-D111S", "rendement": "1000 pages", "prix": 5900},
-          "Xpress M2080": {"toner": "Samsung MLT-D111S", "code": "MLT-D111S", "rendement": "1000 pages", "prix": 5900},
-          "ProXpress M4020": {"toner": "Samsung MLT-D203U", "code": "MLT-D203U", "rendement": "5000 pages", "prix": 12500},
-          "ProXpress M4070": {"toner": "Samsung MLT-D203U", "code": "MLT-D203U", "rendement": "5000 pages", "prix": 12500},
-          "ProXpress M4530": {"toner": "Samsung MLT-D204U", "code": "MLT-D204U", "rendement": "10000 pages", "prix": 17500},
-          "Xpress C430W": {"toner": "Samsung MLT-D116S", "code": "MLT-D116S", "rendement": "1500 pages", "prix": 6900},
-          "Xpress C460W": {"toner": "Samsung MLT-D116S", "code": "MLT-D116S", "rendement": "1500 pages", "prix": 6900},
-          "ProXpress C4010": {"toner": "Samsung MLT-D203U", "code": "MLT-D203U", "rendement": "5000 pages", "prix": 12500}
+          "ProXpress M4020": {"toner": "Samsung MLT-D203U", "code": "MLT-D203U", "rendement": "5000 pages", "prix": 12500}
         }
       },
       "Xerox": {
         "modeles": {
           "Phaser 3020": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "Phaser 3330": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "Phaser 3335": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "Phaser 6510": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "WorkCentre 3335": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "WorkCentre 3345": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "WorkCentre 5022": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "VersaLink C400": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "VersaLink C405": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900},
-          "VersaLink B400": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900}
+          "WorkCentre 3335": {"toner": "Xerox 106R", "code": "106R", "rendement": "1500 pages", "prix": 6900}
         }
       },
       "Lexmark": {
         "modeles": {
           "MS310": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "MS410": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "MS510": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "MX310": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "MX410": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "MX510": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "CS310": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "CS410": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "CX310": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900},
-          "CX410": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900}
+          "MX310": {"toner": "Lexmark 74B", "code": "74B", "rendement": "3000 pages", "prix": 7900}
         }
       }
     }

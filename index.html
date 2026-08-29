@@ -295,33 +295,38 @@
                 <form id="order-form" class="order-form" onsubmit="return false;">
                     <div id="statusMessage" class="status-msg"></div>
 
-                    <!-- 1. MARQUE D'IMPRIMANTE -->
-                    <div class="form-group">
-                        <label>🖨️ Marque d'imprimante</label>
-                        <select id="activity" name="activity" required>
-                            <option value="">Sélectionnez la marque</option>
-                            <option value="HP">HP</option>
-                            <option value="Canon">Canon</option>
-                            <option value="Epson">Epson</option>
-                            <option value="Brother">Brother</option>
-                            <option value="Samsung">Samsung</option>
-                            <option value="Xerox">Xerox</option>
-                            <option value="Lexmark">Lexmark</option>
-                            <option value="Autre">Autre</option>
-                        </select>
-                    </div>
+                   <!-- 1. MARQUE D'IMPRIMANTE -->
+<div class="form-group">
+    <label>🖨️ Marque d'imprimante</label>
+    <select id="imprimante-marque" name="marque" required>
+        <option value="">Sélectionnez la marque</option>
+    </select>
+</div>
 
-                    <!-- 2. MODÈLE D'IMPRIMANTE -->
-                    <div class="form-group">
-                        <label>📟 Modèle d'imprimante</label>
-                        <input type="text" id="modele" placeholder="Ex: LaserJet M402" required>
-                    </div>
+<!-- 2. MODÈLE D'IMPRIMANTE -->
+<div class="form-group">
+    <label>📟 Modèle d'imprimante</label>
+    <select id="imprimante-modele" name="modele" disabled required>
+        <option value="">Sélectionnez d'abord une marque</option>
+    </select>
+</div>
 
-                    <!-- 3. NOM COMPLET -->
-                    <div class="form-group">
-                        <label>👤 Nom complet</label>
-                        <input type="text" id="fullname" placeholder="Ex: Ahmed Benali" required>
-                    </div>
+<!-- 3. INFORMATIONS SUR LE TONER -->
+<div id="toner-info" style="display:none; margin-top:15px; padding:15px; background:#f8f9fa; border-radius:10px; border:2px solid #1A4C27;">
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+        <div>
+            <h4 style="color:#1A4C27; margin-bottom:5px;">🖨️ Toner compatible</h4>
+            <p style="margin:2px 0;"><strong>Nom :</strong> <span id="toner-nom"></span></p>
+            <p style="margin:2px 0;"><strong>Code :</strong> <span id="toner-code"></span></p>
+            <p style="margin:2px 0;"><strong>Rendement :</strong> <span id="toner-rendement"></span></p>
+            <p style="margin:2px 0; font-size:1.2rem; color:#F47920;"><strong>💰 Prix :</strong> <span id="toner-prix"></span> DA</p>
+        </div>
+        <div id="toner-image-container" style="text-align:center;">
+            <img id="toner-image" src="" alt="Toner" style="max-width:100px; max-height:100px; border-radius:8px; display:none;">
+        </div>
+    </div>
+    <button type="button" id="ajouter-toner" class="btn-submit" style="margin-top:10px; padding:8px 20px; font-size:0.9rem; width:auto;">✅ Sélectionner ce toner</button>
+</div>
 
                     <!-- 4. TÉLÉPHONE -->
                     <div class="form-group">

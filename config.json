@@ -1,8 +1,6 @@
 {
   "produit": {
-    "nom": "Toner Compatible",
-    "prix_unitaire": 7500,
-    "description": "Toner haute capacité - Compatible avec votre imprimante",
+    "nom": "Toner",
     "image": "assets/toner.jpg"
   },
   "logo": {
@@ -14,212 +12,70 @@
     "par_quantite": 500,
     "quantite_max": 10
   },
-  "livraison": {
-    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
-    "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"],
-    "prix_zone1": 500,
-    "prix_zone2": 700,
-    "prix_zone3": 900
-  },
   "catalogue": {
     "marques": {
       "HP": {
         "toners": {
           "HP 202X": {
-            "code": "CF500X",
-            "rendement": "2500 pages",
-            "prix": 7500,
-            "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405", "LaserJet M428", "LaserJet M430"]
+            "original": {
+              "code": "CF500X",
+              "rendement": "2500 pages",
+              "prix": 18500
+            },
+            "compatible": {
+              "code": "CF500X-C",
+              "rendement": "2500 pages",
+              "prix": 7500
+            },
+            "compatibles": ["LaserJet M402", "LaserJet M426", "LaserJet M404", "LaserJet M405"]
           },
           "HP 410X": {
-            "code": "CF410X",
-            "rendement": "2800 pages",
-            "prix": 8500,
-            "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479", "LaserJet M480"]
-          },
-          "HP 414X": {
-            "code": "CF414X",
-            "rendement": "3100 pages",
-            "prix": 8900,
-            "compatibles": ["LaserJet M454", "LaserJet M455", "LaserJet M456"]
-          },
-          "HP 37X": {
-            "code": "CF237X",
-            "rendement": "25000 pages",
-            "prix": 24500,
-            "compatibles": ["LaserJet Enterprise M607", "LaserJet Enterprise M608", "LaserJet Enterprise M609"]
-          },
-          "HP 300": {
-            "code": "3YM18AE",
-            "rendement": "150 pages",
-            "prix": 2500,
-            "compatibles": ["DeskJet 2130", "DeskJet 2630", "DeskJet 3630"]
-          },
-          "HP 650": {
-            "code": "F6V21AE",
-            "rendement": "250 pages",
-            "prix": 3500,
-            "compatibles": ["DeskJet 3730", "DeskJet 4530", "DeskJet 5030"]
-          },
-          "HP 950": {
-            "code": "L0S66AE",
-            "rendement": "700 pages",
-            "prix": 4500,
-            "compatibles": ["OfficeJet 3830", "OfficeJet 4650", "OfficeJet 5255"]
-          },
-          "HP 952": {
-            "code": "L0S51AE",
-            "rendement": "1000 pages",
-            "prix": 5500,
-            "compatibles": ["OfficeJet 6950", "OfficeJet 6970", "OfficeJet 8015"]
+            "original": {
+              "code": "CF410X",
+              "rendement": "2800 pages",
+              "prix": 21500
+            },
+            "compatible": {
+              "code": "CF410X-C",
+              "rendement": "2800 pages",
+              "prix": 8500
+            },
+            "compatibles": ["LaserJet M452", "LaserJet M477", "LaserJet M479"]
           }
         }
       },
       "Canon": {
         "toners": {
           "Canon 057": {
-            "code": "057H",
-            "rendement": "3100 pages",
-            "prix": 8200,
-            "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749", "LBP 673", "LBP 711"]
-          },
-          "Canon 056": {
-            "code": "056H",
-            "rendement": "2500 pages",
-            "prix": 7200,
-            "compatibles": ["imageCLASS MF731", "imageCLASS MF733", "imageCLASS MF729", "LBP 623"]
-          },
-          "Canon 055": {
-            "code": "055H",
-            "rendement": "1500 pages",
-            "prix": 6200,
-            "compatibles": ["LBP 622", "LBP 631", "LBP 632"]
-          },
-          "Canon PG-540": {
-            "code": "PG-540",
-            "rendement": "180 pages",
-            "prix": 2800,
-            "compatibles": ["PIXMA MG3650", "PIXMA MG5750", "PIXMA TS3150", "PIXMA TS3350"]
-          },
-          "Canon PG-560": {
-            "code": "PG-560",
-            "rendement": "250 pages",
-            "prix": 3500,
-            "compatibles": ["MAXIFY MB2150", "MAXIFY MB2750", "MAXIFY MB5150"]
-          }
-        }
-      },
-      "Epson": {
-        "toners": {
-          "Epson 240": {
-            "code": "T240",
-            "rendement": "250 pages",
-            "prix": 3200,
-            "compatibles": ["WorkForce WF-3720", "WorkForce WF-4730", "WorkForce WF-7710", "WorkForce WF-7720"]
-          },
-          "Epson T664": {
-            "code": "T664",
-            "rendement": "4000 pages",
-            "prix": 8900,
-            "compatibles": ["EcoTank ET-2750", "EcoTank ET-3750", "EcoTank ET-4750"]
-          },
-          "Epson T674": {
-            "code": "T674",
-            "rendement": "7500 pages",
-            "prix": 12900,
-            "compatibles": ["EcoTank ET-5800", "EcoTank ET-5850", "EcoTank ET-16600"]
-          },
-          "Epson 202": {
-            "code": "202",
-            "rendement": "150 pages",
-            "prix": 2500,
-            "compatibles": ["Expression XP-4100", "Expression XP-5100", "Expression XP-6100"]
-          }
-        }
-      },
-      "Brother": {
-        "toners": {
-          "Brother TN-760": {
-            "code": "TN760",
-            "rendement": "3000 pages",
-            "prix": 7900,
-            "compatibles": ["HL-L2350DW", "HL-L2370DW", "HL-L2380DW", "HL-L2395DW", "MFC-L2750DW", "MFC-L3750CDW"]
-          },
-          "Brother TN-730": {
-            "code": "TN730",
-            "rendement": "1200 pages",
-            "prix": 5900,
-            "compatibles": ["HL-L2320D", "HL-L2340DW", "HL-L2360DW", "DCP-L2540DW"]
-          },
-          "Brother LC-3019": {
-            "code": "LC3019",
-            "rendement": "1000 pages",
-            "prix": 6900,
-            "compatibles": ["Inkvestment MFC-J995DW", "Inkvestment MFC-J985DW"]
-          }
-        }
-      },
-      "Samsung": {
-        "toners": {
-          "Samsung MLT-D111S": {
-            "code": "MLT-D111S",
-            "rendement": "1000 pages",
-            "prix": 5900,
-            "compatibles": ["Xpress M2020", "Xpress M2021", "Xpress M2022", "Xpress M2070", "Xpress M2080"]
-          },
-          "Samsung MLT-D203U": {
-            "code": "MLT-D203U",
-            "rendement": "5000 pages",
-            "prix": 12500,
-            "compatibles": ["ProXpress M4020", "ProXpress M4030", "ProXpress M4070", "ProXpress M4080"]
-          },
-          "Samsung MLT-D204U": {
-            "code": "MLT-D204U",
-            "rendement": "10000 pages",
-            "prix": 17500,
-            "compatibles": ["ProXpress M4530", "ProXpress M4580"]
-          },
-          "Samsung MLT-D116S": {
-            "code": "MLT-D116S",
-            "rendement": "1500 pages",
-            "prix": 6900,
-            "compatibles": ["Xpress C430W", "Xpress C460W", "Xpress C480W"]
-          }
-        }
-      },
-      "Xerox": {
-        "toners": {
-          "Xerox 106R": {
-            "code": "106R",
-            "rendement": "1500 pages",
-            "prix": 6900,
-            "compatibles": ["Phaser 3020", "Phaser 3330", "Phaser 3335", "Phaser 6510", "WorkCentre 3335"]
-          },
-          "Xerox 108R": {
-            "code": "108R",
-            "rendement": "3000 pages",
-            "prix": 8900,
-            "compatibles": ["WorkCentre 5020", "WorkCentre 5022", "WorkCentre 5030"]
-          }
-        }
-      },
-      "Lexmark": {
-        "toners": {
-          "Lexmark 74B": {
-            "code": "74B",
-            "rendement": "3000 pages",
-            "prix": 7900,
-            "compatibles": ["MS310", "MS410", "MS510", "MX310", "MX410", "MX510"]
-          },
-          "Lexmark 74C": {
-            "code": "74C",
-            "rendement": "3000 pages",
-            "prix": 7900,
-            "compatibles": ["CS310", "CS410", "CX310", "CX410"]
+            "original": {
+              "code": "057H",
+              "rendement": "3100 pages",
+              "prix": 19500
+            },
+            "compatible": {
+              "code": "057H-C",
+              "rendement": "3100 pages",
+              "prix": 8200
+            },
+            "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS MF749"]
           }
         }
       }
     }
+  },
+  "livraison": {
+    "domicile": {
+      "zone1": 500,
+      "zone2": 700,
+      "zone3": 900
+    },
+    "point_relais": {
+      "zone1": 300,
+      "zone2": 400,
+      "zone3": 500
+    },
+    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Sétif", "Blida", "Béjaïa", "Tizi Ouzou", "Boumerdès", "Tipaza"],
+    "zone2": ["Tlemcen", "Mostaganem", "Saïda", "Sidi Bel Abbès", "Tiaret", "Médéa", "Djelfa", "Laghouat", "Ghardaïa", "Béchar"]
   },
   "contact": {
     "whatsapp": "213560503228",

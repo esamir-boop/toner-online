@@ -575,109 +575,156 @@
         // ========================================
         // CATALOGUE TONERS
         // ========================================
-        function initTonerCatalogue() {
-            const marqueSelect = document.getElementById('imprimante-marque');
-            const modeleSelect = document.getElementById('imprimante-modele');
-            const tonerInfo = document.getElementById('toner-info');
-            const tonerNom = document.getElementById('toner-nom');
-            const tonerCode = document.getElementById('toner-code');
-            const tonerRendement = document.getElementById('toner-rendement');
-            const tonerPrix = document.getElementById('toner-prix');
-            const tonerImage = document.getElementById('toner-image');
-            const ajouterBtn = document.getElementById('ajouter-toner');
+      // ========================================
+// CATALOGUE TONERS (VERSION COMPATIBILITÉ)
+// ========================================
+function initTonerCatalogue() {
+    const marqueSelect = document.getElementById('imprimante-marque');
+    const modeleSelect = document.getElementById('imprimante-modele');
+    const tonerInfo = document.getElementById('toner-info');
+    const tonerNom = document.getElementById('toner-nom');
+    const tonerCode = document.getElementById('toner-code');
+    const tonerRendement = document.getElementById('toner-rendement');
+    const tonerPrix = document.getElementById('toner-prix');
+    const tonerImage = document.getElementById('toner-image');
+    const ajouterBtn = document.getElementById('ajouter-toner');
 
-            if (!CONFIG.catalogue || !CONFIG.catalogue.marques) {
-                console.warn('⚠️ Aucun catalogue trouvé dans la configuration');
-                return;
-            }
+    if (!CONFIG.catalogue || !CONFIG.catalogue.marques) {
+        console.warn('⚠️ Aucun catalogue trouvé');
+        return;
+    }
 
-            // Remplir les marques
-            const marques = Object.keys(CONFIG.catalogue.marques).sort();
-            marques.forEach(marque => {
-                const option = document.createElement('option');
-                option.value = marque;
-                option.textContent = marque;
-                marqueSelect.appendChild(option);
-            });
+    // Remplir les marques
+    const marques = Object.keys(CONFIG.catalogue.marques).sort();
+    marques.forEach(marque => {
+        const option = document.createElement('option');
+        option.value = marque;
+        option.textContent = marque;
+        marqueSelect.appendChild(option);
+    });
 
-            // Événement : changement de marque
-            marqueSelect.addEventListener('change', function() {
-                const marque = this.value;
-                modeleSelect.innerHTML = '<option value="">Sélectionnez un modèle</option>';
-                modeleSelect.disabled = true;
-                tonerInfo.style.display = 'none';
-                tonerImage.style.display = 'none';
+    // Événement : changement de marque
+    marqueSelect.addEventListener('change', function() {
+        const marque = this.value;
+        modeleSelect.innerHTML = '<option value="">Sélectionnez un modèle</option>';
+        modeleSelect.disabled = true;
+        tonerInfo.style.display = 'none';
 
-                if (marque && CONFIG.catalogue.marques[marque]) {
-                    const modeles = CONFIG.catalogue.marques[marque].modeles;
-                    const modeleNoms = Object.keys(modeles).sort();
-                    modeleNoms.forEach(nom => {
-                        const option = document.createElement('option');
-                        option.value = nom;
-                        option.textContent = nom;
-                        modeleSelect.appendChild(option);
+        if (marque && CONFIG.catalogue.marques[marque]) {
+            // Récupérer tous les modèles compatibles
+            const toners = CONFIG.catalogue.marques[marque].toners;
+            const modelesSet = new Set();
+            
+            Object.values(toners).forEach(toner => {
+                if (toner.compatibles) {
+                    toner.compatibles.forEach(modele => {
+                        modelesSet.add(modele);
                     });
-                    modeleSelect.disabled = false;
                 }
             });
-
-            // Événement : changement de modèle
-            modeleSelect.addEventListener('change', function() {
-                const marque = marqueSelect.value;
-                const modele = this.value;
-                tonerInfo.style.display = 'none';
-                tonerImage.style.display = 'none';
-
-                if (marque && modele && CONFIG.catalogue.marques[marque]) {
-                    const data = CONFIG.catalogue.marques[marque].modeles[modele];
-                    if (data) {
-                        tonerNom.textContent = data.toner || 'Non disponible';
-                        tonerCode.textContent = data.code || 'Non disponible';
-                        tonerRendement.textContent = data.rendement || 'Non disponible';
-                        tonerPrix.textContent = data.prix || CONFIG.produit.prix_unitaire;
-                        
-                        if (data.image) {
-                            tonerImage.src = data.image;
-                            tonerImage.style.display = 'block';
-                        }
-                        
-                        tonerInfo.style.display = 'block';
-                        
-                        const prix = data.prix || CONFIG.produit.prix_unitaire;
-                        document.getElementById('product-price').textContent = `${prix} DA`;
-                        document.getElementById('product-name').textContent = data.toner || 'Toner compatible';
-                        document.getElementById('product-desc').textContent = 
-                            `Toner compatible ${modele} - ${data.rendement || ''}`;
-                        
-                        UNIT_PRICE = prix;
-                        calculatePrice();
-                    }
-                }
+            
+            const modelesList = Array.from(modelesSet).sort();
+            modelesList.forEach(modele => {
+                const option = document.createElement('option');
+                option.value = modele;
+                option.textContent = modele;
+                modeleSelect.appendChild(option);
             });
+            modeleSelect.disabled = false;
+        }
+    });
 
-            // Événement : bouton "Sélectionner ce toner"
-            if (ajouterBtn) {
-                ajouterBtn.addEventListener('click', function() {
-                    const marque = marqueSelect.value;
-                    const modele = modeleSelect.value;
-                    if (marque && modele && CONFIG.catalogue.marques[marque]) {
-                        const data = CONFIG.catalogue.marques[marque].modeles[modele];
-                        if (data) {
-                            document.getElementById('product-name').textContent = data.toner || 'Toner compatible';
-                            document.getElementById('product-price').textContent = `${data.prix || UNIT_PRICE} DA`;
-                            document.getElementById('product-desc').textContent = 
-                                `Toner compatible ${modele} - ${data.rendement || ''}`;
-                            
-                            UNIT_PRICE = data.prix || UNIT_PRICE;
-                            calculatePrice();
-                            
-                            alert(`✅ Toner sélectionné : ${data.toner}\n💰 Prix : ${data.prix || UNIT_PRICE} DA\n📦 Rendement : ${data.rendement || 'Non disponible'}`);
-                        }
-                    }
-                });
+    // Événement : changement de modèle
+    modeleSelect.addEventListener('change', function() {
+        const marque = marqueSelect.value;
+        const modele = this.value;
+        tonerInfo.style.display = 'none';
+
+        if (marque && modele && CONFIG.catalogue.marques[marque]) {
+            // Chercher le toner compatible
+            const toners = CONFIG.catalogue.marques[marque].toners;
+            let foundToner = null;
+            let foundKey = null;
+            
+            for (const [key, toner] of Object.entries(toners)) {
+                if (toner.compatibles && toner.compatibles.includes(modele)) {
+                    foundToner = toner;
+                    foundKey = key;
+                    break;
+                }
+            }
+            
+            if (foundToner) {
+                tonerNom.textContent = foundKey;
+                tonerCode.textContent = foundToner.code || 'Non disponible';
+                tonerRendement.textContent = foundToner.rendement || 'Non disponible';
+                tonerPrix.textContent = foundToner.prix || CONFIG.produit.prix_unitaire;
+                
+                if (foundToner.image) {
+                    tonerImage.src = foundToner.image;
+                    tonerImage.style.display = 'block';
+                }
+                
+                tonerInfo.style.display = 'block';
+                
+                const prix = foundToner.prix || CONFIG.produit.prix_unitaire;
+                document.getElementById('product-price').textContent = `${prix} DA`;
+                document.getElementById('product-name').textContent = foundKey;
+                document.getElementById('product-desc').textContent = 
+                    `Toner compatible ${modele} - ${foundToner.rendement || ''}`;
+                
+                UNIT_PRICE = prix;
+                calculatePrice();
+                
+                console.log(`✅ Toner trouvé pour ${modele}: ${foundKey}`);
+            } else {
+                // Aucun toner trouvé
+                tonerNom.textContent = 'Aucun toner trouvé';
+                tonerCode.textContent = '-';
+                tonerRendement.textContent = '-';
+                tonerPrix.textContent = '-';
+                tonerInfo.style.display = 'block';
+                
+                alert(`⚠️ Aucun toner trouvé pour ${modele}. Veuillez nous contacter.`);
             }
         }
+    });
 
+    // Événement : bouton "Sélectionner ce toner"
+    if (ajouterBtn) {
+        ajouterBtn.addEventListener('click', function() {
+            const marque = marqueSelect.value;
+            const modele = modeleSelect.value;
+            if (marque && modele && CONFIG.catalogue.marques[marque]) {
+                const toners = CONFIG.catalogue.marques[marque].toners;
+                let foundToner = null;
+                let foundKey = null;
+                
+                for (const [key, toner] of Object.entries(toners)) {
+                    if (toner.compatibles && toner.compatibles.includes(modele)) {
+                        foundToner = toner;
+                        foundKey = key;
+                        break;
+                    }
+                }
+                
+                if (foundToner) {
+                    document.getElementById('product-name').textContent = foundKey;
+                    document.getElementById('product-price').textContent = `${foundToner.prix || UNIT_PRICE} DA`;
+                    document.getElementById('product-desc').textContent = 
+                        `Toner compatible ${modele} - ${foundToner.rendement || ''}`;
+                    
+                    UNIT_PRICE = foundToner.prix || UNIT_PRICE;
+                    calculatePrice();
+                    
+                    alert(`✅ Toner sélectionné : ${foundKey}\n💰 Prix : ${foundToner.prix || UNIT_PRICE} DA\n📦 Rendement : ${foundToner.rendement || 'Non disponible'}`);
+                } else {
+                    alert(`⚠️ Aucun toner trouvé pour ${modele}`);
+                }
+            }
+        });
+    }
+}
         // ========================================
         // CHARGER LES WILAYAS
         // ========================================

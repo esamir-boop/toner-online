@@ -643,7 +643,24 @@
             element.textContent = input;
             return element.innerHTML;
         }
-
+// ========================================
+// CHARGER LES IMPRIMANTES DEPUIS printers-for-site.json
+// ========================================
+async function loadPrinters() {
+    try {
+        const response = await fetch('printers-for-site.json');
+        if (!response.ok) {
+            throw new Error('Fichier printers-for-site.json non trouvé');
+        }
+        const data = await response.json();
+        console.log(`✅ ${data.total} imprimantes chargées`);
+        console.log(`📋 ${Object.keys(data.marques).length} marques disponibles`);
+        return data;
+    } catch (error) {
+        console.error('❌ Erreur chargement imprimantes:', error);
+        return null;
+    }
+}
         // ========================================
         // DONNÉES DES WILAYAS
         // ========================================

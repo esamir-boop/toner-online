@@ -1,0 +1,71 @@
+{
+  "produit": { "nom": "Toner", "image": "assets/toner.jpg" },
+  "logo": { "icone": "🖨️", "texte": "Toner Online", "sous_texte": "Algérie" },
+  "remise": { "par_quantite": 500, "quantite_max": 10 },
+  "contact": { "whatsapp": "213560503228", "email": "berchichesamir@gmail.com" },
+  "emailjs": {
+    "public_key": "tc8CLfJDs3E9-EIQ3",
+    "service_id": "service_hguu30b",
+    "template_id": "template_cx2lh99"
+  },
+  "sheets_csv_url": "",
+  "sheets_post_url": "https://script.google.com/macros/s/VOTRE_ID/exec",
+  "livraison": {
+    "domicile": { "zone1": 500, "zone2": 700, "zone3": 900 },
+    "point_relais": { "zone1": 300, "zone2": 400, "zone3": 500 },
+    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Setif", "Blida", "Bejaia", "Tizi Ouzou", "Boumerdes", "Tipaza"],
+    "zone2": ["Tlemcen", "Mostaganem", "Saida", "Sidi Bel Abbes", "Tiaret", "Medea", "Djelfa", "Laghouat", "Ghardaia", "Bechar"]
+  },
+  "marques": [
+    {
+      "nom": "HP",
+      "aliases": ["hp", "Hewlett-Packard", "HEWLETT-PACKARD"],
+      "toners": [
+        {
+          "nom": "HP 202X",
+          "code": "CF500X",
+          "rendement": "2500 pages",
+          "prix_original": 18500,
+          "prix_compatible": 7500,
+          "compatibles": ["LaserJet M402", "LaserJet M404", "LaserJet M426"]
+        },
+        {
+          "nom": "HP 107A",
+          "code": "W1107A",
+          "rendement": "1000 pages",
+          "prix_original": 12500,
+          "prix_compatible": 5500,
+          "compatibles": ["HP Laser 107a", "HP Laser 107w", "HP Laser MFP 135a"]
+        }
+      ]
+    },
+    {
+      "nom": "Brother",
+      "aliases": ["BROTHER"],
+      "toners": [
+        {
+          "nom": "Brother TN-2420",
+          "code": "TN-2420",
+          "rendement": "3000 pages",
+          "prix_original": 18900,
+          "prix_compatible": 7900,
+          "compatibles": ["HL-L2310D", "HL-L2350DW", "DCP-L2510D", "MFC-L2710DN"]
+        }
+      ]
+    },
+    {
+      "nom": "Canon",
+      "aliases": ["CANON"],
+      "toners": [
+        {
+          "nom": "Canon 057",
+          "code": "057H",
+          "rendement": "3100 pages",
+          "prix_original": 19500,
+          "prix_compatible": 8200,
+          "compatibles": ["imageCLASS MF743", "imageCLASS MF746", "imageCLASS LBP223dw"]
+        }
+      ]
+    }
+  ]
+}

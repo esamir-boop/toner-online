@@ -1,4 +1,235 @@
-<script>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toner Online Algérie - Toners compatibles HP, Canon, Brother, Epson</title>
+    <meta name="description" content="Achetez vos toners d'imprimante pas chers en Algérie. Compatibles HP, Canon, Brother, Samsung, Epson. Livraison dans toutes les wilayas, paiement à la livraison.">
+    <meta name="keywords" content="toner, cartouche, imprimante, HP, Canon, Brother, Epson, Alger, Algérie, compatible, original">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Toner Online - Toners pas chers pour imprimantes">
+    <meta property="og:description" content="Commandez vos toners compatibles ou originaux. Livraison 24/48h dans toute l'Algérie. Paiement à la livraison.">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="assets/toner.jpg">
+    <meta property="og:url" content="https://votresite.dz/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        /* ... vos styles ... */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; color: #1a1a2e; overflow-x: hidden; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        /* ... le reste des styles ... */
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon" id="logo-icon">🖨️</div>
+                <div class="logo-text">
+                    <span class="main" id="logo-main">Toner Online</span>
+                    <span class="sub" id="logo-sub">Algérie</span>
+                </div>
+            </a>
+        </div>
+    </nav>
+
+    <section class="order-section" id="commande">
+        <div class="container">
+            <div class="order-header">
+                <h2>🖨️ Commander votre toner en 3 étapes</h2>
+            </div>
+
+            <div class="progress-bar" id="progress-bar">
+                <span class="step-item active" data-step="1">1. Imprimante</span>
+                <span class="step-item" data-step="2">2. Toner</span>
+                <span class="step-item" data-step="3">3. Livraison</span>
+            </div>
+
+            <div class="order-wrapper">
+                <div class="order-product">
+                    <img src="assets/toner.jpg" alt="Toner pour imprimante" id="product-image">
+                    <h3 id="product-name">Toner Compatible</h3>
+                    <p class="product-code" id="product-code"></p>
+                    <p class="product-price" id="product-price">7 500 DA</p>
+                    <p class="product-rendement" id="product-rendement"></p>
+                    <p class="product-desc" id="product-desc">Sélectionnez votre imprimante pour trouver le toner compatible</p>
+                    <div class="compat-list" id="compat-list"></div>
+                    <span class="stock-badge">✅ En stock</span>
+                </div>
+
+                <form id="order-form" class="order-form" onsubmit="return false;">
+                    <div id="statusMessage" class="status-msg"></div>
+
+                    <!-- ÉTAPE 1 : IMPRIMANTE -->
+                    <div class="form-step active" id="step1">
+                        <div class="form-group">
+                            <label>🔍 Rechercher par référence toner (optionnel)</label>
+                            <input type="text" id="recherche-reference" placeholder="Ex : CF500X, TN-2420, 057H..." autocomplete="off">
+                            <div id="suggestions-reference" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>🔍 Rechercher votre marque d'imprimante</label>
+                            <input type="text" id="recherche-marque" placeholder="Ex : HP, Canon, Brother..." autocomplete="off">
+                            <div id="suggestions-marque" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>🔍 Rechercher votre modèle d'imprimante</label>
+                            <input type="text" id="recherche-modele" placeholder="Sélectionnez d'abord la marque" autocomplete="off" disabled>
+                            <div id="suggestions-modele" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
+                        </div>
+
+                        <input type="hidden" id="marque-selectionnee" value="">
+                        <input type="hidden" id="modele-selectionne" value="">
+
+                        <div class="nav-buttons">
+                            <span></span>
+                            <button type="button" class="btn-nav btn-next" id="step1-next" disabled>Continuer →</button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 2 : TONER -->
+                    <div class="form-step" id="step2">
+                        <div class="form-group" id="type-section">
+                            <label>🔧 Type de toner</label>
+                            <div class="type-buttons">
+                                <button type="button" class="type-btn active" data-type="compatible" id="btn-compatible">
+                                    ✅ Compatible <span class="sub" id="compatible-sub">Économique</span>
+                                </button>
+                                <button type="button" class="type-btn" data-type="original" id="btn-original">
+                                    ⭐ Original <span class="sub" id="original-sub">Qualité</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>📦 Quantité</label>
+                            <div class="quantity-selector">
+                                <button type="button" class="qty-btn minus">−</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button type="button" class="qty-btn plus">+</button>
+                            </div>
+                            <small style="color:#6c757d;font-size:0.75rem;" id="discount-info">Réduction de 500 DA par quantité supplémentaire (max 10)</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label>💰 Détail du prix</label>
+                            <div class="price-detail">
+                                <div class="price-line subtotal"><span class="label">Sous-total</span><span class="value" id="subtotal-display">0 DA</span></div>
+                                <div class="price-line discount" id="discount-line" style="display:none;"><span class="label">Remise</span><span class="value" id="discount-display">-0 DA</span></div>
+                                <div class="price-line total"><span class="label">Total</span><span class="value" id="total-display">0 DA</span></div>
+                            </div>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button type="button" class="btn-nav btn-prev" onclick="showStep(1)">← Retour</button>
+                            <button type="button" class="btn-nav btn-next" id="step2-next">Continuer →</button>
+                        </div>
+                    </div>
+
+                    <!-- ÉTAPE 3 : LIVRAISON -->
+                    <div class="form-step" id="step3">
+                        <div class="form-group" id="delivery-section">
+                            <label>🚚 Mode de livraison</label>
+                            <div class="type-buttons">
+                                <button type="button" class="type-btn active" data-delivery="domicile" id="btn-domicile">🏠 Domicile <span class="sub">Livraison à votre adresse</span></button>
+                                <button type="button" class="type-btn" data-delivery="point_relais" id="btn-point-relais">📦 Point relais <span class="sub">Retrait en point relais</span></button>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="address-group" style="display:block;">
+                            <label>🏠 Adresse complète (rue, n°, bâtiment)</label>
+                            <input type="text" id="address" placeholder="Ex : 12 rue Didouche Mourad, Alger Centre" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>👤 Nom complet</label>
+                            <input type="text" id="fullname" placeholder="Ex : Ahmed Benali" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>📱 Téléphone</label>
+                            <input type="tel" id="phone" placeholder="Ex : 0550 12 34 56" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label>📍 Wilaya</label>
+                            <select id="order-wilaya"><option value="">Sélectionnez votre wilaya</option></select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>🏙️ Commune</label>
+                            <select id="order-commune"><option value="">Sélectionnez d'abord une wilaya</option></select>
+                            <div id="communeLoading" class="loading-text" style="display:none;">⏳ Chargement des communes...</div>
+                        </div>
+
+                        <div class="nav-buttons">
+                            <button type="button" class="btn-nav btn-prev" onclick="showStep(2)">← Retour</button>
+                            <span></span>
+                        </div>
+
+                        <button type="button" id="submitBtn" class="btn-submit">📩 Commander maintenant</button>
+                        <p class="form-footer">🔒 Vos informations sont sécurisées</p>
+                        <div class="trust-badges">
+                            <span>🚚 Livraison toutes les wilayas</span>
+                            <span>💵 Paiement à la livraison</span>
+                            <span>✅ Garantie compatibilité</span>
+                        </div>
+
+                        <div style="display:none;">
+                            <label for="website">Website</label>
+                            <input type="text" id="website" name="website" value="">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEO CONTENT -->
+    <section class="seo-content">
+        <div class="container">
+            <h2>🖨️ Pourquoi choisir un toner compatible ?</h2>
+            <p>Les toners compatibles offrent la même qualité de reproduction que les toners originaux, à un prix jusqu'à 70% moins élevé. Ils sont fabriqués selon des normes strictes et testés sur une large gamme d'imprimantes.</p>
+            <h2>🖨️ Comment trouver la bonne référence ?</h2>
+            <p>La méthode la plus simple est de chercher le modèle exact de votre imprimante (ex : HP LaserJet M402). Vous pouvez aussi trouver le code du toner sur l'ancienne cartouche.</p>
+            <h2>🚚 Nos services</h2>
+            <p>Nous livrons dans toutes les 58 wilayas d'Algérie avec un délai de 24 à 48 heures. Paiement à la livraison.</p>
+            <ul>
+                <li>✅ Garantie compatibilité 100%</li>
+                <li>🚚 Livraison rapide</li>
+                <li>💵 Paiement à la livraison</li>
+                <li>📞 Support WhatsApp 7j/7</li>
+            </ul>
+        </div>
+    </section>
+
+    <a href="https://wa.me/213560503228" target="_blank" class="whatsapp-float" id="whatsapp-btn" title="Contactez-nous sur WhatsApp">💬</a>
+
+    <div id="loading-overlay"><div class="spinner"></div><p>⏳ Envoi de votre commande...</p></div>
+
+    <div id="celebration-overlay">
+        <div id="celebration-content">
+            <span class="emoji-big">🎉</span>
+            <h1>Félicitations ! 🎊</h1>
+            <p class="subtitle">Votre commande a été validée avec succès !</p>
+            <div class="order-summary" id="order-summary"></div>
+            <button class="btn-close-celebration" onclick="closeCelebration()">✅ J'ai compris</button>
+        </div>
+    </div>
+
+    <canvas id="fireworks-canvas"></canvas>
+    <div class="confetti-container" id="confetti-container"></div>
+
+    <!-- ======================================== -->
+    <!-- JAVASCRIPT COMPLET                         -->
+    <!-- ======================================== -->
+    <script>
         // ========================================
         // CONFIGURATION GLOBALE
         // ========================================
@@ -18,6 +249,14 @@
             service_id: 'service_hguu30b',
             template_id: 'template_cx2lh99'
         };
+
+        // Initialiser EmailJS
+        try {
+            emailjs.init(EMAILJS_CONFIG.public_key);
+            console.log('✅ EmailJS initialisé');
+        } catch (e) {
+            console.warn('⚠️ EmailJS non initialisé:', e);
+        }
 
         // ========================================
         // UTILITAIRES
@@ -57,23 +296,21 @@
         // ========================================
         async function loadData() {
             try {
-                // Charger le catalogue
                 console.log('📦 Chargement du catalogue...');
                 const catalogResponse = await fetch('data.json');
                 if (!catalogResponse.ok) throw new Error('Impossible de charger le catalogue');
                 CATALOG = await catalogResponse.json();
-                console.log('✅ Catalogue chargé:', CATALOG.marques?.length || 0, 'marques');
-                
+                console.log('✅ Catalogue chargé');
+
                 DISCOUNT_PER_EXTRA = CATALOG.remise?.par_quantite || 500;
                 MAX_QUANTITY = CATALOG.remise?.quantite_max || 10;
-                
+
                 const discountInfo = getElement('discount-info');
                 if (discountInfo) {
                     discountInfo.textContent = 
                         `Réduction de ${DISCOUNT_PER_EXTRA} DA par quantité supplémentaire (max ${MAX_QUANTITY})`;
                 }
 
-                // Charger les wilayas
                 console.log('📦 Chargement des wilayas...');
                 const wilayaResponse = await fetch('cities.json');
                 if (!wilayaResponse.ok) throw new Error('Impossible de charger les wilayas');
@@ -82,39 +319,31 @@
                 WILAYA_NAMES = wilayaData.wilayas || [];
                 console.log('✅ Wilayas chargées:', WILAYA_NAMES.length);
 
-                // Construire la liste des modèles
                 buildModelList();
                 console.log('✅ Modèles construits:', allModeles.length);
 
-                // Initialiser les champs
                 initWilayaSelect();
                 initSearchFields();
-                
-                // Afficher le premier toner par défaut
+
                 if (allModeles.length > 0) {
                     const first = allModeles[0];
                     updateProductDisplay(first.marque, first.modele, first.toner);
                 }
 
-                // Activer le bouton continuer
                 const step1Next = getElement('step1-next');
                 if (step1Next) {
                     step1Next.disabled = false;
-                    console.log('✅ Bouton "Continuer" activé');
                 }
 
             } catch (error) {
-                console.error('❌ Erreur de chargement:', error);
+                console.error('❌ Erreur:', error);
                 showStatus('error', '⚠️ Erreur de chargement: ' + error.message);
             }
         }
 
         function buildModelList() {
             allModeles = [];
-            if (!CATALOG || !CATALOG.marques) {
-                console.warn('⚠️ Aucune marque dans le catalogue');
-                return;
-            }
+            if (!CATALOG || !CATALOG.marques) return;
             
             CATALOG.marques.forEach(marque => {
                 if (!marque.toners) return;
@@ -130,8 +359,6 @@
                     });
                 });
             });
-            
-            console.log(`📊 ${allModeles.length} modèles construits`);
         }
 
         // ========================================
@@ -186,10 +413,8 @@
         // RECHERCHE
         // ========================================
         function initSearchFields() {
-            // Référence
             const refInput = getElement('recherche-reference');
             const refSuggest = getElement('suggestions-reference');
-            
             if (refInput && refSuggest) {
                 refInput.addEventListener('input', debounce(function() {
                     const val = this.value.trim();
@@ -211,10 +436,8 @@
                 }, 300));
             }
 
-            // Marque
             const marqueInput = getElement('recherche-marque');
             const marqueSuggest = getElement('suggestions-marque');
-            
             if (marqueInput && marqueSuggest) {
                 marqueInput.addEventListener('input', debounce(function() {
                     const val = this.value.trim();
@@ -240,10 +463,8 @@
                 }, 300));
             }
 
-            // Modèle
             const modeleInput = getElement('recherche-modele');
             const modeleSuggest = getElement('suggestions-modele');
-            
             if (modeleInput && modeleSuggest) {
                 modeleInput.addEventListener('input', debounce(function() {
                     const val = this.value.trim();
@@ -267,7 +488,6 @@
                 }, 300));
             }
 
-            // Clic en dehors des suggestions
             document.addEventListener('click', function(e) {
                 const refSuggest = getElement('suggestions-reference');
                 if (refSuggest && !e.target.closest('#suggestions-reference') && !e.target.closest('#recherche-reference')) {
@@ -344,7 +564,6 @@
         function selectToner(data) {
             const { marque, modele, toner } = data;
             
-            // Mettre à jour les champs
             const marqueSelect = getElement('marque-selectionnee');
             const modeleSelect = getElement('modele-selectionne');
             const marqueInput = getElement('recherche-marque');
@@ -355,14 +574,11 @@
             if (marqueInput) marqueInput.value = marque;
             if (modeleInput) modeleInput.value = modele;
             
-            // Mettre à jour le produit
             updateProductDisplay(marque, modele, toner);
             
-            // Activer le bouton continuer
             const step1Next = getElement('step1-next');
             if (step1Next) step1Next.disabled = false;
             
-            // Passer à l'étape 2 automatiquement
             setTimeout(() => {
                 showStep(2);
             }, 500);
@@ -384,11 +600,9 @@
             if (rendement) rendement.textContent = `📄 Rendement: ${toner.rendement}`;
             if (desc) desc.textContent = `Compatible avec ${modele}`;
             
-            // Prix
             UNIT_PRICE = toner.prix_compatible || 7500;
             if (price) price.textContent = `${UNIT_PRICE.toLocaleString('fr-FR')} DA`;
             
-            // Compatibilités
             if (compat) {
                 compat.innerHTML = '';
                 if (toner.compatibles) {
@@ -400,7 +614,6 @@
                 }
             }
             
-            // Stocker les données
             const step2Next = getElement('step2-next');
             if (step2Next) {
                 step2Next.dataset.toner = JSON.stringify(toner);
@@ -415,13 +628,10 @@
         // GESTION DES ÉTAPES
         // ========================================
         function showStep(step) {
-            // Cacher tous les steps
             document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-            // Afficher le step demandé
             const target = getElement(`step${step}`);
             if (target) target.classList.add('active');
             
-            // Mettre à jour la barre de progression
             document.querySelectorAll('.step-item').forEach(el => {
                 const num = parseInt(el.dataset.step);
                 el.classList.remove('active', 'done');
@@ -429,10 +639,8 @@
                 else if (num < step) el.classList.add('done');
             });
             
-            // Mettre à jour le prix si on est à l'étape 2
             if (step === 2) updatePrice();
             
-            // Scroll en haut du formulaire
             const form = document.querySelector('.order-form');
             if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
@@ -493,29 +701,20 @@
         // GESTION DES ÉVÉNEMENTS
         // ========================================
         function initEvents() {
-            console.log('🔧 Initialisation des événements...');
-            
-            // Bouton Étape 1 -> 2
             const step1Next = getElement('step1-next');
             if (step1Next) {
                 step1Next.addEventListener('click', function() {
                     if (!this.disabled) showStep(2);
                 });
-                console.log('✅ Événement step1-next ajouté');
-            } else {
-                console.warn('⚠️ step1-next non trouvé');
             }
 
-            // Bouton Étape 2 -> 3
             const step2Next = getElement('step2-next');
             if (step2Next) {
                 step2Next.addEventListener('click', function() {
                     showStep(3);
                 });
-                console.log('✅ Événement step2-next ajouté');
             }
 
-            // Type de toner
             document.querySelectorAll('.type-btn[data-type]').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.type-btn[data-type]').forEach(b => b.classList.remove('active'));
@@ -524,9 +723,7 @@
                     updatePrice();
                 });
             });
-            console.log('✅ Événements type-toner ajoutés');
 
-            // Type de livraison
             document.querySelectorAll('.type-btn[data-delivery]').forEach(btn => {
                 btn.addEventListener('click', function() {
                     document.querySelectorAll('.type-btn[data-delivery]').forEach(b => b.classList.remove('active'));
@@ -535,9 +732,7 @@
                     updateAddressField();
                 });
             });
-            console.log('✅ Événements type-livraison ajoutés');
 
-            // Quantité
             const quantityInput = getElement('quantity');
             if (quantityInput) {
                 quantityInput.addEventListener('change', updatePrice);
@@ -557,13 +752,10 @@
                     updatePrice();
                 });
             });
-            console.log('✅ Événements quantité ajoutés');
 
-            // Submit
             const submitBtn = getElement('submitBtn');
             if (submitBtn) {
                 submitBtn.addEventListener('click', handleSubmit);
-                console.log('✅ Événement submit ajouté');
             }
         }
 
@@ -659,7 +851,6 @@
                 
                 console.log('📤 Envoi de la commande:', orderData);
                 
-                // Envoyer par email
                 await emailjs.send(
                     EMAILJS_CONFIG.service_id,
                     EMAILJS_CONFIG.template_id,
@@ -667,7 +858,6 @@
                 );
                 console.log('✅ Email envoyé');
                 
-                // Afficher la célébration
                 showCelebration(orderData);
                 
             } catch (error) {
@@ -873,3 +1063,6 @@
             }
         });
     </script>
+
+</body>
+</html>

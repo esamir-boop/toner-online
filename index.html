@@ -444,6 +444,14 @@
             border-color: #0f1a2e;
         }
 
+        /* ============ HONEYPOT ============ */
+        .honeypot {
+            display: none !important;
+            position: absolute;
+            left: -9999px;
+            top: -9999px;
+        }
+
         .btn-primary {
             background: #0f1a2e;
             color: white;
@@ -541,6 +549,12 @@
             background: #e8f5e9;
             color: #2e7d32;
             border: 1px solid #c3e6cb;
+        }
+        .status-msg.warning {
+            display: block;
+            background: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
         }
 
         /* ============ CÉLÉBRATION ============ */
@@ -683,6 +697,22 @@
             height: 100%;
             pointer-events: none;
             z-index: 9999;
+        }
+
+        /* ============ TIMER WARNING ============ */
+        .timer-warning {
+            display: none;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .timer-warning.show {
+            display: block;
         }
 
         /* ============ RESPONSIVE ============ */
@@ -846,6 +876,11 @@
                             <span style="font-size:0.8rem;color:#888;" id="discountInfo">-500 DA par extra</span>
                         </div>
 
+                        <!-- Timer Warning (limite de temps) -->
+                        <div class="timer-warning" id="timerWarning">
+                            ⏳ Veuillez attendre <span id="waitSeconds">30</span> secondes avant de commander à nouveau.
+                        </div>
+
                         <!-- Formulaire -->
                         <div class="form-section">
                             <div class="form-grid">
@@ -873,6 +908,14 @@
                                     <label>🏠 Adresse complète</label>
                                     <input type="text" id="address" placeholder="Rue, n°, bâtiment, étage...">
                                 </div>
+
+                                <!-- ============================================ -->
+                                <!-- 🛡️ HONEYPOT - Piège à bots (caché)          -->
+                                <!-- ============================================ -->
+                                <div class="honeypot">
+                                    <label for="website">Website</label>
+                                    <input type="text" id="website" name="website" value="" autocomplete="off" tabindex="-1">
+                                </div>
                             </div>
 
                             <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center;">
@@ -885,6 +928,7 @@
                                 <span>🚚 Livraison Algérie</span>
                                 <span>💵 Paiement à la livraison</span>
                                 <span>✅ Compatibilité garantie</span>
+                                <span>🛡️ Anti-spam actif</span>
                             </div>
                         </div>
                     </div>
@@ -938,6 +982,13 @@
         let currentStep = 1;
         let isSubmitting = false;
 
+        // ========================================
+        // 🔒 SÉCURITÉ : LIMITE DE TEMPS
+        // ========================================
+        const MIN_TIME_BETWEEN_ORDERS = 30; // secondes
+        let lastOrderTime = 0;
+        let timerInterval = null;
+
         // Initialiser EmailJS
         try {
             emailjs.init(EMAILJS_CONFIG.public_key);
@@ -956,6 +1007,72 @@
             if (!el) return;
             el.className = 'status-msg ' + type;
             el.textContent = msg;
+        }
+
+        // ========================================
+        // 🔒 SÉCURITÉ : VÉRIFIER LA LIMITE DE TEMPS
+        // ========================================
+        function checkTimeLimit() {
+            const now = Date.now();
+            const elapsed = (now - lastOrderTime) / 1000;
+
+            if (lastOrderTime > 0 && elapsed < MIN_TIME_BETWEEN_ORDERS) {
+                const remaining = Math.ceil(MIN_TIME_BETWEEN_ORDERS - elapsed);
+                showTimerWarning(remaining);
+                return false;
+            }
+
+            hideTimerWarning();
+            return true;
+        }
+
+        function showTimerWarning(seconds) {
+            const warning = $('timerWarning');
+            const waitSpan = $('waitSeconds');
+            if (warning) warning.classList.add('show');
+            if (waitSpan) waitSpan.textContent = seconds;
+
+            // Désactiver le bouton
+            const btn = $('submitBtn');
+            if (btn) btn.disabled = true;
+
+            // Compte à rebours
+            if (timerInterval) clearInterval(timerInterval);
+            let remaining = seconds;
+
+            timerInterval = setInterval(() => {
+                remaining--;
+                if (waitSpan) waitSpan.textContent = remaining;
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    hideTimerWarning();
+                    if (btn) btn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function hideTimerWarning() {
+            const warning = $('timerWarning');
+            if (warning) warning.classList.remove('show');
+            const btn = $('submitBtn');
+            if (btn) btn.disabled = false;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        // ========================================
+        // 🔒 SÉCURITÉ : HONEYPOT
+        // ========================================
+        function checkHoneypot() {
+            const website = $('website');
+            if (website && website.value && website.value.trim() !== '') {
+                console.warn('🛡️ Honeypot détecté - requête ignorée');
+                return false;
+            }
+            return true;
         }
 
         // ========================================
@@ -1169,7 +1286,6 @@
             // Image
             const img = $('tonerImage');
             if (img) {
-                // Essayez de charger une image si elle existe
                 const imgPath = `assets/${t.code}.jpg`;
                 const testImg = new Image();
                 testImg.onload = function() {
@@ -1358,10 +1474,22 @@
         }
 
         // ========================================
-        // SUBMIT
+        // 🔒 SUBMIT AVEC SÉCURITÉ
         // ========================================
         async function handleSubmit() {
             if (isSubmitting) return;
+
+            // 🔒 Vérifier la limite de temps
+            if (!checkTimeLimit()) {
+                showStatus('warning', '⏳ Veuillez patienter avant de commander à nouveau.');
+                return;
+            }
+
+            // 🔒 Vérifier le honeypot
+            if (!checkHoneypot()) {
+                showStatus('error', '🛡️ Erreur de sécurité. Veuillez réessayer.');
+                return;
+            }
 
             const fullname = $('fullname');
             const phone = $('phone');
@@ -1414,6 +1542,9 @@
                     EMAILJS_CONFIG.template_id,
                     orderData
                 );
+
+                // 🔒 Enregistrer l'heure de la commande pour la limite de temps
+                lastOrderTime = Date.now();
 
                 showCelebration(orderData);
 
@@ -1472,7 +1603,7 @@
             updateStep(1);
             updateStep1Button();
 
-            ['fullname', 'phone', 'address'].forEach(id => {
+            ['fullname', 'phone', 'address', 'website'].forEach(id => {
                 const el = $(id);
                 if (el) el.value = '';
             });
@@ -1481,6 +1612,9 @@
                 if (el) el.selectedIndex = 0;
             });
             $('quantity').value = 1;
+
+            // Réinitialiser le timer
+            hideTimerWarning();
         }
 
         // ========================================
@@ -1575,6 +1709,8 @@
         // ========================================
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Initialisation...');
+            console.log('🛡️ Honeypot actif');
+            console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s entre chaque commande`);
             initNavigation();
             loadData();
         });

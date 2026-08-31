@@ -347,6 +347,48 @@
             flex-direction: column;
             gap: 16px;
         }
+
+        /* ============ SÉLECTEUR ORIGINAL / COMPATIBLE ============ */
+        .type-selector {
+            display: flex;
+            gap: 10px;
+            background: #f0f2f5;
+            border-radius: 14px;
+            padding: 6px;
+        }
+        .type-btn {
+            flex: 1;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            background: transparent;
+            color: #888;
+        }
+        .type-btn:hover {
+            color: #333;
+        }
+        .type-btn.active-original {
+            background: #e74c3c;
+            color: white;
+            box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+        }
+        .type-btn.active-compatible {
+            background: #2e7d32;
+            color: white;
+            box-shadow: 0 4px 12px rgba(46, 125, 50, 0.3);
+        }
+        .type-btn .sub-text {
+            display: block;
+            font-weight: 400;
+            font-size: 0.7rem;
+            opacity: 0.8;
+        }
+
         .price-card {
             background: #f8f9fc;
             border-radius: 14px;
@@ -354,11 +396,12 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border: 2px solid transparent;
-            transition: all 0.2s;
+            border: 3px solid transparent;
+            transition: all 0.3s;
         }
-        .price-card:hover {
-            border-color: #e0e4ed;
+        .price-card.selected {
+            border-color: #0f1a2e;
+            background: #f0f4ff;
         }
         .price-card .label {
             font-weight: 600;
@@ -387,6 +430,14 @@
         .price-card.compatible-card {
             border-color: #e8f5e9;
             background: #f5fff5;
+        }
+        .price-card.original-card.selected {
+            border-color: #e74c3c;
+            background: #fff0f0;
+        }
+        .price-card.compatible-card.selected {
+            border-color: #2e7d32;
+            background: #f0fff0;
         }
 
         .compat-list {
@@ -444,7 +495,6 @@
             border-color: #0f1a2e;
         }
 
-        /* ============ HONEYPOT ============ */
         .honeypot {
             display: none !important;
             position: absolute;
@@ -555,6 +605,21 @@
             background: #fff3cd;
             color: #856404;
             border: 1px solid #ffeeba;
+        }
+
+        .timer-warning {
+            display: none;
+            background: #fff3cd;
+            border: 1px solid #ffeeba;
+            color: #856404;
+            padding: 10px 16px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .timer-warning.show {
+            display: block;
         }
 
         /* ============ CÉLÉBRATION ============ */
@@ -699,23 +764,6 @@
             z-index: 9999;
         }
 
-        /* ============ TIMER WARNING ============ */
-        .timer-warning {
-            display: none;
-            background: #fff3cd;
-            border: 1px solid #ffeeba;
-            color: #856404;
-            padding: 10px 16px;
-            border-radius: 10px;
-            font-size: 0.9rem;
-            margin-top: 10px;
-            text-align: center;
-        }
-        .timer-warning.show {
-            display: block;
-        }
-
-        /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.8rem;
@@ -747,6 +795,9 @@
             .nav-container {
                 flex-wrap: wrap;
                 gap: 12px;
+            }
+            .type-selector {
+                flex-direction: column;
             }
         }
         @media (max-width: 480px) {
@@ -780,7 +831,7 @@
     <!-- ====== HERO ====== -->
     <section class="hero">
         <h1>Trouvez le <span>toner</span> idéal pour votre imprimante</h1>
-        <p>Sélectionnez votre marque, choisissez votre modèle, et obtenez instantanément le prix original et compatible.</p>
+        <p>Sélectionnez votre marque, choisissez votre modèle, et choisissez entre original ou compatible.</p>
     </section>
 
     <!-- ====== MAIN ====== -->
@@ -848,16 +899,35 @@
 
                     <!-- Colonne droite : Prix + Formulaire -->
                     <div class="result-right">
+
+                        <!-- ============================================ -->
+                        <!-- 🎯 SÉLECTEUR ORIGINAL / COMPATIBLE           -->
+                        <!-- ============================================ -->
+                        <div style="margin-bottom:4px;">
+                            <label style="font-weight:600;font-size:0.9rem;color:#444;">🔧 Choisissez le type de toner</label>
+                            <div class="type-selector" id="typeSelector">
+                                <button class="type-btn active-compatible" data-type="compatible" id="btnCompatible">
+                                    ✅ Compatible
+                                    <span class="sub-text">Économique, même qualité</span>
+                                </button>
+                                <button class="type-btn" data-type="original" id="btnOriginal">
+                                    ⭐ Original
+                                    <span class="sub-text">Qualité constructeur</span>
+                                </button>
+                            </div>
+                        </div>
+
                         <!-- Prix Original -->
-                        <div class="price-card original-card">
+                        <div class="price-card original-card" id="originalCard">
                             <div class="label">
                                 ⭐ Original
                                 <span class="sub">Qualité constructeur garantie</span>
                             </div>
                             <div class="price original" id="priceOriginal">- DA</div>
                         </div>
+
                         <!-- Prix Compatible -->
-                        <div class="price-card compatible-card">
+                        <div class="price-card compatible-card selected" id="compatibleCard">
                             <div class="label">
                                 ✅ Compatible
                                 <span class="sub">Économique, même qualité</span>
@@ -876,7 +946,7 @@
                             <span style="font-size:0.8rem;color:#888;" id="discountInfo">-500 DA par extra</span>
                         </div>
 
-                        <!-- Timer Warning (limite de temps) -->
+                        <!-- Timer Warning -->
                         <div class="timer-warning" id="timerWarning">
                             ⏳ Veuillez attendre <span id="waitSeconds">30</span> secondes avant de commander à nouveau.
                         </div>
@@ -909,9 +979,7 @@
                                     <input type="text" id="address" placeholder="Rue, n°, bâtiment, étage...">
                                 </div>
 
-                                <!-- ============================================ -->
-                                <!-- 🛡️ HONEYPOT - Piège à bots (caché)          -->
-                                <!-- ============================================ -->
+                                <!-- HONEYPOT -->
                                 <div class="honeypot">
                                     <label for="website">Website</label>
                                     <input type="text" id="website" name="website" value="" autocomplete="off" tabindex="-1">
@@ -961,7 +1029,7 @@
     <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
-        // CONFIG EMAILJS (vos identifiants)
+        // CONFIG EMAILJS
         // ========================================
         const EMAILJS_CONFIG = {
             public_key: 'tc8CLfJDs3E9-EIQ3',
@@ -982,14 +1050,16 @@
         let currentStep = 1;
         let isSubmitting = false;
 
+        // Type de toner sélectionné : 'compatible' ou 'original'
+        let selectedType = 'compatible';
+
         // ========================================
-        // 🔒 SÉCURITÉ : LIMITE DE TEMPS
+        // SÉCURITÉ
         // ========================================
-        const MIN_TIME_BETWEEN_ORDERS = 30; // secondes
+        const MIN_TIME_BETWEEN_ORDERS = 30;
         let lastOrderTime = 0;
         let timerInterval = null;
 
-        // Initialiser EmailJS
         try {
             emailjs.init(EMAILJS_CONFIG.public_key);
             console.log('✅ EmailJS initialisé');
@@ -997,9 +1067,6 @@
             console.warn('⚠️ EmailJS:', e);
         }
 
-        // ========================================
-        // UTILITAIRES
-        // ========================================
         function $(id) { return document.getElementById(id); }
 
         function showStatus(type, msg) {
@@ -1010,18 +1077,16 @@
         }
 
         // ========================================
-        // 🔒 SÉCURITÉ : VÉRIFIER LA LIMITE DE TEMPS
+        // SÉCURITÉ : LIMITE DE TEMPS
         // ========================================
         function checkTimeLimit() {
             const now = Date.now();
             const elapsed = (now - lastOrderTime) / 1000;
-
             if (lastOrderTime > 0 && elapsed < MIN_TIME_BETWEEN_ORDERS) {
                 const remaining = Math.ceil(MIN_TIME_BETWEEN_ORDERS - elapsed);
                 showTimerWarning(remaining);
                 return false;
             }
-
             hideTimerWarning();
             return true;
         }
@@ -1031,15 +1096,10 @@
             const waitSpan = $('waitSeconds');
             if (warning) warning.classList.add('show');
             if (waitSpan) waitSpan.textContent = seconds;
-
-            // Désactiver le bouton
             const btn = $('submitBtn');
             if (btn) btn.disabled = true;
-
-            // Compte à rebours
             if (timerInterval) clearInterval(timerInterval);
             let remaining = seconds;
-
             timerInterval = setInterval(() => {
                 remaining--;
                 if (waitSpan) waitSpan.textContent = remaining;
@@ -1064,12 +1124,12 @@
         }
 
         // ========================================
-        // 🔒 SÉCURITÉ : HONEYPOT
+        // SÉCURITÉ : HONEYPOT
         // ========================================
         function checkHoneypot() {
             const website = $('website');
             if (website && website.value && website.value.trim() !== '') {
-                console.warn('🛡️ Honeypot détecté - requête ignorée');
+                console.warn('🛡️ Honeypot détecté');
                 return false;
             }
             return true;
@@ -1326,9 +1386,65 @@
             if (priceOrig) priceOrig.textContent = `${(t.prix_original || 0).toLocaleString('fr-FR')} DA`;
             if (priceComp) priceComp.textContent = `${(t.prix_compatible || 0).toLocaleString('fr-FR')} DA`;
 
+            // Mettre à jour les sélections
+            updateTypeSelection();
+
             updateTotalPrice();
             initQuantityEvents();
             updateStep(3);
+        }
+
+        // ========================================
+        // 🎯 GESTION DU TYPE ORIGINAL / COMPATIBLE
+        // ========================================
+        function initTypeSelector() {
+            const btnCompatible = $('btnCompatible');
+            const btnOriginal = $('btnOriginal');
+
+            if (btnCompatible) {
+                btnCompatible.addEventListener('click', function() {
+                    selectedType = 'compatible';
+                    updateTypeSelection();
+                    updateTotalPrice();
+                });
+            }
+
+            if (btnOriginal) {
+                btnOriginal.addEventListener('click', function() {
+                    selectedType = 'original';
+                    updateTypeSelection();
+                    updateTotalPrice();
+                });
+            }
+        }
+
+        function updateTypeSelection() {
+            const btnCompatible = $('btnCompatible');
+            const btnOriginal = $('btnOriginal');
+            const originalCard = $('originalCard');
+            const compatibleCard = $('compatibleCard');
+
+            // Boutons
+            if (btnCompatible && btnOriginal) {
+                btnCompatible.className = 'type-btn';
+                btnOriginal.className = 'type-btn';
+                if (selectedType === 'compatible') {
+                    btnCompatible.classList.add('active-compatible');
+                } else {
+                    btnOriginal.classList.add('active-original');
+                }
+            }
+
+            // Cartes de prix
+            if (originalCard && compatibleCard) {
+                originalCard.classList.remove('selected');
+                compatibleCard.classList.remove('selected');
+                if (selectedType === 'original') {
+                    originalCard.classList.add('selected');
+                } else {
+                    compatibleCard.classList.add('selected');
+                }
+            }
         }
 
         // ========================================
@@ -1336,7 +1452,16 @@
         // ========================================
         function updateTotalPrice() {
             const qty = parseInt($('quantity')?.value || 1);
-            const basePrice = selectedToner?.prix_compatible || 0;
+
+            let basePrice = 0;
+            if (selectedToner) {
+                if (selectedType === 'compatible') {
+                    basePrice = selectedToner.prix_compatible || 0;
+                } else {
+                    basePrice = selectedToner.prix_original || 0;
+                }
+            }
+
             const discountPerExtra = CATALOG?.remise?.par_quantite || 500;
             const maxQty = CATALOG?.remise?.quantite_max || 10;
 
@@ -1357,6 +1482,12 @@
                     discountInfo.textContent = `-${discountPerExtra} DA par extra (max ${maxQty})`;
                     discountInfo.style.color = '#888';
                 }
+            }
+
+            // Afficher le total dans le bouton
+            const submitBtn = $('submitBtn');
+            if (submitBtn && total > 0) {
+                submitBtn.innerHTML = `📩 Commander (${total.toLocaleString('fr-FR')} DA)`;
             }
         }
 
@@ -1463,6 +1594,8 @@
             $('step2-next')?.addEventListener('click', function() {
                 if (!this.disabled && selectedModel) {
                     renderToner();
+                    // Initialiser le sélecteur de type après le rendu
+                    setTimeout(initTypeSelector, 100);
                 }
             });
 
@@ -1474,18 +1607,16 @@
         }
 
         // ========================================
-        // 🔒 SUBMIT AVEC SÉCURITÉ
+        // SUBMIT
         // ========================================
         async function handleSubmit() {
             if (isSubmitting) return;
 
-            // 🔒 Vérifier la limite de temps
             if (!checkTimeLimit()) {
                 showStatus('warning', '⏳ Veuillez patienter avant de commander à nouveau.');
                 return;
             }
 
-            // 🔒 Vérifier le honeypot
             if (!checkHoneypot()) {
                 showStatus('error', '🛡️ Erreur de sécurité. Veuillez réessayer.');
                 return;
@@ -1510,12 +1641,23 @@
             try {
                 const qty = parseInt($('quantity').value) || 1;
                 const t = selectedToner;
+
+                let basePrice = 0;
+                let typeLabel = '';
+                if (selectedType === 'compatible') {
+                    basePrice = t?.prix_compatible || 0;
+                    typeLabel = 'Compatible';
+                } else {
+                    basePrice = t?.prix_original || 0;
+                    typeLabel = 'Original';
+                }
+
                 const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin ||
                 '';
                 const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)
                     ?.commune_name_latin || '';
 
-                const totalPrice = (t?.prix_compatible || 0) * qty;
+                const totalPrice = basePrice * qty;
                 const discount = qty > 1 ? (qty - 1) * (CATALOG?.remise?.par_quantite || 500) : 0;
                 const finalTotal = Math.max(totalPrice - discount, 0);
 
@@ -1529,7 +1671,7 @@
                     modele: selectedModel?.modele || '',
                     toner: t?.nom || '',
                     code: t?.code || '',
-                    type: 'Compatible',
+                    type: typeLabel,
                     quantite: qty,
                     total: `${finalTotal.toLocaleString('fr-FR')} DA`,
                     livraison: 'Domicile'
@@ -1543,9 +1685,7 @@
                     orderData
                 );
 
-                // 🔒 Enregistrer l'heure de la commande pour la limite de temps
                 lastOrderTime = Date.now();
-
                 showCelebration(orderData);
 
             } catch (err) {
@@ -1569,6 +1709,7 @@
             summary.innerHTML = `
                     <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
                     <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
+                    <div class="line"><span>🔧 Type</span><span>${data.type}</span></div>
                     <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
                     <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
                     <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
@@ -1591,6 +1732,7 @@
             selectedBrand = null;
             selectedModel = null;
             selectedToner = null;
+            selectedType = 'compatible';
 
             document.querySelectorAll('.brand-card').forEach(el => el.classList.remove('selected'));
             document.querySelectorAll('.model-item').forEach(el => el.classList.remove('selected'));
@@ -1613,7 +1755,13 @@
             });
             $('quantity').value = 1;
 
-            // Réinitialiser le timer
+            // Réinitialiser le sélecteur de type
+            updateTypeSelection();
+
+            // Réinitialiser le bouton submit
+            const submitBtn = $('submitBtn');
+            if (submitBtn) submitBtn.innerHTML = '📩 Commander maintenant';
+
             hideTimerWarning();
         }
 
@@ -1710,7 +1858,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Initialisation...');
             console.log('🛡️ Honeypot actif');
-            console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s entre chaque commande`);
+            console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s`);
             initNavigation();
             loadData();
         });

@@ -1,21 +1,4 @@
 {
-  "produit": { "nom": "Toner", "image": "assets/toner.jpg" },
-  "logo": { "icone": "🖨️", "texte": "Toner Online", "sous_texte": "Algérie" },
-  "remise": { "par_quantite": 500, "quantite_max": 10 },
-  "contact": { "whatsapp": "213560503228", "email": "berchichesamir@gmail.com" },
-  "emailjs": {
-    "public_key": "tc8CLfJDs3E9-EIQ3",
-    "service_id": "service_hguu30b",
-    "template_id": "template_cx2lh99"
-  },
-  "sheets_csv_url": "",
-  "sheets_post_url": "https://script.google.com/macros/s/VOTRE_ID/exec",
-  "livraison": {
-    "domicile": { "zone1": 500, "zone2": 700, "zone3": 900 },
-    "point_relais": { "zone1": 300, "zone2": 400, "zone3": 500 },
-    "zone1": ["Alger", "Oran", "Constantine", "Annaba", "Setif", "Blida", "Bejaia", "Tizi Ouzou", "Boumerdes", "Tipaza"],
-    "zone2": ["Tlemcen", "Mostaganem", "Saida", "Sidi Bel Abbes", "Tiaret", "Medea", "Djelfa", "Laghouat", "Ghardaia", "Bechar"]
-  },
   "marques": [
     {
       "nom": "HP",
@@ -67,5 +50,10 @@
         }
       ]
     }
-  ]
+  ],
+  "emailjs": {
+    "public_key": "tc8CLfJDs3E9-EIQ3",
+    "service_id": "service_hguu30b",
+    "template_id": "template_e04zcq9"
+  }
 }

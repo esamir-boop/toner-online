@@ -20,8 +20,6 @@
             color: #1a1a2e;
             min-height: 100vh;
         }
-
-        /* ============ NAVBAR ============ */
         .navbar {
             background: #0f1a2e;
             padding: 16px 0;
@@ -86,8 +84,6 @@
         .nav-whatsapp:hover {
             transform: scale(1.05);
         }
-
-        /* ============ HERO ============ */
         .hero {
             text-align: center;
             padding: 50px 24px 30px;
@@ -110,15 +106,11 @@
             margin-left: auto;
             margin-right: auto;
         }
-
-        /* ============ MAIN ============ */
         .main-container {
             max-width: 1100px;
             margin: -20px auto 40px;
             padding: 0 24px;
         }
-
-        /* ============ STEPPER ============ */
         .stepper {
             display: flex;
             justify-content: center;
@@ -170,8 +162,6 @@
             background: #2e7d32;
             color: white;
         }
-
-        /* ============ CARD ============ */
         .card {
             background: white;
             border-radius: 20px;
@@ -179,7 +169,6 @@
             box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             min-height: 300px;
         }
-
         .step-panel {
             display: none;
             animation: fadeIn 0.4s ease;
@@ -187,7 +176,6 @@
         .step-panel.active {
             display: block;
         }
-
         @keyframes fadeIn {
             from {
                 opacity: 0;
@@ -198,8 +186,6 @@
                 transform: translateY(0);
             }
         }
-
-        /* ============ ÉTAPE 1 : MARQUES ============ */
         .brands-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
@@ -237,8 +223,6 @@
             color: #888;
             margin-top: 2px;
         }
-
-        /* ============ ÉTAPE 2 : MODÈLES ============ */
         .search-box {
             position: relative;
             margin-bottom: 20px;
@@ -257,7 +241,6 @@
             outline: none;
             border-color: #0f1a2e;
         }
-
         .models-list {
             display: grid;
             grid-template-columns: 1fr;
@@ -296,8 +279,6 @@
             color: #2e7d32;
             font-size: 1.2rem;
         }
-
-        /* ============ ÉTAPE 3 : RÉSULTAT ============ */
         .result-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -341,14 +322,11 @@
             color: #555;
             margin-top: 4px;
         }
-
         .result-right {
             display: flex;
             flex-direction: column;
             gap: 16px;
         }
-
-        /* ============ SÉLECTEUR ORIGINAL / COMPATIBLE ============ */
         .type-selector {
             display: flex;
             gap: 10px;
@@ -388,7 +366,6 @@
             font-size: 0.7rem;
             opacity: 0.8;
         }
-
         .price-card {
             background: #f8f9fc;
             border-radius: 14px;
@@ -439,7 +416,6 @@
             border-color: #2e7d32;
             background: #f0fff0;
         }
-
         .compat-list {
             margin-top: 8px;
             display: flex;
@@ -454,8 +430,6 @@
             font-size: 0.75rem;
             color: #444;
         }
-
-        /* ============ FORMULAIRE ============ */
         .form-section {
             margin-top: 28px;
             padding-top: 28px;
@@ -494,14 +468,12 @@
             outline: none;
             border-color: #0f1a2e;
         }
-
         .honeypot {
             display: none !important;
             position: absolute;
             left: -9999px;
             top: -9999px;
         }
-
         .btn-primary {
             background: #0f1a2e;
             color: white;
@@ -541,7 +513,6 @@
         .btn-secondary:hover {
             background: #d5dae3;
         }
-
         .btn-actions {
             display: flex;
             gap: 12px;
@@ -549,7 +520,6 @@
             margin-top: 24px;
             flex-wrap: wrap;
         }
-
         .quantity-selector {
             display: flex;
             align-items: center;
@@ -580,7 +550,6 @@
             font-size: 1rem;
             font-weight: 700;
         }
-
         .status-msg {
             padding: 12px 16px;
             border-radius: 10px;
@@ -606,7 +575,6 @@
             color: #856404;
             border: 1px solid #ffeeba;
         }
-
         .timer-warning {
             display: none;
             background: #fff3cd;
@@ -621,8 +589,6 @@
         .timer-warning.show {
             display: block;
         }
-
-        /* ============ CÉLÉBRATION ============ */
         #celebration-overlay {
             position: fixed;
             inset: 0;
@@ -699,7 +665,6 @@
         .btn-close-celebration:hover {
             transform: scale(1.05);
         }
-
         #loading-overlay {
             position: fixed;
             inset: 0;
@@ -729,7 +694,6 @@
             margin-top: 12px;
             font-size: 1rem;
         }
-
         .confetti-container {
             position: fixed;
             inset: 0;
@@ -754,7 +718,6 @@
                 opacity: 0;
             }
         }
-
         #fireworks-canvas {
             position: fixed;
             inset: 0;
@@ -763,7 +726,6 @@
             pointer-events: none;
             z-index: 9999;
         }
-
         @media (max-width: 768px) {
             .hero h1 {
                 font-size: 1.8rem;
@@ -900,9 +862,7 @@
                     <!-- Colonne droite : Prix + Formulaire -->
                     <div class="result-right">
 
-                        <!-- ============================================ -->
-                        <!-- 🎯 SÉLECTEUR ORIGINAL / COMPATIBLE           -->
-                        <!-- ============================================ -->
+                        <!-- 🎯 SÉLECTEUR ORIGINAL / COMPATIBLE -->
                         <div style="margin-bottom:4px;">
                             <label style="font-weight:600;font-size:0.9rem;color:#444;">🔧 Choisissez le type de toner</label>
                             <div class="type-selector" id="typeSelector">
@@ -935,15 +895,14 @@
                             <div class="price compatible" id="priceCompatible">- DA</div>
                         </div>
 
-                        <!-- Quantité -->
+                        <!-- Quantité (sans remise) -->
                         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:8px 0;">
                             <span style="font-weight:600;">📦 Quantité</span>
                             <div class="quantity-selector">
                                 <button class="qty-btn minus">−</button>
-                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <input type="number" id="quantity" value="1" min="1" max="99">
                                 <button class="qty-btn plus">+</button>
                             </div>
-                            <span style="font-size:0.8rem;color:#888;" id="discountInfo">-500 DA par extra</span>
                         </div>
 
                         <!-- Timer Warning -->
@@ -1029,15 +988,6 @@
     <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
-        // CONFIG EMAILJS
-        // ========================================
-        const EMAILJS_CONFIG = {
-            public_key: 'tc8CLfJDs3E9-EIQ3',
-            service_id: 'service_hguu30b',
-            template_id: 'template_e04zcq9'
-        };
-
-        // ========================================
         // CONFIG GLOBALE
         // ========================================
         let CATALOG = null;
@@ -1049,9 +999,16 @@
         let selectedToner = null;
         let currentStep = 1;
         let isSubmitting = false;
-
-        // Type de toner sélectionné : 'compatible' ou 'original'
         let selectedType = 'compatible';
+
+        // ========================================
+        // EMAILJS
+        // ========================================
+        let EMAILJS_CONFIG = {
+            public_key: '',
+            service_id: '',
+            template_id: ''
+        };
 
         // ========================================
         // SÉCURITÉ
@@ -1059,13 +1016,6 @@
         const MIN_TIME_BETWEEN_ORDERS = 30;
         let lastOrderTime = 0;
         let timerInterval = null;
-
-        try {
-            emailjs.init(EMAILJS_CONFIG.public_key);
-            console.log('✅ EmailJS initialisé');
-        } catch (e) {
-            console.warn('⚠️ EmailJS:', e);
-        }
 
         function $(id) { return document.getElementById(id); }
 
@@ -1077,76 +1027,36 @@
         }
 
         // ========================================
-        // SÉCURITÉ : LIMITE DE TEMPS
-        // ========================================
-        function checkTimeLimit() {
-            const now = Date.now();
-            const elapsed = (now - lastOrderTime) / 1000;
-            if (lastOrderTime > 0 && elapsed < MIN_TIME_BETWEEN_ORDERS) {
-                const remaining = Math.ceil(MIN_TIME_BETWEEN_ORDERS - elapsed);
-                showTimerWarning(remaining);
-                return false;
-            }
-            hideTimerWarning();
-            return true;
-        }
-
-        function showTimerWarning(seconds) {
-            const warning = $('timerWarning');
-            const waitSpan = $('waitSeconds');
-            if (warning) warning.classList.add('show');
-            if (waitSpan) waitSpan.textContent = seconds;
-            const btn = $('submitBtn');
-            if (btn) btn.disabled = true;
-            if (timerInterval) clearInterval(timerInterval);
-            let remaining = seconds;
-            timerInterval = setInterval(() => {
-                remaining--;
-                if (waitSpan) waitSpan.textContent = remaining;
-                if (remaining <= 0) {
-                    clearInterval(timerInterval);
-                    timerInterval = null;
-                    hideTimerWarning();
-                    if (btn) btn.disabled = false;
-                }
-            }, 1000);
-        }
-
-        function hideTimerWarning() {
-            const warning = $('timerWarning');
-            if (warning) warning.classList.remove('show');
-            const btn = $('submitBtn');
-            if (btn) btn.disabled = false;
-            if (timerInterval) {
-                clearInterval(timerInterval);
-                timerInterval = null;
-            }
-        }
-
-        // ========================================
-        // SÉCURITÉ : HONEYPOT
-        // ========================================
-        function checkHoneypot() {
-            const website = $('website');
-            if (website && website.value && website.value.trim() !== '') {
-                console.warn('🛡️ Honeypot détecté');
-                return false;
-            }
-            return true;
-        }
-
-        // ========================================
         // CHARGEMENT DES DONNÉES
         // ========================================
         async function loadData() {
             try {
-                console.log('📦 Chargement catalogue...');
+                console.log('📦 Chargement data.json...');
                 const r1 = await fetch('data.json');
                 if (!r1.ok) throw new Error('data.json introuvable');
                 CATALOG = await r1.json();
                 console.log('✅ Catalogue chargé');
 
-                console.log('📦 Chargement wilayas...');
+                // Extraire EmailJS depuis data.json
+                if (CATALOG.emailjs) {
+                    EMAILJS_CONFIG = {
+                        public_key: CATALOG.emailjs.public_key || '',
+                        service_id: CATALOG.emailjs.service_id || '',
+                        template_id: CATALOG.emailjs.template_id || ''
+                    };
+                    console.log('✅ EmailJS configuré depuis data.json');
+                }
+
+                if (EMAILJS_CONFIG.public_key) {
+                    try {
+                        emailjs.init(EMAILJS_CONFIG.public_key);
+                        console.log('✅ EmailJS initialisé');
+                    } catch (e) {
+                        console.warn('⚠️ EmailJS:', e);
+                    }
+                }
+
+                console.log('📦 Chargement cities.json...');
                 const r2 = await fetch('cities.json');
                 if (!r2.ok) throw new Error('cities.json introuvable');
                 WILAYA_DATAS = await r2.json();
@@ -1211,9 +1121,6 @@
             return map[name] || '🖨️';
         }
 
-        // ========================================
-        // RENDU ÉTAPE 1 : MARQUES
-        // ========================================
         function renderBrands() {
             const grid = $('brandsGrid');
             if (!grid) return;
@@ -1224,10 +1131,10 @@
                 div.className = 'brand-card';
                 div.dataset.brand = b.nom;
                 div.innerHTML = `
-                        <span class="brand-icon">${b.icon}</span>
-                        <div class="brand-name">${b.nom}</div>
-                        <div class="brand-count">${b.count} modèles</div>
-                    `;
+                            <span class="brand-icon">${b.icon}</span>
+                            <div class="brand-name">${b.nom}</div>
+                            <div class="brand-count">${b.count} modèles</div>
+                        `;
                 div.addEventListener('click', () => selectBrand(b.nom));
                 grid.appendChild(div);
             });
@@ -1269,9 +1176,6 @@
             }
         }
 
-        // ========================================
-        // RENDU ÉTAPE 2 : MODÈLES
-        // ========================================
         function renderModels(models) {
             const container = $('modelsList');
             const search = $('modelSearch');
@@ -1298,12 +1202,12 @@
                         div.classList.add('selected');
                     }
                     div.innerHTML = `
-                            <div>
-                                <div class="model-name">${m.modele}</div>
-                                <div class="model-toner">${m.toner.nom} (${m.toner.code})</div>
-                            </div>
-                            <div class="model-check">${selectedModel && selectedModel.modele === m.modele ? '✅' : ''}</div>
-                        `;
+                                <div>
+                                    <div class="model-name">${m.modele}</div>
+                                    <div class="model-toner">${m.toner.nom} (${m.toner.code})</div>
+                                </div>
+                                <div class="model-check">${selectedModel && selectedModel.modele === m.modele ? '✅' : ''}</div>
+                            `;
                     div.addEventListener('click', () => selectModel(m));
                     container.appendChild(div);
                 });
@@ -1335,15 +1239,11 @@
             if (search) search.value = model.modele;
         }
 
-        // ========================================
-        // RENDU ÉTAPE 3 : TONER
-        // ========================================
         function renderToner() {
             if (!selectedToner) return;
 
             const t = selectedToner;
 
-            // Image
             const img = $('tonerImage');
             if (img) {
                 const imgPath = `assets/${t.code}.jpg`;
@@ -1357,19 +1257,15 @@
                 testImg.src = imgPath;
             }
 
-            // Nom
             const nameEl = $('tonerName');
             if (nameEl) nameEl.textContent = `${selectedBrand?.nom || ''} - ${t.nom}`;
 
-            // Code
             const codeEl = $('tonerCode');
             if (codeEl) codeEl.textContent = `Réf: ${t.code}`;
 
-            // Rendement
             const rendEl = $('tonerRendement');
             if (rendEl) rendEl.textContent = `📄 Rendement: ${t.rendement || 'N/A'}`;
 
-            // Compatibilités
             const compatEl = $('tonerCompatList');
             if (compatEl) {
                 compatEl.innerHTML = '';
@@ -1380,22 +1276,19 @@
                 });
             }
 
-            // Prix
             const priceOrig = $('priceOriginal');
             const priceComp = $('priceCompatible');
             if (priceOrig) priceOrig.textContent = `${(t.prix_original || 0).toLocaleString('fr-FR')} DA`;
             if (priceComp) priceComp.textContent = `${(t.prix_compatible || 0).toLocaleString('fr-FR')} DA`;
 
-            // Mettre à jour les sélections
             updateTypeSelection();
-
             updateTotalPrice();
             initQuantityEvents();
             updateStep(3);
         }
 
         // ========================================
-        // 🎯 GESTION DU TYPE ORIGINAL / COMPATIBLE
+        // TYPE ORIGINAL / COMPATIBLE
         // ========================================
         function initTypeSelector() {
             const btnCompatible = $('btnCompatible');
@@ -1424,7 +1317,6 @@
             const originalCard = $('originalCard');
             const compatibleCard = $('compatibleCard');
 
-            // Boutons
             if (btnCompatible && btnOriginal) {
                 btnCompatible.className = 'type-btn';
                 btnOriginal.className = 'type-btn';
@@ -1435,7 +1327,6 @@
                 }
             }
 
-            // Cartes de prix
             if (originalCard && compatibleCard) {
                 originalCard.classList.remove('selected');
                 compatibleCard.classList.remove('selected');
@@ -1448,7 +1339,7 @@
         }
 
         // ========================================
-        // PRIX TOTAL
+        // PRIX TOTAL (sans remise)
         // ========================================
         function updateTotalPrice() {
             const qty = parseInt($('quantity')?.value || 1);
@@ -1462,29 +1353,8 @@
                 }
             }
 
-            const discountPerExtra = CATALOG?.remise?.par_quantite || 500;
-            const maxQty = CATALOG?.remise?.quantite_max || 10;
+            const total = basePrice * qty;
 
-            let total = basePrice * qty;
-            let discount = 0;
-            if (qty > 1) {
-                discount = (qty - 1) * discountPerExtra;
-                total = total - discount;
-                if (total < 0) total = 0;
-            }
-
-            const discountInfo = $('discountInfo');
-            if (discountInfo) {
-                if (qty > 1) {
-                    discountInfo.textContent = `-${discount} DA de remise (${discountPerExtra} DA/extra)`;
-                    discountInfo.style.color = '#2e7d32';
-                } else {
-                    discountInfo.textContent = `-${discountPerExtra} DA par extra (max ${maxQty})`;
-                    discountInfo.style.color = '#888';
-                }
-            }
-
-            // Afficher le total dans le bouton
             const submitBtn = $('submitBtn');
             if (submitBtn && total > 0) {
                 submitBtn.innerHTML = `📩 Commander (${total.toLocaleString('fr-FR')} DA)`;
@@ -1501,9 +1371,8 @@
             document.querySelectorAll('.qty-btn').forEach(btn => {
                 btn.onclick = function() {
                     let val = parseInt(input.value) || 1;
-                    const max = CATALOG?.remise?.quantite_max || 10;
                     if (this.classList.contains('plus')) {
-                        val = Math.min(val + 1, max);
+                        val = Math.min(val + 1, 99);
                     } else {
                         val = Math.max(val - 1, 1);
                     }
@@ -1514,12 +1383,70 @@
 
             input.onchange = function() {
                 let val = parseInt(this.value) || 1;
-                const max = CATALOG?.remise?.quantite_max || 10;
                 if (val < 1) val = 1;
-                if (val > max) val = max;
+                if (val > 99) val = 99;
                 this.value = val;
                 updateTotalPrice();
             };
+        }
+
+        // ========================================
+        // SÉCURITÉ : LIMITE DE TEMPS
+        // ========================================
+        function checkTimeLimit() {
+            const now = Date.now();
+            const elapsed = (now - lastOrderTime) / 1000;
+            if (lastOrderTime > 0 && elapsed < MIN_TIME_BETWEEN_ORDERS) {
+                const remaining = Math.ceil(MIN_TIME_BETWEEN_ORDERS - elapsed);
+                showTimerWarning(remaining);
+                return false;
+            }
+            hideTimerWarning();
+            return true;
+        }
+
+        function showTimerWarning(seconds) {
+            const warning = $('timerWarning');
+            const waitSpan = $('waitSeconds');
+            if (warning) warning.classList.add('show');
+            if (waitSpan) waitSpan.textContent = seconds;
+            const btn = $('submitBtn');
+            if (btn) btn.disabled = true;
+            if (timerInterval) clearInterval(timerInterval);
+            let remaining = seconds;
+            timerInterval = setInterval(() => {
+                remaining--;
+                if (waitSpan) waitSpan.textContent = remaining;
+                if (remaining <= 0) {
+                    clearInterval(timerInterval);
+                    timerInterval = null;
+                    hideTimerWarning();
+                    if (btn) btn.disabled = false;
+                }
+            }, 1000);
+        }
+
+        function hideTimerWarning() {
+            const warning = $('timerWarning');
+            if (warning) warning.classList.remove('show');
+            const btn = $('submitBtn');
+            if (btn) btn.disabled = false;
+            if (timerInterval) {
+                clearInterval(timerInterval);
+                timerInterval = null;
+            }
+        }
+
+        // ========================================
+        // HONEYPOT
+        // ========================================
+        function checkHoneypot() {
+            const website = $('website');
+            if (website && website.value && website.value.trim() !== '') {
+                console.warn('🛡️ Honeypot détecté');
+                return false;
+            }
+            return true;
         }
 
         // ========================================
@@ -1558,7 +1485,7 @@
         }
 
         // ========================================
-        // NAVIGATION ÉTAPES
+        // NAVIGATION
         // ========================================
         function updateStep(step) {
             currentStep = step;
@@ -1577,9 +1504,6 @@
             });
         }
 
-        // ========================================
-        // ÉVÉNEMENTS NAVIGATION
-        // ========================================
         function initNavigation() {
             $('step1-next')?.addEventListener('click', function() {
                 if (!this.disabled && selectedBrand) {
@@ -1594,7 +1518,6 @@
             $('step2-next')?.addEventListener('click', function() {
                 if (!this.disabled && selectedModel) {
                     renderToner();
-                    // Initialiser le sélecteur de type après le rendu
                     setTimeout(initTypeSelector, 100);
                 }
             });
@@ -1634,6 +1557,11 @@
             if (!commune.value) { showStatus('error', 'Sélectionnez votre commune'); return; }
             if (!address.value.trim()) { showStatus('error', 'Entrez votre adresse'); return; }
 
+            if (!EMAILJS_CONFIG.service_id || !EMAILJS_CONFIG.template_id) {
+                showStatus('error', '⚠️ EmailJS non configuré. Vérifiez data.json');
+                return;
+            }
+
             isSubmitting = true;
             $('submitBtn').disabled = true;
             $('loading-overlay').style.display = 'flex';
@@ -1653,13 +1581,11 @@
                 }
 
                 const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin ||
-                '';
+                    '';
                 const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)
                     ?.commune_name_latin || '';
 
-                const totalPrice = basePrice * qty;
-                const discount = qty > 1 ? (qty - 1) * (CATALOG?.remise?.par_quantite || 500) : 0;
-                const finalTotal = Math.max(totalPrice - discount, 0);
+                const total = basePrice * qty;
 
                 const orderData = {
                     fullname: fullname.value.trim(),
@@ -1673,7 +1599,7 @@
                     code: t?.code || '',
                     type: typeLabel,
                     quantite: qty,
-                    total: `${finalTotal.toLocaleString('fr-FR')} DA`,
+                    total: `${total.toLocaleString('fr-FR')} DA`,
                     livraison: 'Domicile'
                 };
 
@@ -1707,15 +1633,15 @@
             if (!overlay || !summary) return;
 
             summary.innerHTML = `
-                    <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
-                    <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
-                    <div class="line"><span>🔧 Type</span><span>${data.type}</span></div>
-                    <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
-                    <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
-                    <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
-                    <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
-                    <div class="line"><span>💰 Total</span><span>${data.total}</span></div>
-                `;
+                        <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
+                        <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
+                        <div class="line"><span>🔧 Type</span><span>${data.type}</span></div>
+                        <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
+                        <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
+                        <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
+                        <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
+                        <div class="line"><span>💰 Total</span><span>${data.total}</span></div>
+                    `;
 
             overlay.style.display = 'flex';
             launchConfetti();
@@ -1755,10 +1681,8 @@
             });
             $('quantity').value = 1;
 
-            // Réinitialiser le sélecteur de type
             updateTypeSelection();
 
-            // Réinitialiser le bouton submit
             const submitBtn = $('submitBtn');
             if (submitBtn) submitBtn.innerHTML = '📩 Commander maintenant';
 

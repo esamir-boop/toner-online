@@ -6,7 +6,8 @@
     <title>Toner Online - Toners compatibles pour imprimantes en Algérie</title>
     <meta name="description" content="Trouvez le toner compatible pour votre imprimante HP, Canon, Brother. Prix original et compatible affichés. Livraison Algérie.">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js">
+    </script>
     <style>
         * {
             margin: 0;
@@ -27,7 +28,7 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
         }
         .nav-container {
             max-width: 1200px;
@@ -125,7 +126,7 @@
             background: white;
             border-radius: 16px;
             padding: 8px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
             margin-bottom: 32px;
             flex-wrap: wrap;
         }
@@ -175,7 +176,7 @@
             background: white;
             border-radius: 20px;
             padding: 36px 40px;
-            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
             min-height: 300px;
         }
 
@@ -188,8 +189,14 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* ============ ÉTAPE 1 : MARQUES ============ */
@@ -210,7 +217,7 @@
         }
         .brand-card:hover {
             transform: translateY(-4px);
-            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
         }
         .brand-card.selected {
             border-color: #0f1a2e;
@@ -387,6 +394,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 6px;
+            justify-content: center;
         }
         .compat-list span {
             background: #eef1f7;
@@ -559,8 +567,13 @@
             animation: bounceEmoji 1s ease infinite;
         }
         @keyframes bounceEmoji {
-            0%,100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
         }
         #celebration-content h2 {
             font-size: 2rem;
@@ -569,12 +582,12 @@
             margin: 8px 0;
         }
         #celebration-content .order-summary {
-            background: rgba(255,255,255,0.08);
+            background: rgba(255, 255, 255, 0.08);
             border-radius: 12px;
             padding: 16px 20px;
             margin: 16px 0;
             text-align: left;
-            border: 1px solid rgba(255,255,255,0.08);
+            border: 1px solid rgba(255, 255, 255, 0.08);
         }
         #celebration-content .order-summary .line {
             display: flex;
@@ -582,7 +595,7 @@
             padding: 4px 0;
             color: #c0d0e0;
             font-size: 0.9rem;
-            border-bottom: 1px solid rgba(255,255,255,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
         #celebration-content .order-summary .line:last-child {
             border-bottom: none;
@@ -590,7 +603,7 @@
             color: #f5b342;
             font-size: 1.1rem;
             padding-top: 8px;
-            border-top: 1px solid rgba(245,179,66,0.2);
+            border-top: 1px solid rgba(245, 179, 66, 0.2);
         }
         .btn-close-celebration {
             padding: 12px 40px;
@@ -611,7 +624,7 @@
         #loading-overlay {
             position: fixed;
             inset: 0;
-            background: rgba(15,26,46,0.7);
+            background: rgba(15, 26, 46, 0.7);
             backdrop-filter: blur(4px);
             z-index: 9998;
             display: none;
@@ -622,12 +635,16 @@
         #loading-overlay .spinner {
             width: 44px;
             height: 44px;
-            border: 4px solid rgba(255,255,255,0.15);
+            border: 4px solid rgba(255, 255, 255, 0.15);
             border-top-color: #f5b342;
             border-radius: 50%;
             animation: spin 0.8s linear infinite;
         }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
         #loading-overlay p {
             color: white;
             margin-top: 12px;
@@ -649,8 +666,14 @@
             animation: confetti-fall linear forwards;
         }
         @keyframes confetti-fall {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(720deg);
+                opacity: 0;
+            }
         }
 
         #fireworks-canvas {
@@ -664,18 +687,45 @@
 
         /* ============ RESPONSIVE ============ */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 1.8rem; }
-            .card { padding: 24px 20px; }
-            .result-grid { grid-template-columns: 1fr; }
-            .form-grid { grid-template-columns: 1fr; }
-            .brands-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
-            .stepper { flex-direction: column; gap: 4px; background: transparent; box-shadow: none; padding: 0; }
-            .step-item { background: white; border-radius: 10px; min-width: auto; }
-            .nav-container { flex-wrap: wrap; gap: 12px; }
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            .card {
+                padding: 24px 20px;
+            }
+            .result-grid {
+                grid-template-columns: 1fr;
+            }
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            .brands-grid {
+                grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            }
+            .stepper {
+                flex-direction: column;
+                gap: 4px;
+                background: transparent;
+                box-shadow: none;
+                padding: 0;
+            }
+            .step-item {
+                background: white;
+                border-radius: 10px;
+                min-width: auto;
+            }
+            .nav-container {
+                flex-wrap: wrap;
+                gap: 12px;
+            }
         }
         @media (max-width: 480px) {
-            .hero h1 { font-size: 1.4rem; }
-            .brands-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero h1 {
+                font-size: 1.4rem;
+            }
+            .brands-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 </head>
@@ -867,7 +917,16 @@
     <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
-        // CONFIG
+        // CONFIG EMAILJS (vos identifiants)
+        // ========================================
+        const EMAILJS_CONFIG = {
+            public_key: 'tc8CLfJDs3E9-EIQ3',
+            service_id: 'service_hguu30b',
+            template_id: 'template_e04zcq9'
+        };
+
+        // ========================================
+        // CONFIG GLOBALE
         // ========================================
         let CATALOG = null;
         let WILAYA_DATAS = null;
@@ -879,15 +938,10 @@
         let currentStep = 1;
         let isSubmitting = false;
 
-        const EMAILJS_CONFIG = {
-            public_key: 'tc8CLfJDs3E9-EIQ3',
-            service_id: 'service_hguu30b',
-            template_id: 'template_cx2lh99'
-        };
-
+        // Initialiser EmailJS
         try {
             emailjs.init(EMAILJS_CONFIG.public_key);
-            console.log('✅ EmailJS init');
+            console.log('✅ EmailJS initialisé');
         } catch (e) {
             console.warn('⚠️ EmailJS:', e);
         }
@@ -896,6 +950,7 @@
         // UTILITAIRES
         // ========================================
         function $(id) { return document.getElementById(id); }
+
         function showStatus(type, msg) {
             const el = $('statusMessage');
             if (!el) return;
@@ -923,8 +978,6 @@
                 buildData();
                 renderBrands();
                 initWilayas();
-
-                // Activer le bouton continuer si une marque est sélectionnée
                 updateStep1Button();
 
             } catch (err) {
@@ -994,10 +1047,10 @@
                 div.className = 'brand-card';
                 div.dataset.brand = b.nom;
                 div.innerHTML = `
-                    <span class="brand-icon">${b.icon}</span>
-                    <div class="brand-name">${b.nom}</div>
-                    <div class="brand-count">${b.count} modèles</div>
-                `;
+                        <span class="brand-icon">${b.icon}</span>
+                        <div class="brand-name">${b.nom}</div>
+                        <div class="brand-count">${b.count} modèles</div>
+                    `;
                 div.addEventListener('click', () => selectBrand(b.nom));
                 grid.appendChild(div);
             });
@@ -1007,27 +1060,24 @@
             selectedBrand = allBrands.find(b => b.nom === name);
             if (!selectedBrand) return;
 
-            // UI
             document.querySelectorAll('.brand-card').forEach(el => {
                 el.classList.toggle('selected', el.dataset.brand === name);
             });
 
-            // Construire les modèles pour cette marque
             const models = allModels.filter(m => m.marque === name);
             renderModels(models);
 
-            // Mettre à jour le stepper
             updateStep(2);
             updateStep1Button();
 
-            // Afficher le nom dans l'étape 2
             const nameEl = $('selectedBrandName');
             if (nameEl) nameEl.textContent = `- ${name}`;
 
-            // Activer le bouton étape 1
             const btn = $('step1-next');
-            if (btn) btn.disabled = false;
-            btn.textContent = `Continuer → ${name}`;
+            if (btn) {
+                btn.disabled = false;
+                btn.textContent = `Continuer → ${name}`;
+            }
         }
 
         function updateStep1Button() {
@@ -1071,12 +1121,12 @@
                         div.classList.add('selected');
                     }
                     div.innerHTML = `
-                        <div>
-                            <div class="model-name">${m.modele}</div>
-                            <div class="model-toner">${m.toner.nom} (${m.toner.code})</div>
-                        </div>
-                        <div class="model-check">${selectedModel && selectedModel.modele === m.modele ? '✅' : ''}</div>
-                    `;
+                            <div>
+                                <div class="model-name">${m.modele}</div>
+                                <div class="model-toner">${m.toner.nom} (${m.toner.code})</div>
+                            </div>
+                            <div class="model-check">${selectedModel && selectedModel.modele === m.modele ? '✅' : ''}</div>
+                        `;
                     div.addEventListener('click', () => selectModel(m));
                     container.appendChild(div);
                 });
@@ -1088,7 +1138,6 @@
                 display(this.value);
             };
 
-            // Stocker la fonction de recherche
             container.dataset.display = display;
         }
 
@@ -1096,18 +1145,15 @@
             selectedModel = model;
             selectedToner = model.toner;
 
-            // UI
             document.querySelectorAll('.model-item').forEach(el => {
                 el.classList.toggle('selected', el.querySelector('.model-name')?.textContent === model.modele);
                 const check = el.querySelector('.model-check');
                 if (check) check.textContent = el.classList.contains('selected') ? '✅' : '';
             });
 
-            // Activer le bouton
             const btn = $('step2-next');
             if (btn) btn.disabled = false;
 
-            // Mettre à jour la recherche
             const search = $('modelSearch');
             if (search) search.value = model.modele;
         }
@@ -1123,9 +1169,16 @@
             // Image
             const img = $('tonerImage');
             if (img) {
-                img.innerHTML = '🖨️';
-                // Si vous avez des images, décommentez :
-                // img.innerHTML = `<img src="assets/${t.code}.jpg" alt="${t.nom}">`;
+                // Essayez de charger une image si elle existe
+                const imgPath = `assets/${t.code}.jpg`;
+                const testImg = new Image();
+                testImg.onload = function() {
+                    img.innerHTML = `<img src="${imgPath}" alt="${t.nom}">`;
+                };
+                testImg.onerror = function() {
+                    img.innerHTML = '🖨️';
+                };
+                testImg.src = imgPath;
             }
 
             // Nom
@@ -1157,13 +1210,8 @@
             if (priceOrig) priceOrig.textContent = `${(t.prix_original || 0).toLocaleString('fr-FR')} DA`;
             if (priceComp) priceComp.textContent = `${(t.prix_compatible || 0).toLocaleString('fr-FR')} DA`;
 
-            // Mettre à jour le prix total
             updateTotalPrice();
-
-            // Activer les événements quantité
             initQuantityEvents();
-
-            // Passer à l'étape 3
             updateStep(3);
         }
 
@@ -1184,7 +1232,6 @@
                 if (total < 0) total = 0;
             }
 
-            // Afficher dans l'interface (on peut ajouter un affichage si besoin)
             const discountInfo = $('discountInfo');
             if (discountInfo) {
                 if (qty > 1) {
@@ -1269,14 +1316,12 @@
         function updateStep(step) {
             currentStep = step;
 
-            // Panels
             document.querySelectorAll('.step-panel').forEach(el => {
                 el.classList.remove('active');
             });
             const panel = $('step' + step);
             if (panel) panel.classList.add('active');
 
-            // Stepper
             document.querySelectorAll('.step-item').forEach(el => {
                 const num = parseInt(el.dataset.step);
                 el.classList.remove('active', 'done');
@@ -1289,31 +1334,26 @@
         // ÉVÉNEMENTS NAVIGATION
         // ========================================
         function initNavigation() {
-            // Étape 1 → 2
             $('step1-next')?.addEventListener('click', function() {
                 if (!this.disabled && selectedBrand) {
                     updateStep(2);
                 }
             });
 
-            // Étape 2 → Retour
             $('step2-back')?.addEventListener('click', function() {
                 updateStep(1);
             });
 
-            // Étape 2 → 3
             $('step2-next')?.addEventListener('click', function() {
                 if (!this.disabled && selectedModel) {
                     renderToner();
                 }
             });
 
-            // Étape 3 → Retour
             $('step3-back')?.addEventListener('click', function() {
                 updateStep(2);
             });
 
-            // Submit
             $('submitBtn')?.addEventListener('click', handleSubmit);
         }
 
@@ -1342,8 +1382,14 @@
             try {
                 const qty = parseInt($('quantity').value) || 1;
                 const t = selectedToner;
-                const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin || '';
-                const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)?.commune_name_latin || '';
+                const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin ||
+                '';
+                const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)
+                    ?.commune_name_latin || '';
+
+                const totalPrice = (t?.prix_compatible || 0) * qty;
+                const discount = qty > 1 ? (qty - 1) * (CATALOG?.remise?.par_quantite || 500) : 0;
+                const finalTotal = Math.max(totalPrice - discount, 0);
 
                 const orderData = {
                     fullname: fullname.value.trim(),
@@ -1357,7 +1403,7 @@
                     code: t?.code || '',
                     type: 'Compatible',
                     quantite: qty,
-                    total: `${(t?.prix_compatible || 0 * qty).toLocaleString('fr-FR')} DA`,
+                    total: `${finalTotal.toLocaleString('fr-FR')} DA`,
                     livraison: 'Domicile'
                 };
 
@@ -1390,14 +1436,14 @@
             if (!overlay || !summary) return;
 
             summary.innerHTML = `
-                <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
-                <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
-                <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
-                <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
-                <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
-                <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
-                <div class="line"><span>💰 Total</span><span>${data.total}</span></div>
-            `;
+                    <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
+                    <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
+                    <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
+                    <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
+                    <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
+                    <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
+                    <div class="line"><span>💰 Total</span><span>${data.total}</span></div>
+                `;
 
             overlay.style.display = 'flex';
             launchConfetti();
@@ -1426,7 +1472,6 @@
             updateStep(1);
             updateStep1Button();
 
-            // Réinitialiser le formulaire
             ['fullname', 'phone', 'address'].forEach(id => {
                 const el = $(id);
                 if (el) el.value = '';

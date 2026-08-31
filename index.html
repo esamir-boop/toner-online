@@ -453,6 +453,11 @@
             font-size: 0.85rem;
             color: #444;
         }
+        .form-group label .optional {
+            font-weight: 400;
+            font-size: 0.7rem;
+            color: #999;
+        }
         .form-group input,
         .form-group select {
             padding: 12px 14px;
@@ -460,13 +465,33 @@
             border-radius: 10px;
             font-size: 0.95rem;
             font-family: 'Inter', sans-serif;
-            transition: border 0.2s;
+            transition: border 0.2s, box-shadow 0.2s;
             background: #fafbfc;
+            width: 100%;
         }
         .form-group input:focus,
         .form-group select:focus {
             outline: none;
             border-color: #0f1a2e;
+            box-shadow: 0 0 0 3px rgba(15, 26, 46, 0.1);
+        }
+        .form-group input.error,
+        .form-group select.error {
+            border-color: #e74c3c;
+            box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
+            animation: shake 0.4s ease;
+        }
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-8px);
+            }
+            75% {
+                transform: translateX(8px);
+            }
         }
         .honeypot {
             display: none !important;
@@ -895,7 +920,7 @@
                             <div class="price compatible" id="priceCompatible">- DA</div>
                         </div>
 
-                        <!-- Quantité (sans remise) -->
+                        <!-- Quantité -->
                         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:8px 0;">
                             <span style="font-weight:600;">📦 Quantité</span>
                             <div class="quantity-selector">
@@ -914,27 +939,27 @@
                         <div class="form-section">
                             <div class="form-grid">
                                 <div class="form-group full">
-                                    <label>👤 Nom complet</label>
+                                    <label>👤 Nom complet <span style="color:#e74c3c;">*</span></label>
                                     <input type="text" id="fullname" placeholder="Ex: Ahmed Benali">
                                 </div>
                                 <div class="form-group">
-                                    <label>📱 Téléphone</label>
+                                    <label>📱 Téléphone <span style="color:#e74c3c;">*</span></label>
                                     <input type="tel" id="phone" placeholder="0550 12 34 56">
                                 </div>
                                 <div class="form-group">
-                                    <label>📍 Wilaya</label>
+                                    <label>📍 Wilaya <span style="color:#e74c3c;">*</span></label>
                                     <select id="orderWilaya">
                                         <option value="">Sélectionnez</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label>🏙️ Commune</label>
+                                    <label>🏙️ Commune <span style="color:#e74c3c;">*</span></label>
                                     <select id="orderCommune">
                                         <option value="">Sélectionnez d'abord la wilaya</option>
                                     </select>
                                 </div>
                                 <div class="form-group full" id="addressGroup">
-                                    <label>🏠 Adresse complète</label>
+                                    <label>🏠 Adresse complète <span class="optional">(optionnel)</span></label>
                                     <input type="text" id="address" placeholder="Rue, n°, bâtiment, étage...">
                                 </div>
 
@@ -988,6 +1013,58 @@
     <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
+        // SONS
+        // ========================================
+        function playSuccessSound() {
+            try {
+                const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                // Son de cloche (deux notes)
+                oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
+                oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime + 0.1);
+                oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime + 0.2);
+
+                oscillator.type = 'sine';
+                gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 0.5);
+            } catch (e) {
+                console.log('Son non disponible');
+            }
+        }
+
+        function playErrorSound() {
+            try {
+                const audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+                const oscillator = audioCtx.createOscillator();
+                const gainNode = audioCtx.createGain();
+
+                oscillator.connect(gainNode);
+                gainNode.connect(audioCtx.destination);
+
+                // Son d'erreur (bip grave)
+                oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
+                oscillator.frequency.setValueAtTime(250, audioCtx.currentTime + 0.15);
+
+                oscillator.type = 'sawtooth';
+                gainNode.gain.setValueAtTime(0.2, audioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.3);
+
+                oscillator.start(audioCtx.currentTime);
+                oscillator.stop(audioCtx.currentTime + 0.3);
+            } catch (e) {
+                console.log('Son non disponible');
+            }
+        }
+
+        // ========================================
         // CONFIG GLOBALE
         // ========================================
         let CATALOG = null;
@@ -1019,11 +1096,58 @@
 
         function $(id) { return document.getElementById(id); }
 
+        // ========================================
+        // STATUS MESSAGE
+        // ========================================
         function showStatus(type, msg) {
             const el = $('statusMessage');
             if (!el) return;
-            el.className = 'status-msg ' + type;
+
+            el.className = 'status-msg';
+            el.style.display = 'block';
+
+            if (type === 'error') {
+                el.classList.add('error');
+                el.style.background = '#fde8e8';
+                el.style.color = '#c0392b';
+                el.style.border = '1px solid #f5c6cb';
+                el.style.padding = '12px 16px';
+                el.style.borderRadius = '10px';
+                el.style.marginBottom = '16px';
+                el.style.fontWeight = '500';
+                // Jouer le son d'erreur
+                playErrorSound();
+            } else if (type === 'success') {
+                el.classList.add('success');
+                el.style.background = '#e8f5e9';
+                el.style.color = '#2e7d32';
+                el.style.border = '1px solid #c3e6cb';
+                el.style.padding = '12px 16px';
+                el.style.borderRadius = '10px';
+                el.style.marginBottom = '16px';
+                el.style.fontWeight = '500';
+                // Jouer le son de succès
+                playSuccessSound();
+            } else if (type === 'warning') {
+                el.classList.add('warning');
+                el.style.background = '#fff3cd';
+                el.style.color = '#856404';
+                el.style.border = '1px solid #ffeeba';
+                el.style.padding = '12px 16px';
+                el.style.borderRadius = '10px';
+                el.style.marginBottom = '16px';
+                el.style.fontWeight = '500';
+            }
+
             el.textContent = msg;
+        }
+
+        function hideStatus() {
+            const el = $('statusMessage');
+            if (!el) return;
+            el.style.display = 'none';
+            el.className = 'status-msg';
+            el.textContent = '';
         }
 
         // ========================================
@@ -1037,7 +1161,6 @@
                 CATALOG = await r1.json();
                 console.log('✅ Catalogue chargé');
 
-                // Extraire EmailJS depuis data.json
                 if (CATALOG.emailjs) {
                     EMAILJS_CONFIG = {
                         public_key: CATALOG.emailjs.public_key || '',
@@ -1339,7 +1462,7 @@
         }
 
         // ========================================
-        // PRIX TOTAL (sans remise)
+        // PRIX TOTAL
         // ========================================
         function updateTotalPrice() {
             const qty = parseInt($('quantity')?.value || 1);
@@ -1408,7 +1531,10 @@
         function showTimerWarning(seconds) {
             const warning = $('timerWarning');
             const waitSpan = $('waitSeconds');
-            if (warning) warning.classList.add('show');
+            if (warning) {
+                warning.style.display = 'block';
+                warning.classList.add('show');
+            }
             if (waitSpan) waitSpan.textContent = seconds;
             const btn = $('submitBtn');
             if (btn) btn.disabled = true;
@@ -1420,7 +1546,10 @@
                 if (remaining <= 0) {
                     clearInterval(timerInterval);
                     timerInterval = null;
-                    hideTimerWarning();
+                    if (warning) {
+                        warning.style.display = 'none';
+                        warning.classList.remove('show');
+                    }
                     if (btn) btn.disabled = false;
                 }
             }, 1000);
@@ -1428,7 +1557,10 @@
 
         function hideTimerWarning() {
             const warning = $('timerWarning');
-            if (warning) warning.classList.remove('show');
+            if (warning) {
+                warning.style.display = 'none';
+                warning.classList.remove('show');
+            }
             const btn = $('submitBtn');
             if (btn) btn.disabled = false;
             if (timerInterval) {
@@ -1530,41 +1662,105 @@
         }
 
         // ========================================
-        // SUBMIT
+        // SUBMIT - VERSION CORRIGÉE
         // ========================================
         async function handleSubmit() {
+            // Cacher les anciens messages
+            hideStatus();
+
             if (isSubmitting) return;
 
+            // 1. Vérifier la limite de temps
             if (!checkTimeLimit()) {
-                showStatus('warning', '⏳ Veuillez patienter avant de commander à nouveau.');
+                showStatus('warning', '⏳ Veuillez patienter 30 secondes avant de commander à nouveau.');
                 return;
             }
 
+            // 2. Vérifier le honeypot
             if (!checkHoneypot()) {
                 showStatus('error', '🛡️ Erreur de sécurité. Veuillez réessayer.');
                 return;
             }
 
+            // 3. Récupérer les champs
             const fullname = $('fullname');
             const phone = $('phone');
             const wilaya = $('orderWilaya');
             const commune = $('orderCommune');
             const address = $('address');
 
-            if (!fullname.value.trim()) { showStatus('error', 'Veuillez entrer votre nom'); return; }
-            if (!phone.value.trim() || phone.value.trim().length < 9) { showStatus('error', 'Téléphone invalide'); return; }
-            if (!wilaya.value) { showStatus('error', 'Sélectionnez votre wilaya'); return; }
-            if (!commune.value) { showStatus('error', 'Sélectionnez votre commune'); return; }
-            if (!address.value.trim()) { showStatus('error', 'Entrez votre adresse'); return; }
+            // 4. Réinitialiser les styles des champs
+            [fullname, phone, wilaya, commune, address].forEach(el => {
+                if (el) el.classList.remove('error');
+            });
 
+            // 5. VALIDATION
+            let hasError = false;
+
+            if (!fullname || !fullname.value || fullname.value.trim() === '') {
+                showStatus('error', '❌ Veuillez entrer votre nom complet');
+                if (fullname) {
+                    fullname.classList.add('error');
+                    fullname.focus();
+                }
+                hasError = true;
+                return;
+            }
+
+            if (!phone || !phone.value || phone.value.trim() === '') {
+                showStatus('error', '❌ Veuillez entrer votre numéro de téléphone');
+                if (phone) {
+                    phone.classList.add('error');
+                    phone.focus();
+                }
+                hasError = true;
+                return;
+            } else if (phone.value.trim().length < 9) {
+                showStatus('error', '❌ Le numéro de téléphone doit contenir au moins 9 chiffres');
+                if (phone) {
+                    phone.classList.add('error');
+                    phone.focus();
+                }
+                hasError = true;
+                return;
+            }
+
+            if (!wilaya || !wilaya.value) {
+                showStatus('error', '❌ Veuillez sélectionner votre wilaya');
+                if (wilaya) {
+                    wilaya.classList.add('error');
+                    wilaya.focus();
+                }
+                hasError = true;
+                return;
+            }
+
+            if (!commune || !commune.value) {
+                showStatus('error', '❌ Veuillez sélectionner votre commune');
+                if (commune) {
+                    commune.classList.add('error');
+                    commune.focus();
+                }
+                hasError = true;
+                return;
+            }
+
+            // Adresse n'est plus obligatoire !
+            // On continue même si l'adresse est vide
+
+            // 6. Vérifier EmailJS
             if (!EMAILJS_CONFIG.service_id || !EMAILJS_CONFIG.template_id) {
                 showStatus('error', '⚠️ EmailJS non configuré. Vérifiez data.json');
                 return;
             }
 
+            // 7. Envoyer la commande
             isSubmitting = true;
-            $('submitBtn').disabled = true;
-            $('loading-overlay').style.display = 'flex';
+            const submitBtn = $('submitBtn');
+            if (submitBtn) submitBtn.disabled = true;
+
+            const loadingOverlay = $('loading-overlay');
+            if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
             try {
                 const qty = parseInt($('quantity').value) || 1;
@@ -1580,8 +1776,8 @@
                     typeLabel = 'Original';
                 }
 
-                const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin ||
-                    '';
+                const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)
+                    ?.wilaya_name_latin || '';
                 const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)
                     ?.commune_name_latin || '';
 
@@ -1592,7 +1788,7 @@
                     phone: phone.value.trim(),
                     wilaya: wilayaName,
                     commune: communeName,
-                    address: address.value.trim(),
+                    address: address ? address.value.trim() || 'Non spécifiée' : 'Non spécifiée',
                     marque: selectedBrand?.nom || '',
                     modele: selectedModel?.modele || '',
                     toner: t?.nom || '',
@@ -1612,15 +1808,18 @@
                 );
 
                 lastOrderTime = Date.now();
-                showCelebration(orderData);
+                showStatus('success', '✅ Commande envoyée avec succès ! Vous allez recevoir un email de confirmation.');
+                setTimeout(() => {
+                    showCelebration(orderData);
+                }, 500);
 
             } catch (err) {
                 console.error('❌ Erreur:', err);
                 showStatus('error', '⚠️ Erreur d\'envoi. Réessayez ou contactez-nous.');
             } finally {
                 isSubmitting = false;
-                $('submitBtn').disabled = false;
-                $('loading-overlay').style.display = 'none';
+                if (submitBtn) submitBtn.disabled = false;
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
             }
         }
 
@@ -1673,11 +1872,17 @@
 
             ['fullname', 'phone', 'address', 'website'].forEach(id => {
                 const el = $(id);
-                if (el) el.value = '';
+                if (el) {
+                    el.value = '';
+                    el.classList.remove('error');
+                }
             });
             ['orderWilaya', 'orderCommune'].forEach(id => {
                 const el = $(id);
-                if (el) el.selectedIndex = 0;
+                if (el) {
+                    el.selectedIndex = 0;
+                    el.classList.remove('error');
+                }
             });
             $('quantity').value = 1;
 
@@ -1687,6 +1892,7 @@
             if (submitBtn) submitBtn.innerHTML = '📩 Commander maintenant';
 
             hideTimerWarning();
+            hideStatus();
         }
 
         // ========================================
@@ -1783,6 +1989,7 @@
             console.log('🚀 Initialisation...');
             console.log('🛡️ Honeypot actif');
             console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s`);
+            console.log('🔔 Sons activés');
             initNavigation();
             loadData();
         });

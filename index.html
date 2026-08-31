@@ -3,245 +3,880 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Toner Online Algérie - Toners compatibles HP, Canon, Brother, Epson</title>
-    <meta name="description" content="Achetez vos toners d'imprimante pas chers en Algérie. Compatibles HP, Canon, Brother, Samsung, Epson. Livraison dans toutes les wilayas, paiement à la livraison.">
-    <meta name="keywords" content="toner, cartouche, imprimante, HP, Canon, Brother, Epson, Alger, Algérie, compatible, original">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="Toner Online - Toners pas chers pour imprimantes">
-    <meta property="og:description" content="Commandez vos toners compatibles ou originaux. Livraison 24/48h dans toute l'Algérie. Paiement à la livraison.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="assets/toner.jpg">
-    <meta property="og:url" content="https://votresite.dz/">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🖨️</text></svg>">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
+    <title>Toner Online - Toners compatibles pour imprimantes en Algérie</title>
+    <meta name="description" content="Trouvez le toner compatible pour votre imprimante HP, Canon, Brother. Prix original et compatible affichés. Livraison Algérie.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
-        /* ... vos styles ... */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Poppins', sans-serif; background: #f0f2f5; color: #1a1a2e; overflow-x: hidden; }
-        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
-        /* ... le reste des styles ... */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f5f7fb;
+            color: #1a1a2e;
+            min-height: 100vh;
+        }
+
+        /* ============ NAVBAR ============ */
+        .navbar {
+            background: #0f1a2e;
+            padding: 16px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .logo-icon {
+            width: 44px;
+            height: 44px;
+            background: #f5b342;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+        }
+        .logo-text {
+            color: white;
+        }
+        .logo-text .main {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+        }
+        .logo-text .sub {
+            font-weight: 300;
+            font-size: 0.65rem;
+            color: #f5b342;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            display: block;
+        }
+        .nav-whatsapp {
+            background: #25D366;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: transform 0.2s;
+        }
+        .nav-whatsapp:hover {
+            transform: scale(1.05);
+        }
+
+        /* ============ HERO ============ */
+        .hero {
+            text-align: center;
+            padding: 50px 24px 30px;
+            background: linear-gradient(180deg, #0f1a2e 0%, #1a2d4a 100%);
+            color: white;
+        }
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: -1px;
+        }
+        .hero h1 span {
+            color: #f5b342;
+        }
+        .hero p {
+            margin-top: 10px;
+            font-size: 1.1rem;
+            color: #b0c4de;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* ============ MAIN ============ */
+        .main-container {
+            max-width: 1100px;
+            margin: -20px auto 40px;
+            padding: 0 24px;
+        }
+
+        /* ============ STEPPER ============ */
+        .stepper {
+            display: flex;
+            justify-content: center;
+            gap: 0;
+            background: white;
+            border-radius: 16px;
+            padding: 8px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+        }
+        .step-item {
+            flex: 1;
+            min-width: 140px;
+            padding: 14px 20px;
+            text-align: center;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #a0a0b0;
+            transition: all 0.3s;
+            cursor: default;
+            position: relative;
+        }
+        .step-item .step-num {
+            display: inline-block;
+            width: 28px;
+            height: 28px;
+            line-height: 28px;
+            border-radius: 50%;
+            background: #e8ecf1;
+            color: #888;
+            font-size: 0.75rem;
+            margin-right: 8px;
+            transition: all 0.3s;
+        }
+        .step-item.active {
+            background: #0f1a2e;
+            color: white;
+        }
+        .step-item.active .step-num {
+            background: #f5b342;
+            color: #0f1a2e;
+        }
+        .step-item.done {
+            color: #0f1a2e;
+        }
+        .step-item.done .step-num {
+            background: #2e7d32;
+            color: white;
+        }
+
+        /* ============ CARD ============ */
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 36px 40px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+            min-height: 300px;
+        }
+
+        .step-panel {
+            display: none;
+            animation: fadeIn 0.4s ease;
+        }
+        .step-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ============ ÉTAPE 1 : MARQUES ============ */
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 16px;
+            margin-top: 16px;
+        }
+        .brand-card {
+            background: #f8f9fc;
+            border: 3px solid transparent;
+            border-radius: 16px;
+            padding: 24px 16px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.25s;
+        }
+        .brand-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+        }
+        .brand-card.selected {
+            border-color: #0f1a2e;
+            background: #f0f4ff;
+        }
+        .brand-card .brand-icon {
+            font-size: 2.4rem;
+            display: block;
+            margin-bottom: 6px;
+        }
+        .brand-card .brand-name {
+            font-weight: 700;
+            font-size: 1rem;
+        }
+        .brand-card .brand-count {
+            font-size: 0.75rem;
+            color: #888;
+            margin-top: 2px;
+        }
+
+        /* ============ ÉTAPE 2 : MODÈLES ============ */
+        .search-box {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .search-box input {
+            width: 100%;
+            padding: 14px 18px;
+            border: 2px solid #e8ecf1;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            transition: border 0.2s;
+            background: #fafbfc;
+        }
+        .search-box input:focus {
+            outline: none;
+            border-color: #0f1a2e;
+        }
+
+        .models-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+            max-height: 320px;
+            overflow-y: auto;
+        }
+        .model-item {
+            padding: 12px 18px;
+            background: #f8f9fc;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid transparent;
+        }
+        .model-item:hover {
+            background: #eef1f7;
+            transform: translateX(4px);
+        }
+        .model-item.selected {
+            border-color: #0f1a2e;
+            background: #f0f4ff;
+        }
+        .model-item .model-name {
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .model-item .model-toner {
+            font-size: 0.8rem;
+            color: #666;
+        }
+        .model-item .model-check {
+            color: #2e7d32;
+            font-size: 1.2rem;
+        }
+
+        /* ============ ÉTAPE 3 : RÉSULTAT ============ */
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            align-items: start;
+        }
+        .result-left {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .result-left .toner-image {
+            width: 200px;
+            height: 200px;
+            background: #f0f4ff;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 5rem;
+            border: 2px dashed #d0d8e8;
+            margin-bottom: 16px;
+        }
+        .result-left .toner-image img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+        }
+        .result-left .toner-name {
+            font-size: 1.3rem;
+            font-weight: 800;
+        }
+        .result-left .toner-code {
+            color: #888;
+            font-size: 0.9rem;
+        }
+        .result-left .toner-rendement {
+            font-size: 0.9rem;
+            color: #555;
+            margin-top: 4px;
+        }
+
+        .result-right {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .price-card {
+            background: #f8f9fc;
+            border-radius: 14px;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .price-card:hover {
+            border-color: #e0e4ed;
+        }
+        .price-card .label {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        .price-card .label .sub {
+            font-weight: 400;
+            font-size: 0.8rem;
+            color: #888;
+            display: block;
+        }
+        .price-card .price {
+            font-weight: 800;
+            font-size: 1.4rem;
+        }
+        .price-card .price.original {
+            color: #e74c3c;
+        }
+        .price-card .price.compatible {
+            color: #2e7d32;
+        }
+        .price-card.original-card {
+            border-color: #fde8e8;
+            background: #fff5f5;
+        }
+        .price-card.compatible-card {
+            border-color: #e8f5e9;
+            background: #f5fff5;
+        }
+
+        .compat-list {
+            margin-top: 8px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        .compat-list span {
+            background: #eef1f7;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            color: #444;
+        }
+
+        /* ============ FORMULAIRE ============ */
+        .form-section {
+            margin-top: 28px;
+            padding-top: 28px;
+            border-top: 2px solid #eef1f7;
+        }
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: #444;
+        }
+        .form-group input,
+        .form-group select {
+            padding: 12px 14px;
+            border: 2px solid #e8ecf1;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-family: 'Inter', sans-serif;
+            transition: border 0.2s;
+            background: #fafbfc;
+        }
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #0f1a2e;
+        }
+
+        .btn-primary {
+            background: #0f1a2e;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .btn-primary:hover {
+            background: #1a2d4a;
+            transform: scale(1.02);
+        }
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .btn-secondary {
+            background: #e8ecf1;
+            color: #333;
+            border: none;
+            padding: 12px 28px;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Inter', sans-serif;
+        }
+        .btn-secondary:hover {
+            background: #d5dae3;
+        }
+
+        .btn-actions {
+            display: flex;
+            gap: 12px;
+            justify-content: space-between;
+            margin-top: 24px;
+            flex-wrap: wrap;
+        }
+
+        .quantity-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .quantity-selector button {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 2px solid #e8ecf1;
+            background: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-weight: 700;
+        }
+        .quantity-selector button:hover {
+            background: #0f1a2e;
+            color: white;
+            border-color: #0f1a2e;
+        }
+        .quantity-selector input {
+            width: 56px;
+            text-align: center;
+            padding: 6px;
+            border: 2px solid #e8ecf1;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+
+        .status-msg {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 16px;
+            display: none;
+            font-weight: 500;
+        }
+        .status-msg.error {
+            display: block;
+            background: #fde8e8;
+            color: #c0392b;
+            border: 1px solid #f5c6cb;
+        }
+        .status-msg.success {
+            display: block;
+            background: #e8f5e9;
+            color: #2e7d32;
+            border: 1px solid #c3e6cb;
+        }
+
+        /* ============ CÉLÉBRATION ============ */
+        #celebration-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15, 26, 46, 0.92);
+            backdrop-filter: blur(10px);
+            z-index: 9999;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            padding: 24px;
+        }
+        #celebration-content {
+            text-align: center;
+            color: white;
+            max-width: 500px;
+        }
+        #celebration-content .emoji-big {
+            font-size: 4rem;
+            display: block;
+            animation: bounceEmoji 1s ease infinite;
+        }
+        @keyframes bounceEmoji {
+            0%,100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        #celebration-content h2 {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #f5b342;
+            margin: 8px 0;
+        }
+        #celebration-content .order-summary {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 16px 0;
+            text-align: left;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        #celebration-content .order-summary .line {
+            display: flex;
+            justify-content: space-between;
+            padding: 4px 0;
+            color: #c0d0e0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        #celebration-content .order-summary .line:last-child {
+            border-bottom: none;
+            font-weight: 700;
+            color: #f5b342;
+            font-size: 1.1rem;
+            padding-top: 8px;
+            border-top: 1px solid rgba(245,179,66,0.2);
+        }
+        .btn-close-celebration {
+            padding: 12px 40px;
+            background: #f5b342;
+            color: #0f1a2e;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: 'Inter', sans-serif;
+            transition: transform 0.2s;
+        }
+        .btn-close-celebration:hover {
+            transform: scale(1.05);
+        }
+
+        #loading-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(15,26,46,0.7);
+            backdrop-filter: blur(4px);
+            z-index: 9998;
+            display: none;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        #loading-overlay .spinner {
+            width: 44px;
+            height: 44px;
+            border: 4px solid rgba(255,255,255,0.15);
+            border-top-color: #f5b342;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        #loading-overlay p {
+            color: white;
+            margin-top: 12px;
+            font-size: 1rem;
+        }
+
+        .confetti-container {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 10000;
+            overflow: hidden;
+        }
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            top: -10px;
+            animation: confetti-fall linear forwards;
+        }
+        @keyframes confetti-fall {
+            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(720deg); opacity: 0; }
+        }
+
+        #fireworks-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* ============ RESPONSIVE ============ */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 1.8rem; }
+            .card { padding: 24px 20px; }
+            .result-grid { grid-template-columns: 1fr; }
+            .form-grid { grid-template-columns: 1fr; }
+            .brands-grid { grid-template-columns: repeat(auto-fill, minmax(130px, 1fr)); }
+            .stepper { flex-direction: column; gap: 4px; background: transparent; box-shadow: none; padding: 0; }
+            .step-item { background: white; border-radius: 10px; min-width: auto; }
+            .nav-container { flex-wrap: wrap; gap: 12px; }
+        }
+        @media (max-width: 480px) {
+            .hero h1 { font-size: 1.4rem; }
+            .brands-grid { grid-template-columns: repeat(2, 1fr); }
+        }
     </style>
 </head>
 <body>
 
+    <!-- ====== NAVBAR ====== -->
     <nav class="navbar">
-        <div class="container nav-container">
+        <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon" id="logo-icon">🖨️</div>
+                <div class="logo-icon">🖨️</div>
                 <div class="logo-text">
-                    <span class="main" id="logo-main">Toner Online</span>
-                    <span class="sub" id="logo-sub">Algérie</span>
+                    <span class="main">Toner Online</span>
+                    <span class="sub">Algérie 🇩🇿</span>
                 </div>
+            </a>
+            <a href="https://wa.me/213560503228" target="_blank" class="nav-whatsapp">
+                💬 Nous contacter
             </a>
         </div>
     </nav>
 
-    <section class="order-section" id="commande">
-        <div class="container">
-            <div class="order-header">
-                <h2>🖨️ Commander votre toner en 3 étapes</h2>
-            </div>
+    <!-- ====== HERO ====== -->
+    <section class="hero">
+        <h1>Trouvez le <span>toner</span> idéal pour votre imprimante</h1>
+        <p>Sélectionnez votre marque, choisissez votre modèle, et obtenez instantanément le prix original et compatible.</p>
+    </section>
 
-            <div class="progress-bar" id="progress-bar">
-                <span class="step-item active" data-step="1">1. Imprimante</span>
-                <span class="step-item" data-step="2">2. Toner</span>
-                <span class="step-item" data-step="3">3. Livraison</span>
-            </div>
+    <!-- ====== MAIN ====== -->
+    <div class="main-container">
 
-            <div class="order-wrapper">
-                <div class="order-product">
-                    <img src="assets/toner.jpg" alt="Toner pour imprimante" id="product-image">
-                    <h3 id="product-name">Toner Compatible</h3>
-                    <p class="product-code" id="product-code"></p>
-                    <p class="product-price" id="product-price">7 500 DA</p>
-                    <p class="product-rendement" id="product-rendement"></p>
-                    <p class="product-desc" id="product-desc">Sélectionnez votre imprimante pour trouver le toner compatible</p>
-                    <div class="compat-list" id="compat-list"></div>
-                    <span class="stock-badge">✅ En stock</span>
+        <!-- STEPPER -->
+        <div class="stepper" id="stepper">
+            <div class="step-item active" data-step="1">
+                <span class="step-num">1</span> Marque
+            </div>
+            <div class="step-item" data-step="2">
+                <span class="step-num">2</span> Modèle
+            </div>
+            <div class="step-item" data-step="3">
+                <span class="step-num">3</span> Toner & Commande
+            </div>
+        </div>
+
+        <!-- CARD -->
+        <div class="card">
+
+            <!-- STATUS -->
+            <div id="statusMessage" class="status-msg"></div>
+
+            <!-- ÉTAPE 1 : MARQUES -->
+            <div class="step-panel active" id="step1">
+                <h3 style="margin-bottom:8px;">Choisissez votre marque d'imprimante</h3>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:12px;">Cliquez sur une marque pour voir les modèles disponibles</p>
+                <div class="brands-grid" id="brandsGrid"></div>
+                <div class="btn-actions">
+                    <span></span>
+                    <button class="btn-primary" id="step1-next" disabled>Continuer →</button>
                 </div>
-
-                <form id="order-form" class="order-form" onsubmit="return false;">
-                    <div id="statusMessage" class="status-msg"></div>
-
-                    <!-- ÉTAPE 1 : IMPRIMANTE -->
-                    <div class="form-step active" id="step1">
-                        <div class="form-group">
-                            <label>🔍 Rechercher par référence toner (optionnel)</label>
-                            <input type="text" id="recherche-reference" placeholder="Ex : CF500X, TN-2420, 057H..." autocomplete="off">
-                            <div id="suggestions-reference" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>🔍 Rechercher votre marque d'imprimante</label>
-                            <input type="text" id="recherche-marque" placeholder="Ex : HP, Canon, Brother..." autocomplete="off">
-                            <div id="suggestions-marque" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>🔍 Rechercher votre modèle d'imprimante</label>
-                            <input type="text" id="recherche-modele" placeholder="Sélectionnez d'abord la marque" autocomplete="off" disabled>
-                            <div id="suggestions-modele" style="display:none; background:white; border:2px solid #e0e0e0; border-radius:8px; margin-top:5px; max-height:200px; overflow-y:auto;"></div>
-                        </div>
-
-                        <input type="hidden" id="marque-selectionnee" value="">
-                        <input type="hidden" id="modele-selectionne" value="">
-
-                        <div class="nav-buttons">
-                            <span></span>
-                            <button type="button" class="btn-nav btn-next" id="step1-next" disabled>Continuer →</button>
-                        </div>
-                    </div>
-
-                    <!-- ÉTAPE 2 : TONER -->
-                    <div class="form-step" id="step2">
-                        <div class="form-group" id="type-section">
-                            <label>🔧 Type de toner</label>
-                            <div class="type-buttons">
-                                <button type="button" class="type-btn active" data-type="compatible" id="btn-compatible">
-                                    ✅ Compatible <span class="sub" id="compatible-sub">Économique</span>
-                                </button>
-                                <button type="button" class="type-btn" data-type="original" id="btn-original">
-                                    ⭐ Original <span class="sub" id="original-sub">Qualité</span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label>📦 Quantité</label>
-                            <div class="quantity-selector">
-                                <button type="button" class="qty-btn minus">−</button>
-                                <input type="number" id="quantity" value="1" min="1" max="10">
-                                <button type="button" class="qty-btn plus">+</button>
-                            </div>
-                            <small style="color:#6c757d;font-size:0.75rem;" id="discount-info">Réduction de 500 DA par quantité supplémentaire (max 10)</small>
-                        </div>
-
-                        <div class="form-group">
-                            <label>💰 Détail du prix</label>
-                            <div class="price-detail">
-                                <div class="price-line subtotal"><span class="label">Sous-total</span><span class="value" id="subtotal-display">0 DA</span></div>
-                                <div class="price-line discount" id="discount-line" style="display:none;"><span class="label">Remise</span><span class="value" id="discount-display">-0 DA</span></div>
-                                <div class="price-line total"><span class="label">Total</span><span class="value" id="total-display">0 DA</span></div>
-                            </div>
-                        </div>
-
-                        <div class="nav-buttons">
-                            <button type="button" class="btn-nav btn-prev" onclick="showStep(1)">← Retour</button>
-                            <button type="button" class="btn-nav btn-next" id="step2-next">Continuer →</button>
-                        </div>
-                    </div>
-
-                    <!-- ÉTAPE 3 : LIVRAISON -->
-                    <div class="form-step" id="step3">
-                        <div class="form-group" id="delivery-section">
-                            <label>🚚 Mode de livraison</label>
-                            <div class="type-buttons">
-                                <button type="button" class="type-btn active" data-delivery="domicile" id="btn-domicile">🏠 Domicile <span class="sub">Livraison à votre adresse</span></button>
-                                <button type="button" class="type-btn" data-delivery="point_relais" id="btn-point-relais">📦 Point relais <span class="sub">Retrait en point relais</span></button>
-                            </div>
-                        </div>
-
-                        <div class="form-group" id="address-group" style="display:block;">
-                            <label>🏠 Adresse complète (rue, n°, bâtiment)</label>
-                            <input type="text" id="address" placeholder="Ex : 12 rue Didouche Mourad, Alger Centre" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>👤 Nom complet</label>
-                            <input type="text" id="fullname" placeholder="Ex : Ahmed Benali" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>📱 Téléphone</label>
-                            <input type="tel" id="phone" placeholder="Ex : 0550 12 34 56" required>
-                        </div>
-
-                        <div class="form-group">
-                            <label>📍 Wilaya</label>
-                            <select id="order-wilaya"><option value="">Sélectionnez votre wilaya</option></select>
-                        </div>
-
-                        <div class="form-group">
-                            <label>🏙️ Commune</label>
-                            <select id="order-commune"><option value="">Sélectionnez d'abord une wilaya</option></select>
-                            <div id="communeLoading" class="loading-text" style="display:none;">⏳ Chargement des communes...</div>
-                        </div>
-
-                        <div class="nav-buttons">
-                            <button type="button" class="btn-nav btn-prev" onclick="showStep(2)">← Retour</button>
-                            <span></span>
-                        </div>
-
-                        <button type="button" id="submitBtn" class="btn-submit">📩 Commander maintenant</button>
-                        <p class="form-footer">🔒 Vos informations sont sécurisées</p>
-                        <div class="trust-badges">
-                            <span>🚚 Livraison toutes les wilayas</span>
-                            <span>💵 Paiement à la livraison</span>
-                            <span>✅ Garantie compatibilité</span>
-                        </div>
-
-                        <div style="display:none;">
-                            <label for="website">Website</label>
-                            <input type="text" id="website" name="website" value="">
-                        </div>
-                    </div>
-                </form>
             </div>
+
+            <!-- ÉTAPE 2 : MODÈLES -->
+            <div class="step-panel" id="step2">
+                <h3 style="margin-bottom:4px;">Modèles <span id="selectedBrandName" style="color:#f5b342;"></span></h3>
+                <p style="color:#777;font-size:0.9rem;margin-bottom:12px;">Recherchez ou sélectionnez votre modèle d'imprimante</p>
+                <div class="search-box">
+                    <input type="text" id="modelSearch" placeholder="🔍 Rechercher un modèle..." autocomplete="off">
+                </div>
+                <div class="models-list" id="modelsList"></div>
+                <div class="btn-actions">
+                    <button class="btn-secondary" id="step2-back">← Retour</button>
+                    <button class="btn-primary" id="step2-next" disabled>Voir le toner →</button>
+                </div>
+            </div>
+
+            <!-- ÉTAPE 3 : TONER + COMMANDE -->
+            <div class="step-panel" id="step3">
+                <div class="result-grid" id="resultGrid">
+                    <!-- Colonne gauche : Image + Infos toner -->
+                    <div class="result-left">
+                        <div class="toner-image" id="tonerImage">🖨️</div>
+                        <div class="toner-name" id="tonerName">-</div>
+                        <div class="toner-code" id="tonerCode">-</div>
+                        <div class="toner-rendement" id="tonerRendement">-</div>
+                        <div class="compat-list" id="tonerCompatList"></div>
+                        <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+                            <span style="background:#e8f5e9;padding:4px 14px;border-radius:20px;font-size:0.8rem;">✅ En stock</span>
+                            <span style="background:#e3f2fd;padding:4px 14px;border-radius:20px;font-size:0.8rem;">🔧 Garantie 1 an</span>
+                        </div>
+                    </div>
+
+                    <!-- Colonne droite : Prix + Formulaire -->
+                    <div class="result-right">
+                        <!-- Prix Original -->
+                        <div class="price-card original-card">
+                            <div class="label">
+                                ⭐ Original
+                                <span class="sub">Qualité constructeur garantie</span>
+                            </div>
+                            <div class="price original" id="priceOriginal">- DA</div>
+                        </div>
+                        <!-- Prix Compatible -->
+                        <div class="price-card compatible-card">
+                            <div class="label">
+                                ✅ Compatible
+                                <span class="sub">Économique, même qualité</span>
+                            </div>
+                            <div class="price compatible" id="priceCompatible">- DA</div>
+                        </div>
+
+                        <!-- Quantité -->
+                        <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:8px 0;">
+                            <span style="font-weight:600;">📦 Quantité</span>
+                            <div class="quantity-selector">
+                                <button class="qty-btn minus">−</button>
+                                <input type="number" id="quantity" value="1" min="1" max="10">
+                                <button class="qty-btn plus">+</button>
+                            </div>
+                            <span style="font-size:0.8rem;color:#888;" id="discountInfo">-500 DA par extra</span>
+                        </div>
+
+                        <!-- Formulaire -->
+                        <div class="form-section">
+                            <div class="form-grid">
+                                <div class="form-group full">
+                                    <label>👤 Nom complet</label>
+                                    <input type="text" id="fullname" placeholder="Ex: Ahmed Benali">
+                                </div>
+                                <div class="form-group">
+                                    <label>📱 Téléphone</label>
+                                    <input type="tel" id="phone" placeholder="0550 12 34 56">
+                                </div>
+                                <div class="form-group">
+                                    <label>📍 Wilaya</label>
+                                    <select id="orderWilaya">
+                                        <option value="">Sélectionnez</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>🏙️ Commune</label>
+                                    <select id="orderCommune">
+                                        <option value="">Sélectionnez d'abord la wilaya</option>
+                                    </select>
+                                </div>
+                                <div class="form-group full" id="addressGroup">
+                                    <label>🏠 Adresse complète</label>
+                                    <input type="text" id="address" placeholder="Rue, n°, bâtiment, étage...">
+                                </div>
+                            </div>
+
+                            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;align-items:center;">
+                                <button class="btn-secondary" id="step3-back">← Retour</button>
+                                <button class="btn-primary" id="submitBtn" style="flex:1;justify-content:center;">
+                                    📩 Commander maintenant
+                                </button>
+                            </div>
+                            <div style="display:flex;gap:12px;margin-top:10px;flex-wrap:wrap;font-size:0.8rem;color:#888;">
+                                <span>🚚 Livraison Algérie</span>
+                                <span>💵 Paiement à la livraison</span>
+                                <span>✅ Compatibilité garantie</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </section>
+    </div>
 
-    <!-- SEO CONTENT -->
-    <section class="seo-content">
-        <div class="container">
-            <h2>🖨️ Pourquoi choisir un toner compatible ?</h2>
-            <p>Les toners compatibles offrent la même qualité de reproduction que les toners originaux, à un prix jusqu'à 70% moins élevé. Ils sont fabriqués selon des normes strictes et testés sur une large gamme d'imprimantes.</p>
-            <h2>🖨️ Comment trouver la bonne référence ?</h2>
-            <p>La méthode la plus simple est de chercher le modèle exact de votre imprimante (ex : HP LaserJet M402). Vous pouvez aussi trouver le code du toner sur l'ancienne cartouche.</p>
-            <h2>🚚 Nos services</h2>
-            <p>Nous livrons dans toutes les 58 wilayas d'Algérie avec un délai de 24 à 48 heures. Paiement à la livraison.</p>
-            <ul>
-                <li>✅ Garantie compatibilité 100%</li>
-                <li>🚚 Livraison rapide</li>
-                <li>💵 Paiement à la livraison</li>
-                <li>📞 Support WhatsApp 7j/7</li>
-            </ul>
-        </div>
-    </section>
+    <!-- ====== LOADING ====== -->
+    <div id="loading-overlay">
+        <div class="spinner"></div>
+        <p>⏳ Envoi de votre commande...</p>
+    </div>
 
-    <a href="https://wa.me/213560503228" target="_blank" class="whatsapp-float" id="whatsapp-btn" title="Contactez-nous sur WhatsApp">💬</a>
-
-    <div id="loading-overlay"><div class="spinner"></div><p>⏳ Envoi de votre commande...</p></div>
-
+    <!-- ====== CÉLÉBRATION ====== -->
     <div id="celebration-overlay">
         <div id="celebration-content">
             <span class="emoji-big">🎉</span>
-            <h1>Félicitations ! 🎊</h1>
-            <p class="subtitle">Votre commande a été validée avec succès !</p>
-            <div class="order-summary" id="order-summary"></div>
-            <button class="btn-close-celebration" onclick="closeCelebration()">✅ J'ai compris</button>
+            <h2>Commande confirmée !</h2>
+            <p style="color:#b0c4de;">Votre commande a été envoyée avec succès</p>
+            <div class="order-summary" id="orderSummary"></div>
+            <button class="btn-close-celebration" onclick="closeCelebration()">✅ Parfait !</button>
         </div>
     </div>
 
     <canvas id="fireworks-canvas"></canvas>
-    <div class="confetti-container" id="confetti-container"></div>
+    <div class="confetti-container" id="confettiContainer"></div>
 
-    <!-- ======================================== -->
-    <!-- JAVASCRIPT COMPLET                         -->
-    <!-- ======================================== -->
+    <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
-        // CONFIGURATION GLOBALE
+        // CONFIG
         // ========================================
         let CATALOG = null;
-        let WILAYA_DATAS = {};
-        let WILAYA_NAMES = [];
-        let UNIT_PRICE = 0;
-        let DISCOUNT_PER_EXTRA = 500;
-        let MAX_QUANTITY = 10;
-        let selectedTonerType = 'compatible';
-        let selectedDelivery = 'domicile';
-        let allModeles = [];
+        let WILAYA_DATAS = null;
+        let allBrands = [];
+        let allModels = [];
+        let selectedBrand = null;
+        let selectedModel = null;
+        let selectedToner = null;
+        let currentStep = 1;
         let isSubmitting = false;
 
         const EMAILJS_CONFIG = {
@@ -250,42 +885,19 @@
             template_id: 'template_cx2lh99'
         };
 
-        // Initialiser EmailJS
         try {
             emailjs.init(EMAILJS_CONFIG.public_key);
-            console.log('✅ EmailJS initialisé');
+            console.log('✅ EmailJS init');
         } catch (e) {
-            console.warn('⚠️ EmailJS non initialisé:', e);
+            console.warn('⚠️ EmailJS:', e);
         }
 
         // ========================================
         // UTILITAIRES
         // ========================================
-        function getElement(id) {
-            const el = document.getElementById(id);
-            if (!el) {
-                console.warn(`⚠️ Élément non trouvé: #${id}`);
-            }
-            return el;
-        }
-
-        function sanitizeInput(input) {
-            if (!input) return '';
-            const element = document.createElement('div');
-            element.textContent = input;
-            return element.innerHTML;
-        }
-
-        function debounce(fn, wait) {
-            let timeout;
-            return function(...args) {
-                clearTimeout(timeout);
-                timeout = setTimeout(() => fn.apply(this, args), wait);
-            };
-        }
-
+        function $(id) { return document.getElementById(id); }
         function showStatus(type, msg) {
-            const el = getElement('statusMessage');
+            const el = $('statusMessage');
             if (!el) return;
             el.className = 'status-msg ' + type;
             el.textContent = msg;
@@ -296,578 +908,476 @@
         // ========================================
         async function loadData() {
             try {
-                console.log('📦 Chargement du catalogue...');
-                const catalogResponse = await fetch('data.json');
-                if (!catalogResponse.ok) throw new Error('Impossible de charger le catalogue');
-                CATALOG = await catalogResponse.json();
+                console.log('📦 Chargement catalogue...');
+                const r1 = await fetch('data.json');
+                if (!r1.ok) throw new Error('data.json introuvable');
+                CATALOG = await r1.json();
                 console.log('✅ Catalogue chargé');
 
-                DISCOUNT_PER_EXTRA = CATALOG.remise?.par_quantite || 500;
-                MAX_QUANTITY = CATALOG.remise?.quantite_max || 10;
+                console.log('📦 Chargement wilayas...');
+                const r2 = await fetch('cities.json');
+                if (!r2.ok) throw new Error('cities.json introuvable');
+                WILAYA_DATAS = await r2.json();
+                console.log('✅ Wilayas chargées');
 
-                const discountInfo = getElement('discount-info');
-                if (discountInfo) {
-                    discountInfo.textContent = 
-                        `Réduction de ${DISCOUNT_PER_EXTRA} DA par quantité supplémentaire (max ${MAX_QUANTITY})`;
-                }
+                buildData();
+                renderBrands();
+                initWilayas();
 
-                console.log('📦 Chargement des wilayas...');
-                const wilayaResponse = await fetch('cities.json');
-                if (!wilayaResponse.ok) throw new Error('Impossible de charger les wilayas');
-                const wilayaData = await wilayaResponse.json();
-                WILAYA_DATAS = wilayaData;
-                WILAYA_NAMES = wilayaData.wilayas || [];
-                console.log('✅ Wilayas chargées:', WILAYA_NAMES.length);
+                // Activer le bouton continuer si une marque est sélectionnée
+                updateStep1Button();
 
-                buildModelList();
-                console.log('✅ Modèles construits:', allModeles.length);
-
-                initWilayaSelect();
-                initSearchFields();
-
-                if (allModeles.length > 0) {
-                    const first = allModeles[0];
-                    updateProductDisplay(first.marque, first.modele, first.toner);
-                }
-
-                const step1Next = getElement('step1-next');
-                if (step1Next) {
-                    step1Next.disabled = false;
-                }
-
-            } catch (error) {
-                console.error('❌ Erreur:', error);
-                showStatus('error', '⚠️ Erreur de chargement: ' + error.message);
+            } catch (err) {
+                console.error('❌ Erreur:', err);
+                showStatus('error', '⚠️ Erreur de chargement: ' + err.message);
             }
         }
 
-        function buildModelList() {
-            allModeles = [];
-            if (!CATALOG || !CATALOG.marques) return;
-            
-            CATALOG.marques.forEach(marque => {
-                if (!marque.toners) return;
-                marque.toners.forEach(toner => {
-                    if (!toner.compatibles) return;
-                    toner.compatibles.forEach(model => {
-                        allModeles.push({
-                            marque: marque.nom,
+        function buildData() {
+            allBrands = [];
+            allModels = [];
+
+            (CATALOG.marques || []).forEach(m => {
+                const toners = m.toners || [];
+                const brand = {
+                    nom: m.nom,
+                    icon: getBrandIcon(m.nom),
+                    toners: toners,
+                    count: toners.reduce((acc, t) => acc + (t.compatibles || []).length, 0)
+                };
+                allBrands.push(brand);
+
+                toners.forEach(t => {
+                    (t.compatibles || []).forEach(model => {
+                        allModels.push({
+                            marque: m.nom,
                             modele: model,
-                            toner: toner,
-                            marqueObj: marque
+                            toner: t,
+                            brandRef: brand
                         });
                     });
                 });
             });
+
+            console.log(`📊 ${allBrands.length} marques, ${allModels.length} modèles`);
+        }
+
+        function getBrandIcon(name) {
+            const map = {
+                'HP': '🟦',
+                'Canon': '🔴',
+                'Brother': '🟩',
+                'Epson': '🟪',
+                'Samsung': '🔵',
+                'Xerox': '🟧',
+                'Lexmark': '🟨',
+                'Dell': '🟩',
+                'Panasonic': '🟦',
+                'Kyocera': '🟥',
+                'Ricoh': '🟧',
+                'Sharp': '⬛',
+                'Toshiba': '🟥'
+            };
+            return map[name] || '🖨️';
+        }
+
+        // ========================================
+        // RENDU ÉTAPE 1 : MARQUES
+        // ========================================
+        function renderBrands() {
+            const grid = $('brandsGrid');
+            if (!grid) return;
+            grid.innerHTML = '';
+
+            allBrands.forEach(b => {
+                const div = document.createElement('div');
+                div.className = 'brand-card';
+                div.dataset.brand = b.nom;
+                div.innerHTML = `
+                    <span class="brand-icon">${b.icon}</span>
+                    <div class="brand-name">${b.nom}</div>
+                    <div class="brand-count">${b.count} modèles</div>
+                `;
+                div.addEventListener('click', () => selectBrand(b.nom));
+                grid.appendChild(div);
+            });
+        }
+
+        function selectBrand(name) {
+            selectedBrand = allBrands.find(b => b.nom === name);
+            if (!selectedBrand) return;
+
+            // UI
+            document.querySelectorAll('.brand-card').forEach(el => {
+                el.classList.toggle('selected', el.dataset.brand === name);
+            });
+
+            // Construire les modèles pour cette marque
+            const models = allModels.filter(m => m.marque === name);
+            renderModels(models);
+
+            // Mettre à jour le stepper
+            updateStep(2);
+            updateStep1Button();
+
+            // Afficher le nom dans l'étape 2
+            const nameEl = $('selectedBrandName');
+            if (nameEl) nameEl.textContent = `- ${name}`;
+
+            // Activer le bouton étape 1
+            const btn = $('step1-next');
+            if (btn) btn.disabled = false;
+            btn.textContent = `Continuer → ${name}`;
+        }
+
+        function updateStep1Button() {
+            const btn = $('step1-next');
+            if (!btn) return;
+            if (selectedBrand) {
+                btn.disabled = false;
+                btn.textContent = `Continuer → ${selectedBrand.nom}`;
+            } else {
+                btn.disabled = true;
+                btn.textContent = 'Continuer →';
+            }
+        }
+
+        // ========================================
+        // RENDU ÉTAPE 2 : MODÈLES
+        // ========================================
+        function renderModels(models) {
+            const container = $('modelsList');
+            const search = $('modelSearch');
+            if (!container) return;
+
+            function display(filter = '') {
+                const q = filter.toLowerCase().trim();
+                const filtered = models.filter(m =>
+                    m.modele.toLowerCase().includes(q) ||
+                    m.toner.nom.toLowerCase().includes(q) ||
+                    m.toner.code.toLowerCase().includes(q)
+                );
+
+                container.innerHTML = '';
+                if (filtered.length === 0) {
+                    container.innerHTML = '<div style="padding:20px;text-align:center;color:#888;">Aucun modèle trouvé</div>';
+                    return;
+                }
+
+                filtered.forEach(m => {
+                    const div = document.createElement('div');
+                    div.className = 'model-item';
+                    if (selectedModel && selectedModel.modele === m.modele) {
+                        div.classList.add('selected');
+                    }
+                    div.innerHTML = `
+                        <div>
+                            <div class="model-name">${m.modele}</div>
+                            <div class="model-toner">${m.toner.nom} (${m.toner.code})</div>
+                        </div>
+                        <div class="model-check">${selectedModel && selectedModel.modele === m.modele ? '✅' : ''}</div>
+                    `;
+                    div.addEventListener('click', () => selectModel(m));
+                    container.appendChild(div);
+                });
+            }
+
+            display('');
+
+            search.oninput = function() {
+                display(this.value);
+            };
+
+            // Stocker la fonction de recherche
+            container.dataset.display = display;
+        }
+
+        function selectModel(model) {
+            selectedModel = model;
+            selectedToner = model.toner;
+
+            // UI
+            document.querySelectorAll('.model-item').forEach(el => {
+                el.classList.toggle('selected', el.querySelector('.model-name')?.textContent === model.modele);
+                const check = el.querySelector('.model-check');
+                if (check) check.textContent = el.classList.contains('selected') ? '✅' : '';
+            });
+
+            // Activer le bouton
+            const btn = $('step2-next');
+            if (btn) btn.disabled = false;
+
+            // Mettre à jour la recherche
+            const search = $('modelSearch');
+            if (search) search.value = model.modele;
+        }
+
+        // ========================================
+        // RENDU ÉTAPE 3 : TONER
+        // ========================================
+        function renderToner() {
+            if (!selectedToner) return;
+
+            const t = selectedToner;
+
+            // Image
+            const img = $('tonerImage');
+            if (img) {
+                img.innerHTML = '🖨️';
+                // Si vous avez des images, décommentez :
+                // img.innerHTML = `<img src="assets/${t.code}.jpg" alt="${t.nom}">`;
+            }
+
+            // Nom
+            const nameEl = $('tonerName');
+            if (nameEl) nameEl.textContent = `${selectedBrand?.nom || ''} - ${t.nom}`;
+
+            // Code
+            const codeEl = $('tonerCode');
+            if (codeEl) codeEl.textContent = `Réf: ${t.code}`;
+
+            // Rendement
+            const rendEl = $('tonerRendement');
+            if (rendEl) rendEl.textContent = `📄 Rendement: ${t.rendement || 'N/A'}`;
+
+            // Compatibilités
+            const compatEl = $('tonerCompatList');
+            if (compatEl) {
+                compatEl.innerHTML = '';
+                (t.compatibles || []).forEach(m => {
+                    const span = document.createElement('span');
+                    span.textContent = m;
+                    compatEl.appendChild(span);
+                });
+            }
+
+            // Prix
+            const priceOrig = $('priceOriginal');
+            const priceComp = $('priceCompatible');
+            if (priceOrig) priceOrig.textContent = `${(t.prix_original || 0).toLocaleString('fr-FR')} DA`;
+            if (priceComp) priceComp.textContent = `${(t.prix_compatible || 0).toLocaleString('fr-FR')} DA`;
+
+            // Mettre à jour le prix total
+            updateTotalPrice();
+
+            // Activer les événements quantité
+            initQuantityEvents();
+
+            // Passer à l'étape 3
+            updateStep(3);
+        }
+
+        // ========================================
+        // PRIX TOTAL
+        // ========================================
+        function updateTotalPrice() {
+            const qty = parseInt($('quantity')?.value || 1);
+            const basePrice = selectedToner?.prix_compatible || 0;
+            const discountPerExtra = CATALOG?.remise?.par_quantite || 500;
+            const maxQty = CATALOG?.remise?.quantite_max || 10;
+
+            let total = basePrice * qty;
+            let discount = 0;
+            if (qty > 1) {
+                discount = (qty - 1) * discountPerExtra;
+                total = total - discount;
+                if (total < 0) total = 0;
+            }
+
+            // Afficher dans l'interface (on peut ajouter un affichage si besoin)
+            const discountInfo = $('discountInfo');
+            if (discountInfo) {
+                if (qty > 1) {
+                    discountInfo.textContent = `-${discount} DA de remise (${discountPerExtra} DA/extra)`;
+                    discountInfo.style.color = '#2e7d32';
+                } else {
+                    discountInfo.textContent = `-${discountPerExtra} DA par extra (max ${maxQty})`;
+                    discountInfo.style.color = '#888';
+                }
+            }
+        }
+
+        // ========================================
+        // QUANTITÉ
+        // ========================================
+        function initQuantityEvents() {
+            const input = $('quantity');
+            if (!input) return;
+
+            document.querySelectorAll('.qty-btn').forEach(btn => {
+                btn.onclick = function() {
+                    let val = parseInt(input.value) || 1;
+                    const max = CATALOG?.remise?.quantite_max || 10;
+                    if (this.classList.contains('plus')) {
+                        val = Math.min(val + 1, max);
+                    } else {
+                        val = Math.max(val - 1, 1);
+                    }
+                    input.value = val;
+                    updateTotalPrice();
+                };
+            });
+
+            input.onchange = function() {
+                let val = parseInt(this.value) || 1;
+                const max = CATALOG?.remise?.quantite_max || 10;
+                if (val < 1) val = 1;
+                if (val > max) val = max;
+                this.value = val;
+                updateTotalPrice();
+            };
         }
 
         // ========================================
         // WILAYAS & COMMUNES
         // ========================================
-        function initWilayaSelect() {
-            const select = getElement('order-wilaya');
-            if (!select) return;
-            
+        function initWilayas() {
+            const select = $('orderWilaya');
+            if (!select || !WILAYA_DATAS) return;
+
             select.innerHTML = '<option value="">Sélectionnez votre wilaya</option>';
-            WILAYA_NAMES.forEach(w => {
+            (WILAYA_DATAS.wilayas || []).forEach(w => {
                 const opt = document.createElement('option');
                 opt.value = w.wilaya_id;
                 opt.textContent = w.wilaya_name_latin;
                 select.appendChild(opt);
             });
-            select.addEventListener('change', function() {
+
+            select.onchange = function() {
                 loadCommunes(this.value);
-            });
+            };
         }
 
         function loadCommunes(wilayaId) {
-            const communeSelect = getElement('order-commune');
-            const loading = getElement('communeLoading');
-            
-            if (!communeSelect) return;
-            
-            communeSelect.innerHTML = '<option value="">Sélectionnez une commune</option>';
-            
-            if (!wilayaId) {
-                communeSelect.disabled = true;
-                return;
-            }
-            
-            communeSelect.disabled = true;
-            if (loading) loading.style.display = 'block';
-            
-            setTimeout(() => {
-                const communes = WILAYA_DATAS.communes?.filter(c => c.wilaya_id == wilayaId) || [];
-                communes.forEach(c => {
-                    const opt = document.createElement('option');
-                    opt.value = c.commune_id;
-                    opt.textContent = c.commune_name_latin || c.commune_name_arabic;
-                    communeSelect.appendChild(opt);
-                });
-                communeSelect.disabled = false;
-                if (loading) loading.style.display = 'none';
-            }, 300);
-        }
+            const select = $('orderCommune');
+            if (!select) return;
+            select.innerHTML = '<option value="">Sélectionnez une commune</option>';
+            if (!wilayaId) return;
 
-        // ========================================
-        // RECHERCHE
-        // ========================================
-        function initSearchFields() {
-            const refInput = getElement('recherche-reference');
-            const refSuggest = getElement('suggestions-reference');
-            if (refInput && refSuggest) {
-                refInput.addEventListener('input', debounce(function() {
-                    const val = this.value.trim();
-                    if (val.length < 2) {
-                        refSuggest.style.display = 'none';
-                        return;
-                    }
-                    const results = searchByReference(val);
-                    showSuggestions(refSuggest, results.map(r => ({
-                        label: `${r.toner.nom} (${r.toner.code}) - ${r.marque}`,
-                        sub: r.modele,
-                        data: { marque: r.marque, modele: r.modele, toner: r.toner }
-                    })), (item) => {
-                        selectToner(item.data);
-                        refSuggest.style.display = 'none';
-                        refInput.value = item.label;
-                    });
-                    refSuggest.style.display = results.length > 0 ? 'block' : 'none';
-                }, 300));
-            }
-
-            const marqueInput = getElement('recherche-marque');
-            const marqueSuggest = getElement('suggestions-marque');
-            if (marqueInput && marqueSuggest) {
-                marqueInput.addEventListener('input', debounce(function() {
-                    const val = this.value.trim();
-                    if (val.length < 2) {
-                        marqueSuggest.style.display = 'none';
-                        const modeleInput = getElement('recherche-modele');
-                        if (modeleInput) modeleInput.disabled = true;
-                        return;
-                    }
-                    const marques = getMarquesFiltered(val);
-                    showSuggestions(marqueSuggest, marques.map(m => ({
-                        label: m.nom,
-                        sub: `${m.toners?.length || 0} toners disponibles`,
-                        data: { marque: m }
-                    })), (item) => {
-                        const marqueSelect = getElement('marque-selectionnee');
-                        if (marqueSelect) marqueSelect.value = item.data.marque.nom;
-                        marqueInput.value = item.data.marque.nom;
-                        marqueSuggest.style.display = 'none';
-                        enableModeleSearch(item.data.marque);
-                    });
-                    marqueSuggest.style.display = marques.length > 0 ? 'block' : 'none';
-                }, 300));
-            }
-
-            const modeleInput = getElement('recherche-modele');
-            const modeleSuggest = getElement('suggestions-modele');
-            if (modeleInput && modeleSuggest) {
-                modeleInput.addEventListener('input', debounce(function() {
-                    const val = this.value.trim();
-                    const marqueSelect = getElement('marque-selectionnee');
-                    const marque = marqueSelect ? marqueSelect.value : '';
-                    if (val.length < 2 || !marque) {
-                        modeleSuggest.style.display = 'none';
-                        return;
-                    }
-                    const results = searchModels(val, marque);
-                    showSuggestions(modeleSuggest, results.map(r => ({
-                        label: r.modele,
-                        sub: `${r.toner.nom} - ${r.toner.code}`,
-                        data: { marque: r.marque, modele: r.modele, toner: r.toner }
-                    })), (item) => {
-                        selectToner(item.data);
-                        modeleSuggest.style.display = 'none';
-                        modeleInput.value = item.data.modele;
-                    });
-                    modeleSuggest.style.display = results.length > 0 ? 'block' : 'none';
-                }, 300));
-            }
-
-            document.addEventListener('click', function(e) {
-                const refSuggest = getElement('suggestions-reference');
-                if (refSuggest && !e.target.closest('#suggestions-reference') && !e.target.closest('#recherche-reference')) {
-                    refSuggest.style.display = 'none';
-                }
-                const marqueSuggest = getElement('suggestions-marque');
-                if (marqueSuggest && !e.target.closest('#suggestions-marque') && !e.target.closest('#recherche-marque')) {
-                    marqueSuggest.style.display = 'none';
-                }
-                const modeleSuggest = getElement('suggestions-modele');
-                if (modeleSuggest && !e.target.closest('#suggestions-modele') && !e.target.closest('#recherche-modele')) {
-                    modeleSuggest.style.display = 'none';
-                }
+            const communes = (WILAYA_DATAS.communes || []).filter(c => c.wilaya_id == wilayaId);
+            communes.forEach(c => {
+                const opt = document.createElement('option');
+                opt.value = c.commune_id;
+                opt.textContent = c.commune_name_latin || c.commune_name_arabic;
+                select.appendChild(opt);
             });
         }
 
-        function searchByReference(query) {
-            const q = query.toLowerCase().trim();
-            const results = [];
-            allModeles.forEach(item => {
-                const code = (item.toner.code || '').toLowerCase();
-                const nom = (item.toner.nom || '').toLowerCase();
-                if (code.includes(q) || nom.includes(q)) {
-                    results.push(item);
-                }
+        // ========================================
+        // NAVIGATION ÉTAPES
+        // ========================================
+        function updateStep(step) {
+            currentStep = step;
+
+            // Panels
+            document.querySelectorAll('.step-panel').forEach(el => {
+                el.classList.remove('active');
             });
-            return results.slice(0, 15);
-        }
+            const panel = $('step' + step);
+            if (panel) panel.classList.add('active');
 
-        function getMarquesFiltered(query) {
-            const q = query.toLowerCase().trim();
-            if (!CATALOG || !CATALOG.marques) return [];
-            return CATALOG.marques.filter(m => 
-                m.nom.toLowerCase().includes(q) || 
-                (m.aliases || []).some(a => a.toLowerCase().includes(q))
-            );
-        }
-
-        function searchModels(query, marque) {
-            const q = query.toLowerCase().trim();
-            return allModeles.filter(item => 
-                item.marque.toLowerCase() === marque.toLowerCase() &&
-                item.modele.toLowerCase().includes(q)
-            ).slice(0, 15);
-        }
-
-        function enableModeleSearch(marque) {
-            const modeleInput = getElement('recherche-modele');
-            if (!modeleInput) return;
-            modeleInput.disabled = false;
-            modeleInput.placeholder = `Rechercher un modèle ${marque.nom}...`;
-            modeleInput.value = '';
-            const modeleSuggest = getElement('suggestions-modele');
-            if (modeleSuggest) modeleSuggest.style.display = 'none';
-        }
-
-        function showSuggestions(container, items, onSelect) {
-            if (!container) return;
-            container.innerHTML = '';
-            if (items.length === 0) {
-                container.style.display = 'none';
-                return;
-            }
-            items.forEach(item => {
-                const div = document.createElement('div');
-                div.className = 'suggestion-item';
-                div.innerHTML = `<span>${item.label}</span><span class="sub-info">${item.sub || ''}</span>`;
-                div.addEventListener('click', () => onSelect(item));
-                container.appendChild(div);
-            });
-            container.style.display = 'block';
-        }
-
-        function selectToner(data) {
-            const { marque, modele, toner } = data;
-            
-            const marqueSelect = getElement('marque-selectionnee');
-            const modeleSelect = getElement('modele-selectionne');
-            const marqueInput = getElement('recherche-marque');
-            const modeleInput = getElement('recherche-modele');
-            
-            if (marqueSelect) marqueSelect.value = marque;
-            if (modeleSelect) modeleSelect.value = modele;
-            if (marqueInput) marqueInput.value = marque;
-            if (modeleInput) modeleInput.value = modele;
-            
-            updateProductDisplay(marque, modele, toner);
-            
-            const step1Next = getElement('step1-next');
-            if (step1Next) step1Next.disabled = false;
-            
-            setTimeout(() => {
-                showStep(2);
-            }, 500);
-        }
-
-        // ========================================
-        // AFFICHAGE PRODUIT
-        // ========================================
-        function updateProductDisplay(marque, modele, toner) {
-            const nom = getElement('product-name');
-            const code = getElement('product-code');
-            const price = getElement('product-price');
-            const rendement = getElement('product-rendement');
-            const desc = getElement('product-desc');
-            const compat = getElement('compat-list');
-            
-            if (nom) nom.textContent = `${marque} - ${toner.nom}`;
-            if (code) code.textContent = `Réf: ${toner.code}`;
-            if (rendement) rendement.textContent = `📄 Rendement: ${toner.rendement}`;
-            if (desc) desc.textContent = `Compatible avec ${modele}`;
-            
-            UNIT_PRICE = toner.prix_compatible || 7500;
-            if (price) price.textContent = `${UNIT_PRICE.toLocaleString('fr-FR')} DA`;
-            
-            if (compat) {
-                compat.innerHTML = '';
-                if (toner.compatibles) {
-                    toner.compatibles.forEach(m => {
-                        const span = document.createElement('span');
-                        span.textContent = m;
-                        compat.appendChild(span);
-                    });
-                }
-            }
-            
-            const step2Next = getElement('step2-next');
-            if (step2Next) {
-                step2Next.dataset.toner = JSON.stringify(toner);
-                step2Next.dataset.marque = marque;
-                step2Next.dataset.modele = modele;
-            }
-            
-            updatePrice();
-        }
-
-        // ========================================
-        // GESTION DES ÉTAPES
-        // ========================================
-        function showStep(step) {
-            document.querySelectorAll('.form-step').forEach(el => el.classList.remove('active'));
-            const target = getElement(`step${step}`);
-            if (target) target.classList.add('active');
-            
+            // Stepper
             document.querySelectorAll('.step-item').forEach(el => {
                 const num = parseInt(el.dataset.step);
                 el.classList.remove('active', 'done');
                 if (num === step) el.classList.add('active');
                 else if (num < step) el.classList.add('done');
             });
-            
-            if (step === 2) updatePrice();
-            
-            const form = document.querySelector('.order-form');
-            if (form) form.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         // ========================================
-        // GESTION DU PRIX
+        // ÉVÉNEMENTS NAVIGATION
         // ========================================
-        function updatePrice() {
-            const qtyInput = getElement('quantity');
-            const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-            
-            let basePrice = UNIT_PRICE;
-            if (basePrice === 0) {
-                const priceEl = getElement('product-price');
-                if (priceEl) {
-                    const priceText = priceEl.textContent.replace(/[^0-9]/g, '');
-                    basePrice = parseInt(priceText) || 7500;
+        function initNavigation() {
+            // Étape 1 → 2
+            $('step1-next')?.addEventListener('click', function() {
+                if (!this.disabled && selectedBrand) {
+                    updateStep(2);
                 }
-            }
-            
-            if (selectedTonerType === 'original') {
-                basePrice = basePrice * 2.2;
-            }
-            
-            let total = basePrice * qty;
-            let discount = 0;
-            
-            if (qty > 1) {
-                discount = (qty - 1) * DISCOUNT_PER_EXTRA;
-                total = total - discount;
-                if (total < 0) total = 0;
-            }
-            
-            const subtotalDisplay = getElement('subtotal-display');
-            if (subtotalDisplay) {
-                subtotalDisplay.textContent = `${Math.round(basePrice * qty).toLocaleString('fr-FR')} DA`;
-            }
-            
-            const discountLine = getElement('discount-line');
-            const discountDisplay = getElement('discount-display');
-            if (discount > 0) {
-                if (discountLine) discountLine.style.display = 'flex';
-                if (discountDisplay) discountDisplay.textContent = `-${discount.toLocaleString('fr-FR')} DA`;
-            } else {
-                if (discountLine) discountLine.style.display = 'none';
-            }
-            
-            const totalDisplay = getElement('total-display');
-            if (totalDisplay) {
-                totalDisplay.textContent = `${Math.round(total).toLocaleString('fr-FR')} DA`;
-                totalDisplay.classList.remove('price-blink');
-                void totalDisplay.offsetWidth;
-                totalDisplay.classList.add('price-blink');
-            }
-        }
-
-        // ========================================
-        // GESTION DES ÉVÉNEMENTS
-        // ========================================
-        function initEvents() {
-            const step1Next = getElement('step1-next');
-            if (step1Next) {
-                step1Next.addEventListener('click', function() {
-                    if (!this.disabled) showStep(2);
-                });
-            }
-
-            const step2Next = getElement('step2-next');
-            if (step2Next) {
-                step2Next.addEventListener('click', function() {
-                    showStep(3);
-                });
-            }
-
-            document.querySelectorAll('.type-btn[data-type]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.type-btn[data-type]').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    selectedTonerType = this.dataset.type;
-                    updatePrice();
-                });
             });
 
-            document.querySelectorAll('.type-btn[data-delivery]').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    document.querySelectorAll('.type-btn[data-delivery]').forEach(b => b.classList.remove('active'));
-                    this.classList.add('active');
-                    selectedDelivery = this.dataset.delivery;
-                    updateAddressField();
-                });
+            // Étape 2 → Retour
+            $('step2-back')?.addEventListener('click', function() {
+                updateStep(1);
             });
 
-            const quantityInput = getElement('quantity');
-            if (quantityInput) {
-                quantityInput.addEventListener('change', updatePrice);
-            }
-            
-            document.querySelectorAll('.qty-btn').forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const input = getElement('quantity');
-                    if (!input) return;
-                    let val = parseInt(input.value) || 1;
-                    if (this.classList.contains('plus')) {
-                        val = Math.min(val + 1, MAX_QUANTITY);
-                    } else {
-                        val = Math.max(val - 1, 1);
-                    }
-                    input.value = val;
-                    updatePrice();
-                });
-            });
-
-            const submitBtn = getElement('submitBtn');
-            if (submitBtn) {
-                submitBtn.addEventListener('click', handleSubmit);
-            }
-        }
-
-        function updateAddressField() {
-            const addressGroup = getElement('address-group');
-            if (addressGroup) {
-                if (selectedDelivery === 'point_relais') {
-                    addressGroup.style.display = 'none';
-                } else {
-                    addressGroup.style.display = 'block';
+            // Étape 2 → 3
+            $('step2-next')?.addEventListener('click', function() {
+                if (!this.disabled && selectedModel) {
+                    renderToner();
                 }
-            }
+            });
+
+            // Étape 3 → Retour
+            $('step3-back')?.addEventListener('click', function() {
+                updateStep(2);
+            });
+
+            // Submit
+            $('submitBtn')?.addEventListener('click', handleSubmit);
         }
 
         // ========================================
-        // ENVOI DE LA COMMANDE
+        // SUBMIT
         // ========================================
         async function handleSubmit() {
             if (isSubmitting) return;
-            
-            const fullname = getElement('fullname');
-            const phone = getElement('phone');
-            const wilaya = getElement('order-wilaya');
-            const commune = getElement('order-commune');
-            const address = getElement('address');
-            
-            if (!fullname || !fullname.value.trim()) { 
-                showStatus('error', 'Veuillez entrer votre nom complet'); 
-                return; 
-            }
-            if (!phone || !phone.value.trim() || phone.value.trim().length < 9) { 
-                showStatus('error', 'Veuillez entrer un numéro de téléphone valide'); 
-                return; 
-            }
-            if (!wilaya || !wilaya.value) { 
-                showStatus('error', 'Veuillez sélectionner votre wilaya'); 
-                return; 
-            }
-            if (!commune || !commune.value) { 
-                showStatus('error', 'Veuillez sélectionner votre commune'); 
-                return; 
-            }
-            if (selectedDelivery === 'domicile' && (!address || !address.value.trim())) { 
-                showStatus('error', 'Veuillez entrer votre adresse complète'); 
-                return; 
-            }
-            
+
+            const fullname = $('fullname');
+            const phone = $('phone');
+            const wilaya = $('orderWilaya');
+            const commune = $('orderCommune');
+            const address = $('address');
+
+            if (!fullname.value.trim()) { showStatus('error', 'Veuillez entrer votre nom'); return; }
+            if (!phone.value.trim() || phone.value.trim().length < 9) { showStatus('error', 'Téléphone invalide'); return; }
+            if (!wilaya.value) { showStatus('error', 'Sélectionnez votre wilaya'); return; }
+            if (!commune.value) { showStatus('error', 'Sélectionnez votre commune'); return; }
+            if (!address.value.trim()) { showStatus('error', 'Entrez votre adresse'); return; }
+
             isSubmitting = true;
-            const submitBtn = getElement('submitBtn');
-            if (submitBtn) submitBtn.disabled = true;
-            
-            const loadingOverlay = getElement('loading-overlay');
-            if (loadingOverlay) loadingOverlay.style.display = 'flex';
-            
+            $('submitBtn').disabled = true;
+            $('loading-overlay').style.display = 'flex';
+
             try {
-                const qtyInput = getElement('quantity');
-                const qty = qtyInput ? parseInt(qtyInput.value) || 1 : 1;
-                const type = selectedTonerType === 'original' ? 'Original' : 'Compatible';
-                const marqueSelect = getElement('marque-selectionnee');
-                const marque = marqueSelect ? marqueSelect.value : '';
-                const modeleSelect = getElement('modele-selectionne');
-                const modele = modeleSelect ? modeleSelect.value : '';
-                
-                const step2Next = getElement('step2-next');
-                let tonerData = {};
-                if (step2Next && step2Next.dataset.toner) {
-                    try {
-                        tonerData = JSON.parse(step2Next.dataset.toner);
-                    } catch (e) {}
-                }
-                
-                const totalDisplay = getElement('total-display');
-                const total = totalDisplay ? totalDisplay.textContent : '0 DA';
-                
-                const wilayaName = WILAYA_NAMES.find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin || '';
-                const communeName = WILAYA_DATAS.communes?.find(c => c.commune_id == commune.value)?.commune_name_latin || '';
-                
+                const qty = parseInt($('quantity').value) || 1;
+                const t = selectedToner;
+                const wilayaName = (WILAYA_DATAS.wilayas || []).find(w => w.wilaya_id == wilaya.value)?.wilaya_name_latin || '';
+                const communeName = (WILAYA_DATAS.communes || []).find(c => c.commune_id == commune.value)?.commune_name_latin || '';
+
                 const orderData = {
-                    fullname: sanitizeInput(fullname.value.trim()),
-                    phone: sanitizeInput(phone.value.trim()),
-                    wilaya: sanitizeInput(wilayaName),
-                    commune: sanitizeInput(communeName),
-                    address: sanitizeInput(address ? address.value.trim() : '') || 'Point relais',
-                    marque: sanitizeInput(marque),
-                    modele: sanitizeInput(modele),
-                    toner: sanitizeInput(tonerData.nom || ''),
-                    code: sanitizeInput(tonerData.code || ''),
-                    type: type,
+                    fullname: fullname.value.trim(),
+                    phone: phone.value.trim(),
+                    wilaya: wilayaName,
+                    commune: communeName,
+                    address: address.value.trim(),
+                    marque: selectedBrand?.nom || '',
+                    modele: selectedModel?.modele || '',
+                    toner: t?.nom || '',
+                    code: t?.code || '',
+                    type: 'Compatible',
                     quantite: qty,
-                    total: total,
-                    livraison: selectedDelivery === 'domicile' ? 'Domicile' : 'Point relais'
+                    total: `${(t?.prix_compatible || 0 * qty).toLocaleString('fr-FR')} DA`,
+                    livraison: 'Domicile'
                 };
-                
-                console.log('📤 Envoi de la commande:', orderData);
-                
+
+                console.log('📤 Commande:', orderData);
+
                 await emailjs.send(
                     EMAILJS_CONFIG.service_id,
                     EMAILJS_CONFIG.template_id,
                     orderData
                 );
-                console.log('✅ Email envoyé');
-                
+
                 showCelebration(orderData);
-                
-            } catch (error) {
-                console.error('❌ Erreur:', error);
-                showStatus('error', '⚠️ Une erreur est survenue. Veuillez réessayer ou nous contacter par WhatsApp.');
+
+            } catch (err) {
+                console.error('❌ Erreur:', err);
+                showStatus('error', '⚠️ Erreur d\'envoi. Réessayez ou contactez-nous.');
             } finally {
                 isSubmitting = false;
-                if (submitBtn) submitBtn.disabled = false;
-                const loadingOverlay = getElement('loading-overlay');
-                if (loadingOverlay) loadingOverlay.style.display = 'none';
+                $('submitBtn').disabled = false;
+                $('loading-overlay').style.display = 'none';
             }
         }
 
@@ -875,86 +1385,69 @@
         // CÉLÉBRATION
         // ========================================
         function showCelebration(data) {
-            const overlay = getElement('celebration-overlay');
-            const summary = getElement('order-summary');
-            
+            const overlay = $('celebration-overlay');
+            const summary = $('orderSummary');
             if (!overlay || !summary) return;
-            
+
             summary.innerHTML = `
                 <div class="line"><span>👤 Client</span><span>${data.fullname}</span></div>
-                <div class="line"><span>📦 Produit</span><span>${data.marque} - ${data.toner}</span></div>
-                <div class="line"><span>🔧 Type</span><span>${data.type}</span></div>
-                <div class="line"><span>📄 Quantité</span><span>${data.quantite}</span></div>
-                <div class="line"><span>🚚 Livraison</span><span>${data.livraison}</span></div>
+                <div class="line"><span>📦 Toner</span><span>${data.toner}</span></div>
+                <div class="line"><span>🔧 Marque</span><span>${data.marque}</span></div>
+                <div class="line"><span>📄 Modèle</span><span>${data.modele}</span></div>
+                <div class="line"><span>📦 Quantité</span><span>${data.quantite}</span></div>
                 <div class="line"><span>📍 Wilaya</span><span>${data.wilaya}</span></div>
                 <div class="line"><span>💰 Total</span><span>${data.total}</span></div>
             `;
-            
+
             overlay.style.display = 'flex';
             launchConfetti();
             launchFireworks();
         }
 
         function closeCelebration() {
-            const overlay = getElement('celebration-overlay');
-            if (overlay) overlay.style.display = 'none';
-            
-            const confettiContainer = getElement('confetti-container');
-            if (confettiContainer) confettiContainer.innerHTML = '';
-            
-            const form = getElement('order-form');
-            if (form) form.reset();
-            
-            const marqueSelect = getElement('marque-selectionnee');
-            if (marqueSelect) marqueSelect.value = '';
-            
-            const modeleSelect = getElement('modele-selectionne');
-            if (modeleSelect) modeleSelect.value = '';
-            
-            const modeleInput = getElement('recherche-modele');
-            if (modeleInput) modeleInput.disabled = true;
-            
-            const step1Next = getElement('step1-next');
-            if (step1Next) step1Next.disabled = true;
-            
-            showStep(1);
-            
-            UNIT_PRICE = 0;
-            const productName = getElement('product-name');
-            if (productName) productName.textContent = 'Toner Compatible';
-            
-            const productPrice = getElement('product-price');
-            if (productPrice) productPrice.textContent = '0 DA';
-            
-            const productRendement = getElement('product-rendement');
-            if (productRendement) productRendement.textContent = '';
-            
-            const productDesc = getElement('product-desc');
-            if (productDesc) productDesc.textContent = 'Sélectionnez votre imprimante pour trouver le toner compatible';
-            
-            const compatList = getElement('compat-list');
-            if (compatList) compatList.innerHTML = '';
-            
-            const subtotalDisplay = getElement('subtotal-display');
-            if (subtotalDisplay) subtotalDisplay.textContent = '0 DA';
-            
-            const totalDisplay = getElement('total-display');
-            if (totalDisplay) totalDisplay.textContent = '0 DA';
-            
-            const discountLine = getElement('discount-line');
-            if (discountLine) discountLine.style.display = 'none';
+            $('celebration-overlay').style.display = 'none';
+            $('confettiContainer').innerHTML = '';
+            resetAll();
+        }
+
+        function resetAll() {
+            selectedBrand = null;
+            selectedModel = null;
+            selectedToner = null;
+
+            document.querySelectorAll('.brand-card').forEach(el => el.classList.remove('selected'));
+            document.querySelectorAll('.model-item').forEach(el => el.classList.remove('selected'));
+
+            $('modelSearch').value = '';
+            $('modelsList').innerHTML = '';
+            $('step1-next').disabled = true;
+            $('step2-next').disabled = true;
+
+            updateStep(1);
+            updateStep1Button();
+
+            // Réinitialiser le formulaire
+            ['fullname', 'phone', 'address'].forEach(id => {
+                const el = $(id);
+                if (el) el.value = '';
+            });
+            ['orderWilaya', 'orderCommune'].forEach(id => {
+                const el = $(id);
+                if (el) el.selectedIndex = 0;
+            });
+            $('quantity').value = 1;
         }
 
         // ========================================
-        // CONFETTIS & FEUX D'ARTIFICE
+        // CONFETTIS
         // ========================================
         function launchConfetti() {
-            const container = getElement('confetti-container');
+            const container = $('confettiContainer');
             if (!container) return;
             container.innerHTML = '';
-            const colors = ['#F5D742', '#F47920', '#1A4C27', '#E74C3C', '#3498DB', '#9B59B6'];
-            
-            for (let i = 0; i < 100; i++) {
+            const colors = ['#f5b342', '#0f1a2e', '#2e7d32', '#e74c3c', '#3498db', '#9b59b6'];
+
+            for (let i = 0; i < 80; i++) {
                 const el = document.createElement('div');
                 el.className = 'confetti';
                 el.style.left = Math.random() * 100 + '%';
@@ -966,22 +1459,22 @@
                 el.style.animationDelay = (Math.random() * 2) + 's';
                 container.appendChild(el);
             }
-            
-            setTimeout(() => {
-                if (container) container.innerHTML = '';
-            }, 5000);
+            setTimeout(() => { container.innerHTML = ''; }, 5000);
         }
 
+        // ========================================
+        // FEUX D'ARTIFICE
+        // ========================================
         function launchFireworks() {
-            const canvas = getElement('fireworks-canvas');
+            const canvas = $('fireworks-canvas');
             if (!canvas) return;
             const ctx = canvas.getContext('2d');
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
-            
+
             const particles = [];
-            const colors = ['#F5D742', '#F47920', '#FF6B6B', '#4ECDC4', '#45B7D1', '#96CEB4', '#FFEAA7', '#DDA0DD'];
-            
+            const colors = ['#f5b342', '#ff6b6b', '#4ecdc4', '#45b7d1', '#96ceb4', '#ff6b6b', '#dda0dd', '#ff9ff3'];
+
             class Particle {
                 constructor(x, y) {
                     this.x = x;
@@ -993,7 +1486,6 @@
                     this.life = 1;
                     this.decay = Math.random() * 0.02 + 0.01;
                 }
-                
                 update() {
                     this.x += this.speedX;
                     this.y += this.speedY;
@@ -1001,7 +1493,6 @@
                     this.life -= this.decay;
                     this.size *= 0.99;
                 }
-                
                 draw() {
                     ctx.globalAlpha = this.life;
                     ctx.fillStyle = this.color;
@@ -1010,53 +1501,41 @@
                     ctx.fill();
                 }
             }
-            
-            function createBurst(x, y) {
-                for (let i = 0; i < 60; i++) {
-                    particles.push(new Particle(x, y));
-                }
+
+            function burst(x, y) {
+                for (let i = 0; i < 50; i++) particles.push(new Particle(x, y));
             }
-            
-            let frameCount = 0;
+
+            let frame = 0;
+
             function animate() {
                 ctx.clearRect(0, 0, canvas.width, canvas.height);
-                
-                if (frameCount % 15 === 0) {
-                    const x = Math.random() * canvas.width;
-                    const y = Math.random() * canvas.height * 0.6;
-                    createBurst(x, y);
+                if (frame % 20 === 0) {
+                    burst(Math.random() * canvas.width, Math.random() * canvas.height * 0.5);
                 }
-                
                 for (let i = particles.length - 1; i >= 0; i--) {
                     particles[i].update();
                     particles[i].draw();
-                    if (particles[i].life <= 0 || particles[i].size < 0.5) {
-                        particles.splice(i, 1);
-                    }
+                    if (particles[i].life <= 0 || particles[i].size < 0.5) particles.splice(i, 1);
                 }
-                
-                frameCount++;
-                if (particles.length > 0) {
-                    requestAnimationFrame(animate);
-                } else {
-                    ctx.clearRect(0, 0, canvas.width, canvas.height);
-                }
+                frame++;
+                if (particles.length > 0) requestAnimationFrame(animate);
+                else ctx.clearRect(0, 0, canvas.width, canvas.height);
             }
-            
             animate();
         }
 
         // ========================================
-        // INITIALISATION
+        // INIT
         // ========================================
         document.addEventListener('DOMContentLoaded', function() {
-            console.log('🚀 DOM chargé - Initialisation...');
-            initEvents();
+            console.log('🚀 Initialisation...');
+            initNavigation();
             loadData();
         });
 
         window.addEventListener('resize', function() {
-            const canvas = getElement('fireworks-canvas');
+            const canvas = $('fireworks-canvas');
             if (canvas) {
                 canvas.width = window.innerWidth;
                 canvas.height = window.innerHeight;

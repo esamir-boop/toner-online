@@ -1024,7 +1024,6 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
 
-                // Son de cloche (deux notes)
                 oscillator.frequency.setValueAtTime(800, audioCtx.currentTime);
                 oscillator.frequency.setValueAtTime(1000, audioCtx.currentTime + 0.1);
                 oscillator.frequency.setValueAtTime(1200, audioCtx.currentTime + 0.2);
@@ -1049,7 +1048,6 @@
                 oscillator.connect(gainNode);
                 gainNode.connect(audioCtx.destination);
 
-                // Son d'erreur (bip grave)
                 oscillator.frequency.setValueAtTime(300, audioCtx.currentTime);
                 oscillator.frequency.setValueAtTime(250, audioCtx.currentTime + 0.15);
 
@@ -1079,7 +1077,7 @@
         let selectedType = 'compatible';
 
         // ========================================
-        // EMAILJS
+        // EMAILJS - Chargé depuis config.json
         // ========================================
         let EMAILJS_CONFIG = {
             public_key: '',
@@ -1108,35 +1106,12 @@
 
             if (type === 'error') {
                 el.classList.add('error');
-                el.style.background = '#fde8e8';
-                el.style.color = '#c0392b';
-                el.style.border = '1px solid #f5c6cb';
-                el.style.padding = '12px 16px';
-                el.style.borderRadius = '10px';
-                el.style.marginBottom = '16px';
-                el.style.fontWeight = '500';
-                // Jouer le son d'erreur
                 playErrorSound();
             } else if (type === 'success') {
                 el.classList.add('success');
-                el.style.background = '#e8f5e9';
-                el.style.color = '#2e7d32';
-                el.style.border = '1px solid #c3e6cb';
-                el.style.padding = '12px 16px';
-                el.style.borderRadius = '10px';
-                el.style.marginBottom = '16px';
-                el.style.fontWeight = '500';
-                // Jouer le son de succès
                 playSuccessSound();
             } else if (type === 'warning') {
                 el.classList.add('warning');
-                el.style.background = '#fff3cd';
-                el.style.color = '#856404';
-                el.style.border = '1px solid #ffeeba';
-                el.style.padding = '12px 16px';
-                el.style.borderRadius = '10px';
-                el.style.marginBottom = '16px';
-                el.style.fontWeight = '500';
             }
 
             el.textContent = msg;
@@ -1151,23 +1126,24 @@
         }
 
         // ========================================
-        // CHARGEMENT DES DONNÉES
+        // CHARGEMENT DE LA CONFIGURATION EMAILJS
         // ========================================
-        async function loadData() {
+        async function loadConfig() {
             try {
-                console.log('📦 Chargement data.json...');
-                const r1 = await fetch('data.json');
-                if (!r1.ok) throw new Error('data.json introuvable');
-                CATALOG = await r1.json();
-                console.log('✅ Catalogue chargé');
+                console.log('📦 Chargement config.json...');
+                const r = await fetch('config.json');
+                if (!r.ok) throw new Error('config.json introuvable');
+                const config = await r.json();
 
-                if (CATALOG.emailjs) {
+                if (config.emailjs) {
                     EMAILJS_CONFIG = {
-                        public_key: CATALOG.emailjs.public_key || '',
-                        service_id: CATALOG.emailjs.service_id || '',
-                        template_id: CATALOG.emailjs.template_id || ''
+                        public_key: config.emailjs.public_key || '',
+                        service_id: config.emailjs.service_id || '',
+                        template_id: config.emailjs.template_id || ''
                     };
-                    console.log('✅ EmailJS configuré depuis data.json');
+                    console.log('✅ EmailJS configuré depuis config.json');
+                    console.log('📧 Template ID:', EMAILJS_CONFIG.template_id);
+                    console.log('📧 Service ID:', EMAILJS_CONFIG.service_id);
                 }
 
                 if (EMAILJS_CONFIG.public_key) {
@@ -1178,6 +1154,37 @@
                         console.warn('⚠️ EmailJS:', e);
                     }
                 }
+            } catch (err) {
+                console.error('❌ Erreur config:', err);
+                showStatus('warning', '⚠️ Fichier config.json manquant. Utilisation des valeurs par défaut.');
+                // Valeurs par défaut si config.json manquant
+                EMAILJS_CONFIG = {
+                    public_key: 'tc8CLfJDs3E9-EIQ3',
+                    service_id: 'service_hguu30b',
+                    template_id: 'template_e04zcq9'
+                };
+                try {
+                    emailjs.init(EMAILJS_CONFIG.public_key);
+                    console.log('✅ EmailJS initialisé avec valeurs par défaut');
+                } catch (e) {
+                    console.warn('⚠️ EmailJS:', e);
+                }
+            }
+        }
+
+        // ========================================
+        // CHARGEMENT DES DONNÉES
+        // ========================================
+        async function loadData() {
+            // Charger la configuration EmailJS d'abord
+            await loadConfig();
+
+            try {
+                console.log('📦 Chargement data.json...');
+                const r1 = await fetch('data.json');
+                if (!r1.ok) throw new Error('data.json introuvable');
+                CATALOG = await r1.json();
+                console.log('✅ Catalogue chargé');
 
                 console.log('📦 Chargement cities.json...');
                 const r2 = await fetch('cities.json');
@@ -1746,11 +1753,10 @@
             }
 
             // Adresse n'est plus obligatoire !
-            // On continue même si l'adresse est vide
 
             // 6. Vérifier EmailJS
             if (!EMAILJS_CONFIG.service_id || !EMAILJS_CONFIG.template_id) {
-                showStatus('error', '⚠️ EmailJS non configuré. Vérifiez data.json');
+                showStatus('error', '⚠️ EmailJS non configuré. Vérifiez config.json');
                 return;
             }
 
@@ -1800,6 +1806,7 @@
                 };
 
                 console.log('📤 Commande:', orderData);
+                console.log('📧 Envoi via EmailJS:', EMAILJS_CONFIG);
 
                 await emailjs.send(
                     EMAILJS_CONFIG.service_id,

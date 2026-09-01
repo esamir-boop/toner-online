@@ -1013,6 +1013,11 @@
     <!-- ====== JAVASCRIPT ====== -->
     <script>
         // ========================================
+        // LIEN VERS GOOGLE SHEETS
+        // ========================================
+        const SHEETS_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRlI4dF9K4znjVlTqJ1NJ3AXIGodxRu9CZn4G7zX9n6Wl6WNOTGFRqhUeCTO6K9pGXvUPA/pub?output=csv';
+
+        // ========================================
         // SONS
         // ========================================
         function playSuccessSound() {
@@ -1077,12 +1082,12 @@
         let selectedType = 'compatible';
 
         // ========================================
-        // EMAILJS - Chargé depuis config.json
+        // EMAILJS
         // ========================================
         let EMAILJS_CONFIG = {
-            public_key: '',
-            service_id: '',
-            template_id: ''
+            public_key: 'tc8CLfJDs3E9-EIQ3',
+            service_id: 'service_hguu30b',
+            template_id: 'template_e04zcq9'
         };
 
         // ========================================
@@ -1126,47 +1131,122 @@
         }
 
         // ========================================
-        // CHARGEMENT DE LA CONFIGURATION EMAILJS
+        // CHARGER LES DONNÉES DEPUIS GOOGLE SHEETS
         // ========================================
-        async function loadConfig() {
+        async function loadFromSheets() {
             try {
-                console.log('📦 Chargement config.json...');
-                const r = await fetch('config.json');
-                if (!r.ok) throw new Error('config.json introuvable');
-                const config = await r.json();
-
-                if (config.emailjs) {
-                    EMAILJS_CONFIG = {
-                        public_key: config.emailjs.public_key || '',
-                        service_id: config.emailjs.service_id || '',
-                        template_id: config.emailjs.template_id || ''
-                    };
-                    console.log('✅ EmailJS configuré depuis config.json');
-                    console.log('📧 Template ID:', EMAILJS_CONFIG.template_id);
-                }
-
-                if (EMAILJS_CONFIG.public_key) {
-                    try {
-                        emailjs.init(EMAILJS_CONFIG.public_key);
-                        console.log('✅ EmailJS initialisé');
-                    } catch (e) {
-                        console.warn('⚠️ EmailJS:', e);
+                console.log('📊 Chargement depuis Google Sheets...');
+                const response = await fetch(SHEETS_URL);
+                if (!response.ok) throw new Error('Impossible de charger Google Sheets');
+                const csvText = await response.text();
+                
+                // Parser le CSV
+                const lines = csvText.split('\n').filter(line => line.trim());
+                if (lines.length < 2) throw new Error('Données CSV vides');
+                
+                const headers = lines[0].split(',').map(h => h.trim());
+                const dataRows = lines.slice(1);
+                
+                // Construire le catalogue
+                const marques = {};
+                
+                dataRows.forEach(row => {
+                    // Gérer les colonnes avec des virgules (compatibles)
+                    let columns = [];
+                    let current = '';
+                    let inQuotes = false;
+                    
+                    for (let char of row) {
+                        if (char === '"') {
+                            inQuotes = !inQuotes;
+                        } else if (char === ',' && !inQuotes) {
+                            columns.push(current.trim());
+                            current = '';
+                        } else {
+                            current += char;
+                        }
                     }
-                }
-            } catch (err) {
-                console.error('❌ Erreur config:', err);
-                // Valeurs par défaut
-                EMAILJS_CONFIG = {
-                    public_key: 'tc8CLfJDs3E9-EIQ3',
-                    service_id: 'service_hguu30b',
-                    template_id: 'template_e04zcq9'
+                    columns.push(current.trim());
+                    
+                    // Supprimer les guillemets
+                    columns = columns.map(col => col.replace(/^"|"$/g, ''));
+                    
+                    if (columns.length < 8) return;
+                    
+                    const marque = columns[0];
+                    const code = columns[1];
+                    const nom = columns[2];
+                    const rendement = columns[3];
+                    const prixAchat = parseFloat(columns[4]) || 0;
+                    const marge = parseFloat(columns[5]) || 40;
+                    const prixOriginal = parseFloat(columns[6]) || 0;
+                    const compatibles = columns[7] ? columns[7].split(';').map(m => m.trim()).filter(m => m) : [];
+                    
+                    if (!marque || !code) return;
+                    
+                    if (!marques[marque]) {
+                        marques[marque] = {
+                            nom: marque,
+                            aliases: [marque.toLowerCase()],
+                            toners: []
+                        };
+                    }
+                    
+                    // Calculer le prix compatible
+                    const prixCompatible = Math.ceil(prixAchat + (prixAchat * marge / 100));
+                    
+                    marques[marque].toners.push({
+                        nom: nom,
+                        code: code,
+                        rendement: rendement,
+                        prix_achat: prixAchat,
+                        marge: marge,
+                        prix_original: prixOriginal,
+                        prix_compatible: prixCompatible,
+                        compatibles: compatibles
+                    });
+                });
+                
+                // Construire le catalogue final
+                CATALOG = {
+                    marques: Object.values(marques),
+                    marge_defaut: 40,
+                    remise: {
+                        par_quantite: 500,
+                        quantite_max: 10
+                    },
+                    emailjs: {
+                        public_key: 'tc8CLfJDs3E9-EIQ3',
+                        service_id: 'service_hguu30b',
+                        template_id: 'template_e04zcq9'
+                    }
                 };
+                
+                console.log('✅ Catalogue chargé depuis Google Sheets');
+                console.log(`📊 ${CATALOG.marques.length} marques chargées`);
+                
+                // Mettre à jour EmailJS
+                if (CATALOG.emailjs) {
+                    EMAILJS_CONFIG = {
+                        public_key: CATALOG.emailjs.public_key || 'tc8CLfJDs3E9-EIQ3',
+                        service_id: CATALOG.emailjs.service_id || 'service_hguu30b',
+                        template_id: CATALOG.emailjs.template_id || 'template_e04zcq9'
+                    };
+                }
+                
+                // Initialiser EmailJS
                 try {
                     emailjs.init(EMAILJS_CONFIG.public_key);
-                    console.log('✅ EmailJS initialisé avec valeurs par défaut');
+                    console.log('✅ EmailJS initialisé');
                 } catch (e) {
                     console.warn('⚠️ EmailJS:', e);
                 }
+                
+                return true;
+                
+            } catch (error) {
+                console.error('❌ Erreur chargement Sheets:', error);
+                return false;
             }
         }
 
@@ -1174,15 +1254,41 @@
         // CHARGEMENT DES DONNÉES
         // ========================================
         async function loadData() {
-            await loadConfig();
+            // Essayer de charger depuis Google Sheets d'abord
+            const sheetsLoaded = await loadFromSheets();
+            
+            if (!sheetsLoaded) {
+                // Fallback : charger data.json
+                try {
+                    console.log('📦 Chargement data.json (fallback)...');
+                    const r1 = await fetch('data.json');
+                    if (!r1.ok) throw new Error('data.json introuvable');
+                    CATALOG = await r1.json();
+                    console.log('✅ Catalogue chargé depuis data.json');
+                    
+                    if (CATALOG.emailjs) {
+                        EMAILJS_CONFIG = {
+                            public_key: CATALOG.emailjs.public_key || 'tc8CLfJDs3E9-EIQ3',
+                            service_id: CATALOG.emailjs.service_id || 'service_hguu30b',
+                            template_id: CATALOG.emailjs.template_id || 'template_e04zcq9'
+                        };
+                    }
+                    
+                    try {
+                        emailjs.init(EMAILJS_CONFIG.public_key);
+                        console.log('✅ EmailJS initialisé');
+                    } catch (e) {
+                        console.warn('⚠️ EmailJS:', e);
+                    }
+                    
+                } catch (err) {
+                    console.error('❌ Erreur:', err);
+                    showStatus('error', '⚠️ Erreur de chargement. Veuillez rafraîchir.');
+                    return;
+                }
+            }
 
             try {
-                console.log('📦 Chargement data.json...');
-                const r1 = await fetch('data.json');
-                if (!r1.ok) throw new Error('data.json introuvable');
-                CATALOG = await r1.json();
-                console.log('✅ Catalogue chargé');
-
                 console.log('📦 Chargement cities.json...');
                 const r2 = await fetch('cities.json');
                 if (!r2.ok) throw new Error('cities.json introuvable');
@@ -1666,39 +1772,33 @@
         }
 
         // ========================================
-        // SUBMIT - VERSION CORRIGÉE (comme CHIFA)
+        // SUBMIT
         // ========================================
         async function handleSubmit() {
-            // Cacher les anciens messages
             hideStatus();
 
             if (isSubmitting) return;
 
-            // 1. Vérifier la limite de temps
             if (!checkTimeLimit()) {
                 showStatus('warning', '⏳ Veuillez patienter 30 secondes avant de commander à nouveau.');
                 return;
             }
 
-            // 2. Vérifier le honeypot
             if (!checkHoneypot()) {
                 showStatus('error', '🛡️ Erreur de sécurité. Veuillez réessayer.');
                 return;
             }
 
-            // 3. Récupérer les champs
             const fullname = $('fullname');
             const phone = $('phone');
             const wilaya = $('orderWilaya');
             const commune = $('orderCommune');
             const address = $('address');
 
-            // 4. Réinitialiser les styles des champs
             [fullname, phone, wilaya, commune, address].forEach(el => {
                 if (el) el.classList.remove('error');
             });
 
-            // 5. VALIDATION
             if (!fullname || !fullname.value || fullname.value.trim() === '') {
                 showStatus('error', '❌ Veuillez entrer votre nom complet');
                 if (fullname) {
@@ -1742,15 +1842,11 @@
                 return;
             }
 
-            // Adresse n'est plus obligatoire
-
-            // 6. Vérifier EmailJS
             if (!EMAILJS_CONFIG.service_id || !EMAILJS_CONFIG.template_id) {
-                showStatus('error', '⚠️ EmailJS non configuré. Vérifiez config.json');
+                showStatus('error', '⚠️ EmailJS non configuré.');
                 return;
             }
 
-            // 7. Envoyer la commande
             isSubmitting = true;
             const submitBtn = $('submitBtn');
             if (submitBtn) submitBtn.disabled = true;
@@ -1779,9 +1875,6 @@
 
                 const total = basePrice * qty;
 
-                // ========================================
-                // 🎯 CONSTRUIRE LE MESSAGE (comme CHIFA)
-                // ========================================
                 const messageText = `
         📝 NOUVELLE COMMANDE TONER
 
@@ -1809,9 +1902,6 @@
         📅 ${new Date().toLocaleString('fr-DZ')}
         `;
 
-                // ========================================
-                // 📧 ENVOI AVEC UNE SEULE VARIABLE
-                // ========================================
                 const templateParams = {
                     message: messageText
                 };
@@ -1825,9 +1915,8 @@
                 );
 
                 lastOrderTime = Date.now();
-                showStatus('success', '✅ Commande envoyée avec succès ! Vous allez recevoir un email de confirmation.');
+                showStatus('success', '✅ Commande envoyée avec succès !');
 
-                // Préparer les données pour la célébration
                 const orderData = {
                     fullname: fullname.value.trim(),
                     phone: phone.value.trim(),
@@ -2022,6 +2111,7 @@
         // ========================================
         document.addEventListener('DOMContentLoaded', function() {
             console.log('🚀 Initialisation...');
+            console.log('📊 Source: Google Sheets');
             console.log('🛡️ Honeypot actif');
             console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s`);
             console.log('🔔 Sons activés');

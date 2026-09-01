@@ -255,14 +255,5 @@
         }
       ]
     }
-  ],
-  "remise": {
-    "par_quantite": 500,
-    "quantite_max": 10
-  },
-  "emailjs": {
-    "public_key": "tc8CLfJDs3E9-EIQ3",
-    "service_id": "service_hguu30b",
-    "template_id": "template_e04zcq9"
-  }
+  ]
 }

@@ -1143,7 +1143,6 @@
                     };
                     console.log('✅ EmailJS configuré depuis config.json');
                     console.log('📧 Template ID:', EMAILJS_CONFIG.template_id);
-                    console.log('📧 Service ID:', EMAILJS_CONFIG.service_id);
                 }
 
                 if (EMAILJS_CONFIG.public_key) {
@@ -1156,8 +1155,7 @@
                 }
             } catch (err) {
                 console.error('❌ Erreur config:', err);
-                showStatus('warning', '⚠️ Fichier config.json manquant. Utilisation des valeurs par défaut.');
-                // Valeurs par défaut si config.json manquant
+                // Valeurs par défaut
                 EMAILJS_CONFIG = {
                     public_key: 'tc8CLfJDs3E9-EIQ3',
                     service_id: 'service_hguu30b',
@@ -1176,7 +1174,6 @@
         // CHARGEMENT DES DONNÉES
         // ========================================
         async function loadData() {
-            // Charger la configuration EmailJS d'abord
             await loadConfig();
 
             try {
@@ -1669,7 +1666,7 @@
         }
 
         // ========================================
-        // SUBMIT - VERSION CORRIGÉE
+        // SUBMIT - VERSION CORRIGÉE (comme CHIFA)
         // ========================================
         async function handleSubmit() {
             // Cacher les anciens messages
@@ -1702,15 +1699,12 @@
             });
 
             // 5. VALIDATION
-            let hasError = false;
-
             if (!fullname || !fullname.value || fullname.value.trim() === '') {
                 showStatus('error', '❌ Veuillez entrer votre nom complet');
                 if (fullname) {
                     fullname.classList.add('error');
                     fullname.focus();
                 }
-                hasError = true;
                 return;
             }
 
@@ -1720,7 +1714,6 @@
                     phone.classList.add('error');
                     phone.focus();
                 }
-                hasError = true;
                 return;
             } else if (phone.value.trim().length < 9) {
                 showStatus('error', '❌ Le numéro de téléphone doit contenir au moins 9 chiffres');
@@ -1728,7 +1721,6 @@
                     phone.classList.add('error');
                     phone.focus();
                 }
-                hasError = true;
                 return;
             }
 
@@ -1738,7 +1730,6 @@
                     wilaya.classList.add('error');
                     wilaya.focus();
                 }
-                hasError = true;
                 return;
             }
 
@@ -1748,11 +1739,10 @@
                     commune.classList.add('error');
                     commune.focus();
                 }
-                hasError = true;
                 return;
             }
 
-            // Adresse n'est plus obligatoire !
+            // Adresse n'est plus obligatoire
 
             // 6. Vérifier EmailJS
             if (!EMAILJS_CONFIG.service_id || !EMAILJS_CONFIG.template_id) {
@@ -1789,6 +1779,55 @@
 
                 const total = basePrice * qty;
 
+                // ========================================
+                // 🎯 CONSTRUIRE LE MESSAGE (comme CHIFA)
+                // ========================================
+                const messageText = `
+        📝 NOUVELLE COMMANDE TONER
+
+        👤 Client
+        Nom: ${fullname.value.trim()}
+        Téléphone: ${phone.value.trim()}
+
+        📍 Livraison
+        Wilaya: ${wilayaName}
+        Commune: ${communeName}
+        Adresse: ${address ? address.value.trim() || 'Non spécifiée' : 'Non spécifiée'}
+
+        🖨️ Toner
+        Marque: ${selectedBrand?.nom || ''}
+        Modèle: ${selectedModel?.modele || ''}
+        Toner: ${t?.nom || ''}
+        Code: ${t?.code || ''}
+        Type: ${typeLabel}
+        Quantité: ${qty}
+
+        💰 Total: ${total.toLocaleString('fr-FR')} DA
+
+        🚚 Livraison: Domicile
+
+        📅 ${new Date().toLocaleString('fr-DZ')}
+        `;
+
+                // ========================================
+                // 📧 ENVOI AVEC UNE SEULE VARIABLE
+                // ========================================
+                const templateParams = {
+                    message: messageText
+                };
+
+                console.log('📤 Envoi du message:', templateParams);
+
+                await emailjs.send(
+                    EMAILJS_CONFIG.service_id,
+                    EMAILJS_CONFIG.template_id,
+                    templateParams
+                );
+
+                lastOrderTime = Date.now();
+                showStatus('success', '✅ Commande envoyée avec succès ! Vous allez recevoir un email de confirmation.');
+
+                // Préparer les données pour la célébration
                 const orderData = {
                     fullname: fullname.value.trim(),
                     phone: phone.value.trim(),
@@ -1805,17 +1844,6 @@
                     livraison: 'Domicile'
                 };
 
-                console.log('📤 Commande:', orderData);
-                console.log('📧 Envoi via EmailJS:', EMAILJS_CONFIG);
-
-                await emailjs.send(
-                    EMAILJS_CONFIG.service_id,
-                    EMAILJS_CONFIG.template_id,
-                    orderData
-                );
-
-                lastOrderTime = Date.now();
-                showStatus('success', '✅ Commande envoyée avec succès ! Vous allez recevoir un email de confirmation.');
                 setTimeout(() => {
                     showCelebration(orderData);
                 }, 500);
@@ -1997,6 +2025,7 @@
             console.log('🛡️ Honeypot actif');
             console.log(`🛡️ Limite de temps: ${MIN_TIME_BETWEEN_ORDERS}s`);
             console.log('🔔 Sons activés');
+            console.log('📧 Méthode {{message}} activée');
             initNavigation();
             loadData();
         });
